@@ -23,6 +23,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 
+//annotation test
 public class ProdManager {
 	public static class ProdManagerAppMain extends JFrame {
 		
