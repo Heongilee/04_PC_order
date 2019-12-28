@@ -3,6 +3,9 @@ package JSON_Weather;
 import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
+/*
+ * Welcome DTO Class
+ * */
 public class Welcome {
     private Coord coord;
     private Weather[] weather;

@@ -2,7 +2,9 @@ package JSON_Weather;
 
 import java.util.*;
 import com.fasterxml.jackson.annotation.*;
-
+/*
+ * Weather DTO Class
+ * */
 public class Weather {
     private long id;
     private String main;

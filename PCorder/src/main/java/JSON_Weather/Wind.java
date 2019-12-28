@@ -3,6 +3,9 @@ package JSON_Weather;
 import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
+/*
+ * Wind DTO Class
+ * */
 public class Wind {
     private double speed;
     private long deg;

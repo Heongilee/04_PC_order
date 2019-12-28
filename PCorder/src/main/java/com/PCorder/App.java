@@ -6,12 +6,15 @@ import View.MyFrame;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+
 import com.google.gson.*;
 import JSON_Weather.Converter;
 import JSON_Weather.Welcome;
 
 public class App 
 {
+	private static String file = "C:\\04_PC_order\\PCorder\\JSON_dir\\weather.json";
     public static void main( String[] args) throws IOException{
     	//////////////////////
     	// Test Bench
@@ -20,10 +23,8 @@ public class App
 //    	ProductDAO test = new ProductDAO();
 //    	test.getProduct(222222);
     	
-    	//JSON 파싱을 위해 GSON 라이브러리를 사용.
-    	////////////////////////////////
-    	// 어케하누...
-    	//////////////////////////////////
+    	Welcome data = Converter.fromJsonString("");
+    	System.out.println(data.getMain().getTemp());
     	
     	
 //    	new MyFrame();

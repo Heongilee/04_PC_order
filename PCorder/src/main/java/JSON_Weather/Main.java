@@ -3,6 +3,9 @@ package JSON_Weather;
 import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
+/* 
+ * Main DTO Class
+ * */
 public class Main {
     private double temp;
     private double feelsLike;

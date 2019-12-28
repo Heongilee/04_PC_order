@@ -3,6 +3,10 @@ package JSON_Weather;
 import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
+/*
+ * 위도, 경도
+ * Coord DTO Class
+ * */
 public class Coord {
     private double lon;
     private double lat;

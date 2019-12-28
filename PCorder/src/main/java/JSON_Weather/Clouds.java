@@ -3,6 +3,9 @@ package JSON_Weather;
 import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
+/*
+ * Clouds DTO Class
+ * */
 public class Clouds {
     private long all;
 

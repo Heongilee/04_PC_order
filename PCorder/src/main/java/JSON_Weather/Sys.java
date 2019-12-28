@@ -3,6 +3,9 @@ package JSON_Weather;
 import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
+/*
+ * Sys DTO Class
+ * */
 public class Sys {
     private long type;
     private long id;
