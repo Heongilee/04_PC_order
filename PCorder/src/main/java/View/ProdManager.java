@@ -1,4 +1,4 @@
-package ProductManager;
+package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,12 +22,9 @@ import javax.swing.JViewport;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-
-//annotation test
 public class ProdManager {
-	public static class ProdManagerAppMain extends JFrame {
-		
-		private static Container c;
+	public class ProdManagerAppMain extends JFrame {
+		private Container c;
 		JLabel title = new JLabel("상품관리");
 		JLabel stateText = new JLabel("##");
 		JPanel leftPanel = new JPanel();
@@ -110,12 +107,6 @@ public class ProdManager {
 				}
 				add(pa);
 			}
-			
 		}// ShowPanel
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new ProdManagerAppMain();
-	}
-
 }

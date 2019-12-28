@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ProductDAO {
 	private static String url = "jdbc:mysql://localhost:3306/mytest_db";
 	private static String user = "root";
-	private static String pw = "zzll230";
+	private static String pw = "1111";
 	
 	public ProductDTO getProduct(Integer id) {
 		ProductDTO p = null;

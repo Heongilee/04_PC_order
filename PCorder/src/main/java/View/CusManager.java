@@ -1,4 +1,4 @@
-package CustomerManager;
+package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,8 +21,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 public class CusManager {
-	public static class CusManagerAppMain extends JFrame {
-		private static Container c;
+	public class CusManagerAppMain extends JFrame {
+		private Container c;
 		JLabel title = new JLabel("°í°´°ü¸®");
 		JPanel leftPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
@@ -92,15 +92,7 @@ public class CusManager {
 				msgPanel.add(BorderLayout.CENTER,chatInput);
 				msgPanel.add(BorderLayout.EAST,chatSubmit);
 				add(msgPanel,BorderLayout.SOUTH);
-				
-				
 				}
 			}
 		}// ChatPanel
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new CusManagerAppMain();
-	}
-
 }
