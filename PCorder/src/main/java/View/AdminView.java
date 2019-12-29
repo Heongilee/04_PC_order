@@ -21,7 +21,7 @@ public class AdminView {
 		JButton cm_btn = new JButton("고객관리");
 		JButton pm_btn = new JButton("상품관리");
 		private LoginPanel LP = new LoginPanel();
-		JPanel northPanel = new JPanel();/////////////////////이전 버튼 추가 ///////////////////
+		/////////////////////이전 버튼 추가 ///////////////////
 		JLabel title = new JLabel("Server Mode");
 		private static Container c;
 	//	JPanel panel = new JPanel();
