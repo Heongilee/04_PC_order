@@ -7,6 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import com.google.gson.*;
 import JSON_Weather.Converter;
@@ -23,10 +27,9 @@ public class App
 //    	ProductDAO test = new ProductDAO();
 //    	test.getProduct(222222);
     	
-    	Welcome data = Converter.fromJsonString("");
-    	System.out.println(data.getMain().getTemp());
+    	//???
+//    	Welcome data = Converter.fromJsonString("");
     	
-    	
-//    	new MyFrame();
+    	new MyFrame();
     }
 }
