@@ -21,6 +21,7 @@ public class AdminView {
 		JButton cm_btn = new JButton("고객관리");
 		JButton pm_btn = new JButton("상품관리");
 		private LoginPanel LP = new LoginPanel();
+		JPanel northPanel = new JPanel();/////////////////////이전 버튼 추가 ///////////////////
 		JLabel title = new JLabel("Server Mode");
 		private static Container c;
 	//	JPanel panel = new JPanel();
@@ -35,11 +36,14 @@ public class AdminView {
 		//	c.setLayout(new BorderLayout());
 			
 			//panel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 80));
-			cm_btn.addActionListener(new MyActionListener());
+		
 			cm_btn.setBackground(Color.black);
 			cm_btn.setFont(new Font("고딕체", Font.BOLD, 19));
 			cm_btn.setForeground(Color.WHITE);
 			cm_btn.addActionListener(new MyActionListener());
+			
+			
+			
 			pm_btn.setBackground(Color.black);
 			pm_btn.setFont(new Font("고딕체", Font.BOLD, 19));
 			pm_btn.setForeground(Color.WHITE);
@@ -59,12 +63,21 @@ public class AdminView {
 	        layeredpane.add(cm_btn);
 	        layeredpane.add(pm_btn);
 	        layeredpane.add(title);
-		//	panel.add(layeredpane);
-			
+		//	panel.add(layeredpane);]
+	        pm_btn.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					new ProdManager();
+					dispose();
+					
+				}});
+	    
 			add(layeredpane);
 			//c.add(panel, BorderLayout.CENTER);
 		    setSize(700, 600);
-			//setLocationRelativeTo(null); //?? 
+			setLocationRelativeTo(null); //?? 
 			setVisible(true);
 		}
 

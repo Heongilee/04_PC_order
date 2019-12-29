@@ -24,8 +24,7 @@ import javax.swing.border.TitledBorder;
 
 
 //annotation test
-public class ProdManager {
-   public static class ProdManagerAppMain extends JFrame {
+public class ProdManager extends JFrame{
       
       private static Container c;
       JLabel title = new JLabel("상품관리");
@@ -33,18 +32,21 @@ public class ProdManager {
       JPanel leftPanel = new JPanel();
       JPanel rightPanel = new JPanel();
       JPanel wrapPanel = new JPanel();
-      JPanel northPanel = new JPanel();
+      JPanel northPanel = new JPanel();/////////////////////이전 버튼 추가 ///////////////////
+      JButton previousbtn = new JButton();
       String[] prodLabel_str = {"상품 번호", "상품명", "단가", "제조사"};
       JLabel[] prodLabel = new JLabel[4];
       JComboBox<String> prodCombo = new JComboBox<String>();
       JTextField[] prodtf = new JTextField[3];
       String ta_col = "관리번호\t상품명\t단가\t제조사";
-      JTextArea ta = new JTextArea(ta_col, 15, 30);
+      JTextArea ta = new JTextArea(ta_col, 27, 30);
       String[] btn_str = {"등록", "조회", "삭제"};
       JButton[] btn = new JButton[3];
+      
       private ProductPanel PP = new ProductPanel();
       private ShowPanel SP = new ShowPanel();
-      public ProdManagerAppMain() {
+      public ProdManager() {
+    	  
          super("상품관리");
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          
@@ -54,13 +56,19 @@ public class ProdManager {
          leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
          
          //title 폰트 크기
-         title.setFont(new Font("굴림", Font.BOLD, 50));
+         title.setFont(new Font("굴림", Font.BOLD, 45));
          //오른쪽 정렬
          leftPanel.setLayout(new FlowLayout( FlowLayout.RIGHT ));
          
          northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
          title.setAlignmentX(CENTER_ALIGNMENT);
+      
+         
          stateText.setAlignmentX(CENTER_ALIGNMENT);
+         stateText.setFont(new Font("고딕체", Font.ITALIC, 14));
+         stateText .setForeground(Color.BLACK);   // 메세지 뜰때마다 빨강으로 전환하기
+         
+         
          northPanel.add(title);
          northPanel.add(stateText);
          c.add(northPanel, BorderLayout.NORTH);
@@ -70,7 +78,7 @@ public class ProdManager {
          rightPanel.add(SP);
          wrapPanel.add(rightPanel);
          c.add(wrapPanel, BorderLayout.CENTER);
-         setSize(700,452);
+         setSize(900,700);
          setLocationRelativeTo(null);
          // 크기 고정
 //           super.setResizable(false);
@@ -81,15 +89,19 @@ public class ProdManager {
          
          public ProductPanel() {
             setLayout(new GridLayout(4,2,10,30));
-            setPreferredSize(new Dimension((int)(300), (int)(250)));
+            setPreferredSize(new Dimension((int)(400), (int)(300)));
+            
+            
             for(int i=0;i<4;i++)
             {
                prodLabel[i] = new JLabel(prodLabel_str[i]);
+               prodLabel[i].setFont(new Font("고딕체", Font.PLAIN, 16));
                add(prodLabel[i]);
                
                if(i == 0) add(prodCombo);
                else {
                   prodtf[i - 1] = new JTextField();
+              
                   add(prodtf[i - 1]);
                }
             }
@@ -105,17 +117,22 @@ public class ProdManager {
             JPanel pa = new JPanel();
             for(int i=0;i<3;i++) 
             {
+           
                btn[i] = new JButton(btn_str[i]);
+         	   btn[i].setBackground(Color.black);
+        	   btn[i].setFont(new Font("고딕체", Font.PLAIN, 20));
+        	   btn[i].setForeground(Color.WHITE);
+        
                pa.add(btn[i]);
             }
             add(pa);
          }
          
       }// ShowPanel
-   }
-   public static void main(String[] args) {
-      // TODO Auto-generated method stub
-      new ProdManagerAppMain();
-   }
+   
+//   public static void main(String[] args) {
+//      // TODO Auto-generated method stub
+//      new ProdManager();
+//   }
 
 }
