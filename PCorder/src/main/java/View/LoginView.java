@@ -19,7 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class LoginView extends JFrame {
+public class LoginView extends JPanel {
 	
 	BufferedImage img = null;
 	JTextField loginTextField;
@@ -38,9 +38,10 @@ public class LoginView extends JFrame {
 	}
 
 	public LoginView() {
-		setTitle("로그인");
+		JFrame f = new JFrame();
+		f.setTitle("로그인");
 		setSize(700, 600);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(null);
 		goup.add(server);
 		goup.add(user);

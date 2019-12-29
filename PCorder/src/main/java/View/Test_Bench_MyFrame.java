@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -13,15 +14,18 @@ import javax.swing.JLabel;
 import Controller.I_Login;
 
 public class Test_Bench_MyFrame extends JFrame{
+	private CardLayout card = new CardLayout();
+	
 	private JButton btn = new JButton("test");
 	public Test_Bench_MyFrame() {
 		super("MVC Modeling");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
 		c.setLayout(new FlowLayout());
-		
+	
+	
 		btn.addActionListener(new AL());
-		c.add(btn);
+		c.add(btn);		
 		
 		setSize(700, 600);
 		setVisible(true);
@@ -35,7 +39,7 @@ public class Test_Bench_MyFrame extends JFrame{
 				this.Submit();
 			}
 		}
-
+	
 		@Override
 		public void Submit() {
 			
