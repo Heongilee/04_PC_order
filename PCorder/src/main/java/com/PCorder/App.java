@@ -12,7 +12,6 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import com.google.gson.*;
 
 public class App 
 {
@@ -23,9 +22,6 @@ public class App
     	//////////////////////
 //    	ProductDAO test = new ProductDAO();
 //    	test.getProduct(222222);
-    	
-    	//???
-//    	Welcome data = Converter.fromJsonString("");
     	
     	new Test_Bench_MyFrame();
     }
