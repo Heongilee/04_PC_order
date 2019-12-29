@@ -1,4 +1,4 @@
-package MainProject;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -121,7 +121,6 @@ public class SignUpView extends JFrame {//회원가입화면
     			try{
     				
     				JOptionPane.showMessageDialog(null, "이 아이디 중복 없돠 ~~ ");
-    				dispose();
     			}catch (Exception ex){
     				JOptionPane.showMessageDialog(null, "다른 아이디를 입력해주세요");
     			}

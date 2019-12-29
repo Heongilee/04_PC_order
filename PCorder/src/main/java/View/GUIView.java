@@ -1,4 +1,4 @@
-package allview;
+package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -92,9 +92,11 @@ public class GUIView extends JFrame{
 		Listl2.setHorizontalAlignment(JLabel.RIGHT);
 		topp.add(Listl1,BorderLayout.WEST);
 		topp.add(Listl2, BorderLayout.EAST);
+	
 		jl.add(new ScrollPane());
 		crp1.add(topp, BorderLayout.NORTH);
 		crp1.add(jl, BorderLayout.CENTER);
+		
 		
 		ctopp.add(cl1, BorderLayout.NORTH);
 		ctopp.add(cl2, BorderLayout.SOUTH);
