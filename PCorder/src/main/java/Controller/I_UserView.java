@@ -13,7 +13,7 @@ public interface I_UserView {
 	//executeQuery ...
 	
 	void Add_Orderlog();	
-	// 해당 상품을 클릭하면 주문 내역에 추가된다.
+	// 해당 상품을 클릭하면 주문 내역에 추가된다.	
 	// 항목이 추가될 때 마다 합계 JTextField에 추가된 항목에 해당하는 가격이 책정
 	// 되도록 한다.
 	
@@ -24,5 +24,4 @@ public interface I_UserView {
 	// 				결제 금액보다 잔액이 부족하면 결제 실패 메시지를 출력한다.
 	// Exception2.	합계가 0(주문 목록에 추가 시킬 때 마다 합계가 변하기 때문)이면 
 	// 결제 실패
-	
 }
