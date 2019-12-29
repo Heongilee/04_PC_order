@@ -12,9 +12,9 @@ import javax.swing.JLabel;
 
 import Controller.I_Login;
 
-public class MyFrame extends JFrame{
+public class Test_Bench_MyFrame extends JFrame{
 	private JButton btn = new JButton("test");
-	public MyFrame() {
+	public Test_Bench_MyFrame() {
 		super("MVC Modeling");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
