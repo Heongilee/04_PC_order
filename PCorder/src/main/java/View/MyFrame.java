@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import Controller.Login;
+import Controller.I_Login;
 
 public class MyFrame extends JFrame{
 	private JButton btn = new JButton("test");
@@ -26,7 +26,7 @@ public class MyFrame extends JFrame{
 		setSize(300, 300);
 		setVisible(true);
 	}
-	public class AL implements ActionListener, Login{
+	public class AL implements ActionListener, I_Login{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton b = (JButton)e.getSource();
@@ -35,12 +35,20 @@ public class MyFrame extends JFrame{
 				this.Submit();
 			}
 		}
+
 		@Override
 		public void Submit() {
-			System.out.println("[2] : 정상 작동");
+			
 		}
+
 		@Override
 		public void Register() {
+			
 		}
+
+		@Override
+		public void Mode_Check() {
+		}
+		
 	}
 }

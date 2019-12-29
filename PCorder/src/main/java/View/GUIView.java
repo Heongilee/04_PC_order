@@ -49,7 +49,7 @@ public class GUIView extends JFrame{
 	ArrayList<String> menuList = new ArrayList<String>();//디비에서 가져온 메뉴 리스트
 	
 	GUIView(){
-		setTitle("걸작품");
+		setTitle("PC방 푸드 오더 시스템");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout(10, 10));
