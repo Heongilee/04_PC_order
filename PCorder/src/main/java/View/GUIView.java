@@ -74,7 +74,7 @@ public class GUIView extends JFrame {
 	}
 
 	GUIView() {
-		setTitle("걸작품");
+		setTitle("User_View");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout(10, 10));
@@ -82,25 +82,32 @@ public class GUIView extends JFrame {
 		// 위쪽 패널 구성
 		weather.setLayout(new BorderLayout());
 		wea.setLayout(new GridLayout(3, 1));
+		
+		//날씨 XML데이터 파싱
 		try {
 			String url = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1121571000";
+			
+			//페이지에 접근해줄 Document객체 생성
 			DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
 			Document doc = dBuilder.parse(url);
-
-			// root tag
 			doc.getDocumentElement().normalize();
 
+			//파싱할 데이터의 tag에 접근
 			NodeList nList = doc.getElementsByTagName("data");
-			Node nNode = nList.item(0);// 인덱스 0인 데이터 즉 맨 앞에 있는 데이터를 가져옴
+			Node nNode = nList.item(0);//인덱스 0인 데이터 즉 맨 앞에 있는 데이터를 가져옴
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
 				weainfo[0] = new JLabel("지역: 서울특별시 광진구 화양동");
-				weainfo[1] = new JLabel("현재 기온: " + getTagValue("temp", eElement) + " ºC");
+				weainfo[1] = new JLabel("현재 기온: " + getTagValue("temp", eElement)+" ºC");
 				if (getTagValue("wfKor", eElement).equals("흐림")) {
 					img = new ImageIcon("img\\w_l3.gif");
 				} else if (getTagValue("wfKor", eElement).equals("비")) {
 					img = new ImageIcon("img\\w_l4.gif");
+				} else if(getTagValue("wfKor", eElement).equals("눈")) {
+					img = new ImageIcon("img\\w_l5.gif");
+				} else if(getTagValue("wfKor", eElement).equals("구름 많음")) {
+					img = new ImageIcon("img\\w_l21.gif");
 				} else {
 					img = new ImageIcon("img\\w_l1.gif");
 				}
@@ -110,21 +117,23 @@ public class GUIView extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		for (int i = 0; i < 3; i++) {
 			wea.add(weainfo[i]);
 		}
 		weather.add(weaimg, BorderLayout.WEST);
 		weather.add(wea, BorderLayout.CENTER);
-		weather.setPreferredSize(new Dimension(300, 0));
-
-		ninp.setLayout(new GridLayout(3, 1));
+		weather.setBackground(Color.WHITE);
+		weather.setPreferredSize(new Dimension(250, 0));
 		
 		// 오른쪽 사용자 정보 레이블
+		ninp.setLayout(new GridLayout(3, 1));
 		ninp.add(new JLabel(upin[0]));
 		Date today = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss a");
 		ninp.add(new JLabel(upin[1] + ": " + time.format(today)));
 		ninp.add(new JLabel(upin[2]));
+		ninp.setBackground(Color.WHITE);
 		
 		np1.setLayout(new BorderLayout(10, 10));
 		mess.setHorizontalAlignment(JLabel.CENTER);
@@ -132,6 +141,7 @@ public class GUIView extends JFrame {
 		np1.add(mess, BorderLayout.NORTH);
 		np1.add(ninp, BorderLayout.EAST);
 		np1.add(weather, BorderLayout.WEST);
+		np1.setBackground(Color.WHITE);
 		if (toggle == true)
 			np1.setBorder(new TitledBorder(new LineBorder(Color.BLACK)));
 

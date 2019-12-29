@@ -24,8 +24,6 @@ public class AdminView {
 	public static class AdminMain extends JFrame {
 		JPanel panel = new JPanel();
 	    CardLayout cardLayout = new CardLayout();
-
-		
 		JButton cm_btn = new JButton("绊按包府");
 		JButton pm_btn = new JButton("惑前包府");
 		private LoginPanel LP = new LoginPanel();
@@ -37,9 +35,8 @@ public class AdminView {
 	
 		LoginView log = new LoginView();
 		
-
 		public AdminMain() {
-			super("包府磊 Login");
+			super("Admin_View");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			JPanel layeredpane = new JPanel();
 	
@@ -72,7 +69,6 @@ public class AdminView {
 			cm_btn.setBounds(200, 200, 300, 60);
 	        pm_btn.setBounds(200, 300, 300, 60);
 	        title.setBounds(270, 100, 300, 60);
-		     
 	        
 	        layeredpane.add(cm_btn);
 	        layeredpane.add(pm_btn);
