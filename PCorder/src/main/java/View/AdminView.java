@@ -21,9 +21,10 @@ import javax.swing.JToolBar;
 
 public class AdminView {
 	
+
 	public static class AdminMain extends JFrame {
+		//Login_Panel_Component
 		
-		  JPanel panel = new JPanel();
 	    CardLayout cardLayout = new CardLayout();
 
 		
@@ -35,21 +36,25 @@ public class AdminView {
 		JButton LogOutbtn = new JButton("·Î±×¾Æ¿ô");
 		JLabel title = new JLabel("Server Mode");
 		private static Container c;
-	
+		//JPanel layeredpane = new JPanel();
 		LoginView log = new LoginView();
 		
 
 		public AdminMain() {
 
-		
+		//	getContentPane().add("One", new AdminView(this));
+			//getContentPane().add("Two", new P_Two(this));
+
+			
 			super("°ü¸®ÀÚ Login");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			JPanel layeredpane = new JPanel();
-	
-			panel.setLayout(cardLayout);////////
+		//	layeredpane.setBounds(0, 0, 700, 600);
+			layeredpane.setLayout(cardLayout);
       		
 			layeredpane.setLayout(null);
-		
+			//layeredpane.setLayout(cardLayout);
+		      		
 			
 			c = getContentPane();
 			c.setLayout(new BorderLayout());
@@ -59,14 +64,16 @@ public class AdminView {
 			cm_btn.setBackground(Color.black);
 			cm_btn.setFont(new Font("°íµñÃ¼", Font.BOLD, 19));
 			cm_btn.setForeground(Color.WHITE);
+			//cm_btn.addActionListener(new MyActionListener());
 			
 			
 			 bar.setRollover(true);
 			
-			bar.add(Previousbtn);
+			bar.add(Previousbtn);/////////////////
 			bar.addSeparator(new Dimension(560, 30));
 			 bar.add(LogOutbtn);
 			
+		//	layeredpane.add(bar);///////////
 			c.add(bar, BorderLayout.NORTH);
 			
 			
@@ -91,9 +98,9 @@ public class AdminView {
 	        layeredpane.add(pm_btn);
 	        layeredpane.add(title);
 	        
-	        panel.add(layeredpane, "link1");
-	        panel.add(log, "link2");
-	  
+	        
+	        
+		//	panel.add(layeredpane);]
 	        pm_btn.addActionListener(new ActionListener(){
 
 				@Override
@@ -103,15 +110,14 @@ public class AdminView {
 					dispose();
 					
 				}});
-	        
-	      
-	        Previousbtn.addActionListener(e -> cardLayout.show(panel, "link2"));
+	        Previousbtn.addActionListener(e -> cardLayout.show(log, "link1"));
+	   //   layeredpane.setLayout(cardLayout);
 	       
 	    
-			add(panel);
-			
+			add(layeredpane);
+			//c.add(panel, BorderLayout.CENTER);
 		    setSize(700, 600);
-			setLocationRelativeTo(null);  
+			setLocationRelativeTo(null); //?? 
 			setVisible(true);
 		}
 

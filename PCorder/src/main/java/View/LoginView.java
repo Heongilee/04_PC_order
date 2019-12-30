@@ -1,9 +1,12 @@
 package View;
 
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -19,8 +22,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class LoginView extends JPanel {
-	
+public class LoginView extends JFrame {
+	 JPanel panel = new JPanel();//////////
+	 CardLayout cardLayout = new CardLayout();///////
+	    	    
 	BufferedImage img = null;
 	JTextField loginTextField;
 	JPasswordField passwordField;
@@ -31,22 +36,21 @@ public class LoginView extends JPanel {
 	JRadioButton user = new JRadioButton("user MODE");
 	JRadioButton server = new JRadioButton("server MODE");
 	ButtonGroup goup = new ButtonGroup();
-
-
+	AdminView ad = new AdminView();
+	
 	public static void main(String[] args) {
 		new LoginView();
 	}
 
 	public LoginView() {
-		JFrame f = new JFrame();
-		f.setTitle("로그인");
-		setSize(700, 600);
-		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		setSize(700, 600);		
 		setLayout(null);
 		goup.add(server);
 		goup.add(user);
-		
-
+		panel.setLayout(cardLayout);////////
+		  
+	  
 		try {
 		//	img = ImageIO.read(new File("img/login.jpg"));//img/login.jpg
 		} catch (Exception e) {
@@ -54,12 +58,15 @@ public class LoginView extends JPanel {
 			System.exit(0);
 		}
 
-		JLayeredPane layeredpane = new JLayeredPane();
+		JPanel layeredpane = new JPanel();
 		layeredpane.setBounds(0, 0, 700, 600);
 		layeredpane.setLayout(null);
+		
 
 		
-		MyPanel panel = new MyPanel();
+	
+		
+	//	MyPanel panel = new MyPanel();
 		panel.setBounds(0, 0, 700, 600);
 
 		//idlb = new JLabel("아이디");
@@ -105,12 +112,22 @@ public class LoginView extends JPanel {
 		loginbt.setForeground(Color.WHITE);
 		loginbt.setBounds(240,300, 200, 48);
 		
+	
+		
+		 panel.add(layeredpane, "link1");
+	     panel.add(ad, "link2");
+	      
+	      
+		loginbt.addActionListener(e -> cardLayout.show(panel, "link2"));
+		
+		
+		
 		layeredpane.add(loginbt);
 		
 		la = new JLabel("or");
 		la.setBackground(Color.BLACK);
 		la.setFont(new Font("고딕체", Font.PLAIN, 23));
-		la.setForeground(Color.BLACK);
+		la.setForeground(Color.BLACK);		
 		la.setBounds(330, 350, 200, 48);
 		
 		layeredpane.add(la);
@@ -123,12 +140,16 @@ public class LoginView extends JPanel {
 		
 		layeredpane.add(SignUpbtn);
 		
-		layeredpane.add(panel);
-
-		add(layeredpane);
+//		layeredpane.add(panel);
+		
+	
+		add(panel);
 
 		setVisible(true);
+		
 	}
+	
+	
 
 	class MyPanel extends JPanel { 
 		public void paint(Graphics g) {
