@@ -1,28 +1,18 @@
 package com.PCorder;
 
-import Model.pc_order_DAO;
-import View.Test_Bench_MyFrame;
-
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
+import Model.Customers_DAO;
 
 public class App 
 {
-	private static String file = "C:\\04_PC_order\\PCorder\\JSON_dir\\weather.json";
-    public static void main( String[] args) throws IOException{
-    	//////////////////////
-    	// Test Bench
-    	//////////////////////
-//    	ProductDAO test = new ProductDAO();
-//    	test.getProduct(222222);
+	/////////////////////////////////////
+	// Test Bench
+	/////////////////////////////////////
+    public static void main( String[] args) throws Exception{
+    	//Customers_DAO.getInstance(); //해줘도 되고 안 해줘도 됨. 바로 메모리 할당 해버리기 때문.
+    	Customers_DAO.getConnection();
     	
-    	new Test_Bench_MyFrame();
+    	Customers_DAO.CUSTOMERS_FUNC_1();
+    	
+    	Customers_DAO.closeJDBC(Customers_DAO.conn, Customers_DAO.pstmt, Customers_DAO.stmt, Customers_DAO.rs);
     }
 }

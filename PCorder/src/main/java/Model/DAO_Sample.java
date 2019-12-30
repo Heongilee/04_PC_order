@@ -6,17 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class pc_order_DAO {
+public class DAO_Sample {
+	
 	private static String url = "jdbc:mysql://localhost:3306/mytest_db";
 	private static String user = "root";
 	private static String pw = "1111";
-	private static pc_order_DAO DAO = new pc_order_DAO();
+	private static DAO_Sample DAO = new DAO_Sample();
 	
-	public static pc_order_DAO getInstance() {
+	public static DAO_Sample getInstance() {
 		//ªË¡¶
 		return null;
 	}
-	private pc_order_DAO() { //Constructor
+	private DAO_Sample() { //Constructor
 		
 	}
 	public ProductDTO getProduct(Integer id) {
