@@ -23,9 +23,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-import Controller.I_ToolBar;
 
-public class LoginView extends JFrame implements I_ToolBar{
+
+public class LoginView extends JPanel {
    protected CardLayout cardLayout;
    protected JPanel window;
    SignUpView signUpView;
@@ -42,46 +42,22 @@ public class LoginView extends JFrame implements I_ToolBar{
    JRadioButton server = new JRadioButton("server MODE");
    ButtonGroup goup = new ButtonGroup();
    
-//   JToolBar bar = new JToolBar();
-
-   @Override
-   public void previousButton() {
-      // TODO Auto-generated method stub
-      bar.add(previousBtn);
-   }
    
-   @Override
-   public void nextButton() {}
-   
-   @Override
-   public void loginButton() {
-      bar.add(logoutBtn);
-   }
-   
-   @Override
-   public void separator() {
-      bar.addSeparator(new Dimension(560, 30));
-   }
+private MainFrame mainf;
 
-   public static void main(String[] args) {
-      new LoginView();
-   }
 
-   public LoginView() {
-      JFrame f = new JFrame();
-      f.setTitle("로그인");
-      setSize(700, 600);
-      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+  
+   public LoginView(MainFrame mainf) {
+	   this.mainf = mainf;
+     
+     // setSize(700, 600);
+     
       
-      // 툴바 interface
-      previousButton();
-      separator();
-      loginButton();
-      add(bar, BorderLayout.NORTH);
+    
       
       goup.add(server);
       goup.add(user);
-      Container c = getContentPane();
+    //  Container c = new Container();
 
       try {
          // img = ImageIO.read(new File("img/login.jpg"));//img/login.jpg
@@ -90,24 +66,25 @@ public class LoginView extends JFrame implements I_ToolBar{
          System.exit(0);
       }
 
-      JLayeredPane layeredpane = new JLayeredPane();
-      layeredpane.setBounds(0, 0, 700, 600);
-      layeredpane.setLayout(null);
+   //   JLayeredPane layeredpane = new JLayeredPane();
+   //   layeredpane.setBounds(0, 0, 700, 600);
+   //   layeredpane.setLayout(null);
 
       JPanel panel = new JPanel();
       panel.setBounds(0, 0, 700, 600);
-
+      panel.setLayout(null)      ;
+      
       user.setFont(new Font("고딕체", Font.BOLD, 18));
       user.setForeground(Color.BLACK);
       user.setBounds(200, 50, 200, 30);
 
-      layeredpane.add(user);
+      add(user);
 
       server.setFont(new Font("고딕체", Font.BOLD, 18));
       server.setForeground(Color.BLACK);
       server.setBounds(400, 50, 200, 30);
 
-      layeredpane.add(server);
+     add(server);
 
       idlb = new JLabel("아이디");
       idlb.setFont(new Font("고딕체", Font.BOLD, 18));
@@ -116,8 +93,8 @@ public class LoginView extends JFrame implements I_ToolBar{
       loginTextField = new JTextField(15);
       loginTextField.setBounds(200, 109, 320, 30);
 
-      layeredpane.add(idlb);
-      layeredpane.add(loginTextField);
+     add(idlb);
+      add(loginTextField);
 
       passlb = new JLabel("비밀번호");
       passlb.setFont(new Font("고딕체", Font.BOLD, 18));
@@ -126,8 +103,8 @@ public class LoginView extends JFrame implements I_ToolBar{
       passwordField = new JPasswordField(15);
       passwordField.setBounds(200, 209, 320, 30);
 
-      layeredpane.add(passlb);
-      layeredpane.add(passwordField);
+     add(passlb);
+     add(passwordField);
 
       loginbt = new JButton("로그인");
       loginbt.setBackground(Color.black);
@@ -135,7 +112,7 @@ public class LoginView extends JFrame implements I_ToolBar{
       loginbt.setForeground(Color.WHITE);
       loginbt.setBounds(240, 300, 200, 48);
 
-      layeredpane.add(loginbt);
+      add(loginbt);
 
       la = new JLabel("or");
       la.setBackground(Color.BLACK);
@@ -143,7 +120,7 @@ public class LoginView extends JFrame implements I_ToolBar{
       la.setForeground(Color.BLACK);
       la.setBounds(330, 350, 200, 48);
 
-      layeredpane.add(la);
+      add(la);
 
       SignUpbtn = new JButton("회원가입");
       SignUpbtn.setBackground(Color.black);
@@ -151,18 +128,20 @@ public class LoginView extends JFrame implements I_ToolBar{
       SignUpbtn.setForeground(Color.WHITE);
       SignUpbtn.setBounds(240, 400, 200, 48);
 
-      layeredpane.add(SignUpbtn);
+      add(SignUpbtn);
 
-      layeredpane.add(panel);
+   add(panel);
 
-      window = new JPanel();
+
+
+     /* window = new JPanel();
       cardLayout = new CardLayout();
       window.setLayout(cardLayout);
       adminView = new AdminView();
-      signUpView = new SignUpView();
+    //  signUpView = new SignUpView();
       window.add(layeredpane, "layer");
       window.add(adminView, "admin");
-      window.add(signUpView, "signUp");
+      window.add(signUpView, "signUp");*/
 		
  
 			
@@ -171,28 +150,41 @@ public class LoginView extends JFrame implements I_ToolBar{
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub				
 				     if (server.isSelected()) {
-				    	//  System.out.print("눌려짐");				    	
-					cardLayout.show(window, "admin");
+				    				    	
+					mainf.change("ChAmin");
+					
 				     }
+				     // 로그인창 지우기 
 				}});
 
 			loginbt.addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-				
+					
 				     if (user.isSelected()) {
-				    	//  System.out.print("눌려짐");
-				    			
+				  
+				
 						new GUIView();
+						
 				     }
-				}});
+				   
+				  
+				     }});
+			
+			SignUpbtn.addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					mainf.change("ChSign");
+					
+				}
+				});
+				
 
-      SignUpbtn.addActionListener(e -> cardLayout.show(window, "signUp"));
-
-      previousBtn.addActionListener(e -> cardLayout.show(window, "layer"));
-      add(window);
-      setLocationRelativeTo(null);
-      setVisible(true);
+    
+  //    add(window);
+     //setLocationRelativeTo(null);
+     // setVisible(true);
    }
 }

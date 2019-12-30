@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,13 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.JViewport;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import Controller.I_ToolBar;
 
-public class CusManager extends JFrame implements I_ToolBar {
+
+public class CusManager extends JFrame {
 	private static Container c;
 	JLabel title = new JLabel("고객관리");
 	JPanel leftPanel = new JPanel();
@@ -40,33 +42,25 @@ public class CusManager extends JFrame implements I_ToolBar {
 	JViewport vp = new JViewport();
 	JPanel msgPanel = new JPanel();
 	JPanel seatPanel = new JPanel();
-
+	 JToolBar bar = new JToolBar();
+	 JButton Previousbtn = new JButton("< 이전");
+	 JButton LogOutbtn = new JButton("로그아웃");
 	private SeatPanel SP = new SeatPanel();
 	private ChatPanel CP = new ChatPanel();
 
-	@Override
-	public void previousButton() {
-		bar.add(previousBtn);
-	}
-
-	@Override
-	public void nextButton() {}
-
-	@Override
-	public void loginButton() {
-		bar.add(logoutBtn);
-	}
-
-	@Override
-	public void separator() {}
+	
 
 	public CusManager() {
 		super("고객관리");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		 
+		   bar.add(Previousbtn);
+		   bar.add(LogOutbtn );
+		   add(bar, BorderLayout.NORTH);
 		// 툴바 interface
-		add(bar, BorderLayout.NORTH);
+		//add(bar, BorderLayout.NORTH);
 		
 		JLayeredPane layeredpane = new JLayeredPane();
 		layeredpane.setBounds(0, 0, 700, 600);
@@ -98,6 +92,15 @@ public class CusManager extends JFrame implements I_ToolBar {
 				chatInput.setText("");
 			}
 		});
+		  
+	      Previousbtn.addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				
+				}
+				});
+	
+		
 	}
 
 	public class SeatPanel extends JPanel {
@@ -142,6 +145,6 @@ public class CusManager extends JFrame implements I_ToolBar {
 			msgPanel.add(BorderLayout.EAST, chatSubmit);
 			add(msgPanel, BorderLayout.SOUTH);
 		}
-	}// ChatPanel
+	}
 
  }

@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.xml.parsers.DocumentBuilder;
@@ -30,6 +33,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class GUIView extends JFrame {
+	
 	boolean toggle = true;
 	JPanel np1 = new JPanel();// 위쪽 전체 패널
 	JPanel ninp = new JPanel();// 위쪽 오른쪽 라벨 패털
@@ -46,11 +50,15 @@ public class GUIView extends JFrame {
 	JPanel crp3 = new JPanel();// 가운데 아래 패널
 	JPanel cp3 = new JPanel();// 가운데 패널
 	JPanel ctopp = new JPanel();// 가운데 오른쪽 위쪽 패널
+	 JToolBar bar = new JToolBar();
+	   JButton LogOutbtn = new JButton("로그아웃");
 	
+	   
 	JLabel cl1 = new JLabel(">> 주문내역");
 	JLabel cl2 = new JLabel("상품명                  가격                   개수");
 	JTextArea ta1 = new JTextArea();// 가운데 센터 텍스트
 	JTextField tf1 = new JTextField("합계   ㅣ");// 합계 텍스트 필드
+	
 	JButton sumb = new JButton("결제");
 	JPanel ep4 = new JPanel();// 오른쪽 채팅 패널
 	JTextArea ta2 = new JTextArea();// 오른쪽 텍스트
@@ -78,6 +86,7 @@ public class GUIView extends JFrame {
 	}
 
 	GUIView() {
+		
 		setTitle("User_View");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
@@ -86,7 +95,7 @@ public class GUIView extends JFrame {
 		// 위쪽 패널 구성
 		weather.setLayout(new BorderLayout());
 		wea.setLayout(new GridLayout(3, 1));
-		
+	
 		//날씨 XML데이터 파싱
 		try {
 			String url = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1121571000";
@@ -162,8 +171,20 @@ public class GUIView extends JFrame {
 		mess.setFont(new Font("돋움", Font.PLAIN, 12));
 		mess.setForeground(Color.RED);
 		np1.add(mess);
-	
 		
+		bar.addSeparator(new Dimension(806, 20));
+		   bar.add(LogOutbtn); 
+		   np1.add(bar, BorderLayout.NORTH);  //**********bar 추가 ************//
+		   LogOutbtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//dispose();
+				System.exit(0);
+			}});
+		   
+		   
 		np1.add(ninp, BorderLayout.EAST);
 		np1.add(weather, BorderLayout.WEST);
 		np1.setBackground(Color.WHITE);

@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -22,16 +23,21 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class SignUpView extends JPanel {// 회원가입화면
-	public SignUpView() {
-		setLayout(new BorderLayout());
-		JPanel p = new JPanel();
+	
+	private MainFrame mainf;
+	
+	public SignUpView(MainFrame mainf) {
+		
+		this.mainf = mainf;
+		setLayout(null);
+	JPanel p = new JPanel();
 		JLabel SignUpLabel = new JLabel("회원가입");
 
 		JLabel IdLabel = new JLabel("아이디");
 		JLabel PassLabel = new JLabel("비밀번호");
 		JLabel NameLabel = new JLabel("닉네임");
 		JLabel EmailLabel = new JLabel("이메일");
-
+        CardLayout cardLayout = new CardLayout();////화면 전화/////
 		JButton IdOverlapbtn, NameOverlapbtn, EmailOverlapbtn;
 		add(SignUpLabel);
 		add(IdLabel);
@@ -97,13 +103,14 @@ public class SignUpView extends JPanel {// 회원가입화면
 		EmailOverlapbtn.setForeground(Color.WHITE);
 		EmailOverlapbtn.setBounds(450, 330, 100, 30);
 		add(EmailOverlapbtn);
-
+		
+	
 		add(p);
 
-		setSize(700, 600);
+		//setSize(700, 600);
 //		setTitle("회원가입");
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+	//	setVisible(true);
 
 		IdOverlapbtn.addActionListener(new ActionListener() {
 
@@ -128,18 +135,20 @@ public class SignUpView extends JPanel {// 회원가입화면
 					bos.write(NameField.getText() + "/");
 					bos.write(EmailField.getText() + "/");
 					bos.close();
+					
 					JOptionPane.showMessageDialog(null, "회원가입을 축하합니다!!");
+					
+		
 //			dispose();
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "회원가입에 실패하였습니다.");
 				}
+				mainf.change("ChLogin");
 			}
 
 		});
+		
 	}
 
-	public static void main(String[] args) {
-		new SignUpView();
-
-	}
+	
 }

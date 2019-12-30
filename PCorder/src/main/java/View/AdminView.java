@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,9 +15,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import Controller.I_ToolBar;
 
-public class AdminView extends JPanel implements I_ToolBar {
+public class AdminView extends JPanel {
    // Login_Panel_Component
    protected CardLayout cardLayout;
    protected Container tab;
@@ -25,13 +25,25 @@ public class AdminView extends JPanel implements I_ToolBar {
    private LoginPanel LP = new LoginPanel();
    JLabel title = new JLabel("Server Mode");
    private static Container c;
+   
    JButton Previousbtn = new JButton("< 이전");
    JButton LogOutbtn = new JButton("로그아웃");
    JPanel window;
-   
+  
+   JToolBar bar = new JToolBar();
+private MainFrame mainf;
+  
 
-   public AdminView() {
+   public AdminView(MainFrame mainf) {
 
+	   this.mainf = mainf;
+	    
+	  // Previousbtn.addActionListener(e -> cardLayout.show(window, "layer"));
+	   
+	   bar.add(Previousbtn);
+	      bar.addSeparator(new Dimension(560, 27));
+	   bar.add(LogOutbtn );
+	   
       JLayeredPane layeredpane = new JLayeredPane();
       layeredpane.setBounds(0, 0, 700, 600);
       layeredpane.setLayout(null);
@@ -58,56 +70,35 @@ public class AdminView extends JPanel implements I_ToolBar {
       layeredpane.add(cm_btn);
       layeredpane.add(pm_btn);
       layeredpane.add(title);
-      // panel.add(layeredpane);
-//         tab = new JPanel();
-//          cardLayout = new CardLayout();
-//          tab.setLayout(cardLayout);
-//           cm_btn.addActionListener(new ActionListener(){
-//
-//               @Override
-//               public void actionPerformed(ActionEvent e) {
-//                  // TODO Auto-generated method stub
-//                  new CusManager();
-//                  dispose();
-//               }});
-//           pm_btn.addActionListener(new ActionListener(){
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               // TODO Auto-generated method stub
-//               new ProdManager();
-//               dispose();
-//            }});
-//          tab.add(layeredpane, "adminView");
-//          tab.add(CM, "customerManager");
-//       tab.add(PM,"productManager");
-//         add(tab);  
-
-//      window = new JPanel();
-//      cardLayout = new CardLayout();
-//      window.setLayout(cardLayout);
-//      loginView = new LoginView();
-//      signUpView = new SignUpView();
-//      window.add(layeredpane, "present");
-//      window.add(loginView, "login");
-//      window.add(signUpView, "signUp");
+      bar.add(LogOutbtn );
 
       add(layeredpane);
       setSize(700, 600);
       setVisible(true);
+      add(bar, BorderLayout.NORTH);
+      
+      Previousbtn.addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				mainf.change("ChLogin");
+				
+			}
+			});
+      LogOutbtn .addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				mainf.change("Close");
+				
+				
+			}
+			});
+			
+      
    }
 
-   @Override
-   public void previousButton() {}
-
-   @Override
-   public void nextButton() {}
-
-   @Override
-   public void loginButton() {}
-
-   @Override
-   public void separator() {}
+  
 
    public class LoginPanel extends JPanel {
       public LoginPanel() {
@@ -131,6 +122,6 @@ public class AdminView extends JPanel implements I_ToolBar {
    
    public static void main(String[] args) {
       // TODO Auto-generated method stub
-      new AdminView();
+     // new AdminView();
    }
 }
