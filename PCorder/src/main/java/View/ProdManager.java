@@ -32,8 +32,7 @@ public class ProdManager extends JFrame{
       JPanel leftPanel = new JPanel();
       JPanel rightPanel = new JPanel();
       JPanel wrapPanel = new JPanel();
-      JPanel northPanel = new JPanel();/////////////////////이전 버튼 추가 ///////////////////
-      JButton previousbtn = new JButton();
+      JPanel northPanel = new JPanel();
       String[] prodLabel_str = {"상품 번호", "상품명", "단가", "제조사"};
       JLabel[] prodLabel = new JLabel[4];
       JComboBox<String> prodCombo = new JComboBox<String>();
@@ -46,7 +45,6 @@ public class ProdManager extends JFrame{
       private ProductPanel PP = new ProductPanel();
       private ShowPanel SP = new ShowPanel();
       public ProdManager() {
-    	  
          super("상품관리");
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          
@@ -119,9 +117,9 @@ public class ProdManager extends JFrame{
             {
            
                btn[i] = new JButton(btn_str[i]);
-         	   btn[i].setBackground(Color.black);
-        	   btn[i].setFont(new Font("고딕체", Font.PLAIN, 20));
-        	   btn[i].setForeground(Color.WHITE);
+               btn[i].setBackground(Color.black);
+               btn[i].setFont(new Font("고딕체", Font.PLAIN, 20));
+               btn[i].setForeground(Color.WHITE);
         
                pa.add(btn[i]);
             }
