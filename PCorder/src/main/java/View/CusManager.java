@@ -56,8 +56,8 @@ public class CusManager extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		 
-		   bar.add(Previousbtn);
-		   bar.add(LogOutbtn );
+		   bar.add(Previousbtn); bar.addSeparator(new Dimension(750, 30));
+		///   bar.add(LogOutbtn );
 		   add(bar, BorderLayout.NORTH);
 		// 툴바 interface
 		//add(bar, BorderLayout.NORTH);
@@ -93,12 +93,14 @@ public class CusManager extends JFrame {
 			}
 		});
 		  
-	      Previousbtn.addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
+	      Previousbtn.addActionListener(new ActionListener() {  
 				@Override
 				public void actionPerformed(ActionEvent e) {
 				
 				}
 				});
+	  
+	      
 	
 		
 	}
