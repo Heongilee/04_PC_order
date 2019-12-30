@@ -39,16 +39,18 @@ public class GUIView extends JFrame {
 	JLabel weaimg;// 날씨 이미지 레이블
 	JLabel weastatus = null;
 	JLabel weainfo[] = new JLabel[3];
+	JLabel title = new JLabel("PC방 주문 프로그램");
 	JPanel wp2 = new JPanel();// 왼쪽 패널
 	JPanel crp1 = new JPanel();// 가운데 스크롤 패널
 	JPanel crp2 = new JPanel();// 가운데 오른쪽 패널
 	JPanel crp3 = new JPanel();// 가운데 아래 패널
 	JPanel cp3 = new JPanel();// 가운데 패널
 	JPanel ctopp = new JPanel();// 가운데 오른쪽 위쪽 패널
-	JLabel cl1 = new JLabel("주문내역");
+	
+	JLabel cl1 = new JLabel(">> 주문내역");
 	JLabel cl2 = new JLabel("상품명                  가격                   개수");
 	JTextArea ta1 = new JTextArea();// 가운데 센터 텍스트
-	JTextField tf1 = new JTextField("합계    ");// 합계 텍스트 필드
+	JTextField tf1 = new JTextField("합계   ㅣ");// 합계 텍스트 필드
 	JButton sumb = new JButton("결제");
 	JPanel ep4 = new JPanel();// 오른쪽 채팅 패널
 	JTextArea ta2 = new JTextArea();// 오른쪽 텍스트
@@ -56,13 +58,15 @@ public class GUIView extends JFrame {
 	String ca[] = { "BEST3", "라면류", "음료류", "간식류", "과자류" };
 	JList<String> jl = new JList<String>();// 왼쪽 패널 리스트
 	JLabel wea = new JLabel("");
-	JLabel mess = new JLabel("메시지");
+	JLabel mess = new JLabel("## 메시지");
 	JLabel pro = new JLabel("상품 분류");
 	JPanel topp = new JPanel();// 가운데 왼쪽 패널에 위 레이블 들
 	JLabel Listl1 = new JLabel("상품이름");
 	JLabel Listl2 = new JLabel("가격");
 	String upin[] = { "아이디", "로그인 시간", "포인트" };
-	ArrayList<String> menuList = new ArrayList<String>();// 디비에서 가져온 메뉴 리스트
+	ArrayList<String> menuList = new ArrayList<String>();// 디비에서 가져온 메뉴 리스트\
+	JButton btn[] = new  JButton[5];
+	JLabel la[] = new JLabel [3];
 
 	private static String getTagValue(String tag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
@@ -128,17 +132,38 @@ public class GUIView extends JFrame {
 		
 		// 오른쪽 사용자 정보 레이블
 		ninp.setLayout(new GridLayout(3, 1));
-		ninp.add(new JLabel(upin[0]));
+		
+		la[0]=new JLabel(upin[0]);
+		la[0].setAlignmentX(ninp.LEFT_ALIGNMENT);
+		ninp.add(la[0]);
+		
 		Date today = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss a");
-		ninp.add(new JLabel(upin[1] + ": " + time.format(today)));
-		ninp.add(new JLabel(upin[2]));
+		
+		la[1]=new JLabel(upin[1] + ": " + time.format(today));
+		la[1].setAlignmentX(ninp.RIGHT_ALIGNMENT);
+		ninp.add(la[1]);
+		
+		
+		la[2]=new JLabel(upin[2]);
+		la[2].setAlignmentX(ninp.RIGHT_ALIGNMENT);
+		ninp.add(la[2]);
+		
 		ninp.setBackground(Color.WHITE);
 		
 		np1.setLayout(new BorderLayout(10, 10));
+		
+		title.setHorizontalAlignment(JLabel.CENTER);
+		title.setFont(new Font("돋움", Font.PLAIN, 30));
+		np1.add(title, BorderLayout.NORTH);
+		
+		
 		mess.setHorizontalAlignment(JLabel.CENTER);
-		mess.setFont(new Font("돋움", Font.PLAIN, 30));
-		np1.add(mess, BorderLayout.NORTH);
+		mess.setFont(new Font("돋움", Font.PLAIN, 12));
+		mess.setForeground(Color.RED);
+		np1.add(mess);
+	
+		
 		np1.add(ninp, BorderLayout.EAST);
 		np1.add(weather, BorderLayout.WEST);
 		np1.setBackground(Color.WHITE);
@@ -151,8 +176,14 @@ public class GUIView extends JFrame {
 		pro.setHorizontalAlignment(JLabel.CENTER);
 		wp2.add(pro);
 		for (int i = 0; i < 5; i++) {
-			wp2.add(new JButton(ca[i]));
+			btn[i] = new JButton(ca[i]);
+			   btn[i].setBackground(Color.black);
+               btn[i].setFont(new Font("굴림", Font.PLAIN, 12));
+               btn[i].setForeground(Color.WHITE);
+			wp2.add(btn[i]);
+			
 		}
+		
 		if (toggle == true)
 			wp2.setBorder(new TitledBorder(new LineBorder(Color.BLACK)));
 
@@ -180,8 +211,16 @@ public class GUIView extends JFrame {
 		crp2.add(ta1, BorderLayout.CENTER);
 		crp2.add(crp3, BorderLayout.SOUTH);
 		crp3.add(tf1);
+		
+		
+		sumb.setBackground(Color.black);
+		sumb.setFont(new Font("고딕체", Font.PLAIN, 10));
+		sumb.setForeground(Color.WHITE);
+
 		crp3.add(sumb);
 
+		
+		
 		if (toggle == true)
 			crp1.setBorder(new TitledBorder(new LineBorder(Color.BLACK)));
 
@@ -207,8 +246,9 @@ public class GUIView extends JFrame {
 		c.add(cp3, BorderLayout.CENTER);
 		c.add(ep4, BorderLayout.EAST);
 
-		setSize(900, 500);
+		setSize(900, 700);
 		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	public static void main(String[] args) {

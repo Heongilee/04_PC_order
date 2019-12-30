@@ -144,4 +144,4 @@ public class CusManager extends JFrame implements I_ToolBar {
 		}
 	}// ChatPanel
 
-}
+ }
