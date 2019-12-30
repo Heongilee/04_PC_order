@@ -58,7 +58,7 @@ public class GUIView extends JFrame {
 	String ca[] = { "BEST3", "라면류", "음료류", "간식류", "과자류" };
 	JList<String> jl = new JList<String>();// 왼쪽 패널 리스트
 	JLabel wea = new JLabel("");
-	JLabel mess = new JLabel("##메시지");
+	JLabel mess = new JLabel("## 메시지");
 	JLabel pro = new JLabel("상품 분류");
 	JPanel topp = new JPanel();// 가운데 왼쪽 패널에 위 레이블 들
 	JLabel Listl1 = new JLabel("상품이름");
@@ -66,6 +66,7 @@ public class GUIView extends JFrame {
 	String upin[] = { "아이디", "로그인 시간", "포인트" };
 	ArrayList<String> menuList = new ArrayList<String>();// 디비에서 가져온 메뉴 리스트\
 	JButton btn[] = new  JButton[5];
+	JLabel la[] = new JLabel [3];
 
 	private static String getTagValue(String tag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
@@ -131,11 +132,23 @@ public class GUIView extends JFrame {
 		
 		// 오른쪽 사용자 정보 레이블
 		ninp.setLayout(new GridLayout(3, 1));
-		ninp.add(new JLabel(upin[0]));
+		
+		la[0]=new JLabel(upin[0]);
+		la[0].setAlignmentX(ninp.LEFT_ALIGNMENT);
+		ninp.add(la[0]);
+		
 		Date today = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss a");
-		ninp.add(new JLabel(upin[1] + ": " + time.format(today)));
-		ninp.add(new JLabel(upin[2]));
+		
+		la[1]=new JLabel(upin[1] + ": " + time.format(today));
+		la[1].setAlignmentX(ninp.RIGHT_ALIGNMENT);
+		ninp.add(la[1]);
+		
+		
+		la[2]=new JLabel(upin[2]);
+		la[2].setAlignmentX(ninp.RIGHT_ALIGNMENT);
+		ninp.add(la[2]);
+		
 		ninp.setBackground(Color.WHITE);
 		
 		np1.setLayout(new BorderLayout(10, 10));
@@ -235,6 +248,7 @@ public class GUIView extends JFrame {
 
 		setSize(900, 700);
 		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	public static void main(String[] args) {
