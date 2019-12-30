@@ -6,11 +6,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductDAO {
+public class DAO_Sample {
+	
 	private static String url = "jdbc:mysql://localhost:3306/mytest_db";
 	private static String user = "root";
 	private static String pw = "1111";
+	private static DAO_Sample DAO = new DAO_Sample();
 	
+	public static DAO_Sample getInstance() {
+		//삭제
+		return null;
+	}
+	private DAO_Sample() { //Constructor
+		
+	}
 	public ProductDTO getProduct(Integer id) {
 		ProductDTO p = null;
 		Connection conn = null;
@@ -41,7 +50,7 @@ public class ProductDAO {
 				String BIRTH = rs.getString(4);
 				String EMAIL = rs.getString(5);
 				
-				p = new ProductDTO(ID, USERNAME, DEPT, BIRTH, EMAIL);
+				//p = new ProductDTO(ID, USERNAME, DEPT, BIRTH, EMAIL);
 			}
 			
 			System.out.println("해당 객체를 가져왔습니다.");
@@ -78,5 +87,5 @@ public class ProductDAO {
 			}
 		}
 		return p;
-	}
+	} // public ProductDTO getProduct(Integer id);
 }
