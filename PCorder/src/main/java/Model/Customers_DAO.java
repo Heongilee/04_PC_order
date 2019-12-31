@@ -78,13 +78,44 @@ public class Customers_DAO implements DAO_Interface{
 		rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
-			dto = new Customer_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
+			dto = new Customer_DTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6));
 			
-			/////////////
-			// 
-			/////////////
+			
 		}
 		
 		return;
 	}
+	
+	public boolean insert (Customer_DTO dto) {
+		boolean ok = false;
+		
+		try {
+			conn = getConnection();
+			String sql = "INSERT INTO CUSTOMERS(cNAME,cPW,cNICKNAME,cEMAIL) VALUES(?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getCname());
+			pstmt.setString(2, dto.getCpw());
+			pstmt.setString(3, dto.getCnickname());
+			pstmt.setString(4, dto.getCemail());
+			int r = pstmt.executeUpdate();
+			
+			String sql2 = "SET @CNT = 0";
+			stmt = conn.createStatement();
+			stmt.executeQuery(sql2);
+			
+			String sql3 = "UPDATE CUSTOMERS SET CUSTOMERS.cID = @CNT:=@CNT+1";
+			stmt = conn.createStatement();
+			stmt.executeQuery(sql3);
+			
+			if(r>0) {
+				ok=true;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
+		return ok;
+	}
+	
 }

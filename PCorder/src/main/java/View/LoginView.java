@@ -23,6 +23,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import Controller.LoginController;
+import Controller.SignUpView_Controller;
 import View.AdminView;
 import View.SignUpView;
 
@@ -48,16 +50,11 @@ public class LoginView extends JFrame{
 	JToolBar bar = new JToolBar();
 	JButton previousBtn = new JButton("< 이전");
 	JButton nextBtn = new JButton("> 앞으로");
-	JButton loginBtn = new JButton("로그인");
-	JButton logoutBtn = new JButton("로그아웃");
 	
 //	JToolBar bar = new JToolBar();
 
 	
-	
-
-	
-	private LoginView() {
+	public LoginView() {
 		setTitle("로그인");
 		setSize(700, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,9 +134,9 @@ public class LoginView extends JFrame{
 		SignUpbtn.setBounds(240, 400, 200, 48);
 
 		layeredpane.add(SignUpbtn);
-
 		layeredpane.add(panel);
-
+		
+		//////////////
 		window = new JPanel();
 		cardLayout = new CardLayout();
 		window.setLayout(cardLayout);
@@ -154,6 +151,7 @@ public class LoginView extends JFrame{
 				if (server.isSelected()) {
 					 cardLayout.show(window, "admin");
 				 } else if (user.isSelected()) {
+					 setVisible(false);
 					 GV.getInstance().setVisible(true);
 				 } else {
 					 
@@ -171,13 +169,13 @@ public class LoginView extends JFrame{
 		add(window);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
 	}
-	
 	public static LoginView getInstance() {
 		return LV;
 	}
-	public static void main(String[] args) {
-		LoginView loginView = LoginView.getInstance();
-//		CusManager cusManager = CusManager.getInstance();
+	
+	public void addButtonActionListener(ActionListener listener) {
+		loginbt.addActionListener(listener);
 	}
 }

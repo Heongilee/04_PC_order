@@ -21,6 +21,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Model.Customer_DTO;
+import Model.Customers_DAO;
+
 public class SignUpView extends JPanel {// 회원가입화면
 	LoginView LV = LoginView.getInstance();
 	public SignUpView() {
@@ -108,7 +111,6 @@ public class SignUpView extends JPanel {// 회원가입화면
 
 			public void actionPerformed(ActionEvent e) {
 				try {
-
 					JOptionPane.showMessageDialog(null, "이 아이디 중복 없돠 ~~ ");
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "다른 아이디를 입력해주세요");
@@ -117,17 +119,22 @@ public class SignUpView extends JPanel {// 회원가입화면
 		});
 		// TODO Auto-generated method stub
 		btn.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				try {
-					JOptionPane.showMessageDialog(null, "회원가입을 축하합니다!!");
-					LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
+					Customer_DTO dto = new Customer_DTO(IdField.getText(), PassField.getText(), NameField.getText(), EmailField.getText(), 1, 0);
+					Customers_DAO dao = Customers_DAO.getInstance();
+					if(dao.insert(dto))
+						JOptionPane.showMessageDialog(null, "회원가입을 축하합니다!!");
+					else {
+						//
+						JOptionPane.showMessageDialog(null, "정보를 다시입력해주세요");
+					}
+					LoginView.getInstance().cardLayout.show(LoginView.getInstance().window, "layer");
+					
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "회원가입에 실패하였습니다.");
 				}
 			}
-
 		});
 	}
 }
