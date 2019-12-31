@@ -80,7 +80,9 @@ public class Customers_DAO implements DAO_Interface{
 		while(rs.next()) {
 			dto = new Customer_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
 			
-			System.out.println(dto.toString());
+			/////////////
+			// 
+			/////////////
 		}
 		
 		return;

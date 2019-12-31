@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <interface id="1" language="java" name="Controller.I_UserView" project="PCorder" 
+    file="/PCorder/src/main/java/Controller/I_UserView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="125" width="212" x="1207" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="2" language="java" name="Controller.I_ToolBar" project="PCorder" 
+    file="/PCorder/src/main/java/Controller/I_ToolBar.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="233" width="161" x="45" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="Controller.I_AdminView" project="PCorder" 
+    file="/PCorder/src/main/java/Controller/I_AdminView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="107" width="222" x="1459" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="Controller.I_Login" project="PCorder" 
+    file="/PCorder/src/main/java/Controller/I_Login.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="125" width="149" x="2285" y="1285"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="Controller.I_Register" project="PCorder" 
+    file="/PCorder/src/main/java/Controller/I_Register.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="107" width="187" x="3579" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="Controller.SignUpView_Controller" project="PCorder" 
+    file="/PCorder/src/main/java/Controller/SignUpView_Controller.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="143" width="245" x="3579" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" language="java" name="Controller.I_CusManager" project="PCorder" 
+    file="/PCorder/src/main/java/Controller/I_CusManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="160" x="1978" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="8" language="java" name="Model.Customer_DTO" project="PCorder" 
+    file="/PCorder/src/main/java/Model/Customer_DTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="485" width="352" x="815" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="Model.Customers_DAO" project="PCorder" 
+    file="/PCorder/src/main/java/Model/Customers_DAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="233" width="466" x="3864" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="Model.ProductDTO" project="PCorder" 
+    file="/PCorder/src/main/java/Model/ProductDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="119" x="2328" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="Model.DAO_Sample" project="PCorder" 
+    file="/PCorder/src/main/java/Model/DAO_Sample.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="179" width="232" x="246" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="12" language="java" name="Model.DAO_Interface" project="PCorder" 
+    file="/PCorder/src/main/java/Model/DAO_Interface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="143" width="134" x="3864" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="13" language="java" name="Model.OrderDTO" project="PCorder" 
+    file="/PCorder/src/main/java/Model/OrderDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="110" x="2178" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="View.MainFrame" project="PCorder" 
+    file="/PCorder/src/main/java/View/MainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="161" width="179" x="3316" y="1285"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="View.AdminView.LoginPanel" project="PCorder" 
+    file="/PCorder/src/main/java/View/AdminView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="111" x="2880" y="1285"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="View.LoginView" project="PCorder" 
+    file="/PCorder/src/main/java/View/LoginView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="323" width="223" x="3316" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="View.AdminView" project="PCorder" 
+    file="/PCorder/src/main/java/View/AdminView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="269" width="179" x="2889" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="View.CusManager" project="PCorder" 
+    file="/PCorder/src/main/java/View/CusManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="377" width="217" x="1721" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="View.CusManager.SeatPanel" project="PCorder" 
+    file="/PCorder/src/main/java/View/CusManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="107" width="137" x="1633" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="View.ProdManager.ShowPanel" project="PCorder" 
+    file="/PCorder/src/main/java/View/ProdManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="111" x="2570" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="View.ProdManager.ProductPanel" project="PCorder" 
+    file="/PCorder/src/main/java/View/ProdManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="128" x="2721" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="View.AdminView.MyActionListener" project="PCorder" 
+    file="/PCorder/src/main/java/View/AdminView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="107" width="245" x="3031" y="1285"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="View.GUIView" project="PCorder" file="/PCorder/src/main/java/View/GUIView.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="809" width="247" x="528" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="View.ProdManager" project="PCorder" 
+    file="/PCorder/src/main/java/View/ProdManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="395" width="235" x="2721" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="View.Test_Bench_MyFrame" project="PCorder" 
+    file="/PCorder/src/main/java/View/Test_Bench_MyFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="125" width="194" x="2487" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="View.CusManager.ChatPanel" project="PCorder" 
+    file="/PCorder/src/main/java/View/CusManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="110" x="1810" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="View.SignUpView" project="PCorder" 
+    file="/PCorder/src/main/java/View/SignUpView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="359" width="187" x="3108" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="View.Test_Bench_MyFrame.MyActionListener" project="PCorder" 
+    file="/PCorder/src/main/java/View/Test_Bench_MyFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="179" width="245" x="2285" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="29">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="30" name="dao">        
+        <position height="0" width="0" x="-348" y="40"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-348" y="40"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="33" name="CP">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="36" name="SP">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="38">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="26"/>  
+  </nesting>  
+  <association id="39">    
+    <bendpoint x="3325" y="886"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="40" name="mainf">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="42">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <association id="43">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="44" name="LP">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="45" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="47" name="adminView">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="49">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="15"/>  
+  </nesting>  
+  <association id="50">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="51" name="SP">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="52" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <bendpoint x="3346" y="886"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="54" name="ChangeLogin">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="55" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="57" name="ChangeAdmin">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="60" name="mainf">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="63" name="DAO">        
+        <position height="0" width="0" x="-348" y="40"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-348" y="40"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="66" name="ChangeSign">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="68">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <nesting id="69">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="20"/>  
+  </nesting>  
+  <association id="70">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="71" name="signUpView">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="72" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="73">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <nesting id="74">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <nesting id="75">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="28"/>  
+  </nesting>  
+  <nesting id="76">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="22"/>  
+  </nesting>  
+  <nesting id="77">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="21"/>  
+  </nesting>  
+  <association id="78">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="79" name="PP">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="80" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="81">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="82" name="mainf">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </attribute>      
+      <multiplicity id="83" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-842" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

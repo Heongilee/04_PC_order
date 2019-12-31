@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -25,14 +26,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.JViewport;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import Controller.I_ToolBar;
 
-public class CusManager extends JFrame implements I_ToolBar {
-	private static CusManager CM = new CusManager();
+public class CusManager extends JFrame {
 	private static Container c;
 	JLabel title = new JLabel("고객관리");
 	JPanel leftPanel = new JPanel();
@@ -46,34 +46,21 @@ public class CusManager extends JFrame implements I_ToolBar {
 	JViewport vp = new JViewport();
 	JPanel msgPanel = new JPanel();
 	JPanel seatPanel = new JPanel();
-
-//	LoginView LV = LoginView.getInstance();
+	JToolBar bar = new JToolBar();
+	JButton Previousbtn = new JButton("< 이전");
+	JButton LogOutbtn = new JButton("로그아웃");
 	private SeatPanel SP = new SeatPanel();
 	private ChatPanel CP = new ChatPanel();
 
-	@Override
-	public void previousButton() {
-		bar.add(previousBtn);
-	}
-
-	@Override
-	public void nextButton() {}
-
-	@Override
-	public void loginButton() {
-		bar.add(logoutBtn);
-	}
-
-	@Override
-	public void separator() {}
-
-	private CusManager() {
+	public CusManager() {
 		super("고객관리");
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		 
+		   bar.add(Previousbtn); bar.addSeparator(new Dimension(750, 30));
+		///   bar.add(LogOutbtn );
+		   add(bar, BorderLayout.NORTH);
 		// 툴바 interface
-		add(bar, BorderLayout.NORTH);
+		//add(bar, BorderLayout.NORTH);
 		
 		JLayeredPane layeredpane = new JLayeredPane();
 		layeredpane.setBounds(0, 0, 700, 600);
@@ -95,14 +82,10 @@ public class CusManager extends JFrame implements I_ToolBar {
 		// 크기 고정
 		super.setResizable(false);
 		setVisible(false);
-		previousBtn.addActionListener(new ActionListener() {
+		Previousbtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LoginView LV = LoginView.getInstance();
-				LV.getInstance().setVisible(true);
-				LV.cardLayout.show(LV.window, "admin");
-//				LV.getInstance().cardLayout.;
-				setVisible(false);
+				
 			}
 		});
 		chatInput.addActionListener(new ActionListener() {
@@ -114,29 +97,15 @@ public class CusManager extends JFrame implements I_ToolBar {
 				chatInput.setText("");
 			}
 		});
-//		WindowListener wl = new WindowAdapter() {
-//			ArrayList<Window> windows = new ArrayList<Window>();
-//
-//			@Override
-//			public void windowOpened(WindowEvent e) {
-//				windows.add(e.getWindow());
-//			}
-//
-//			@Override
-//			public void windowClosing(WindowEvent e) {
-//				if(windows.size() > 1) {
-//					windows.remove(e.getWindow());
-//					e.getWindow().dispose();
-//				}
-//			}
-//			
-//			
-//		};
+	      Previousbtn.addActionListener(new ActionListener() {  
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				
+				}
+				});
+	  
 	}
-
-	public static CusManager getInstance() {
-		return CM;
-	}
+	
 	public class SeatPanel extends JPanel {
 		JButton[] seatBtn = new JButton[12];
 
@@ -179,6 +148,5 @@ public class CusManager extends JFrame implements I_ToolBar {
 			msgPanel.add(BorderLayout.EAST, chatSubmit);
 			add(msgPanel, BorderLayout.SOUTH);
 		}
-	}// ChatPanel
-
+	}
  }

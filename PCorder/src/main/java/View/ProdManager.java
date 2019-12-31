@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.JViewport;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -41,7 +42,10 @@ public class ProdManager extends JFrame{
       JTextArea ta = new JTextArea(ta_col, 27, 30);
       String[] btn_str = {"등록", "조회", "삭제"};
       JButton[] btn = new JButton[3];
-      
+      JToolBar bar = new JToolBar();
+ 	 JButton Previousbtn = new JButton("< 이전");
+ 	 
+ 	 
       private ProductPanel PP = new ProductPanel();
       private ShowPanel SP = new ShowPanel();
       public ProdManager() {
@@ -52,6 +56,10 @@ public class ProdManager extends JFrame{
          c.setLayout(new BorderLayout());
          wrapPanel.setLayout(new GridLayout(1,2));
          leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+         
+         
+         bar.add(Previousbtn);
+         leftPanel.add(bar, BorderLayout.NORTH); ///////*****bar 위치 이상 ㅠㅜㅠㅜㅠ ****//////
          
          //title 폰트 크기
          title.setFont(new Font("굴림", Font.BOLD, 45));
@@ -126,11 +134,5 @@ public class ProdManager extends JFrame{
             add(pa);
          }
          
-      }// ShowPanel
-   
-//   public static void main(String[] args) {
-//      // TODO Auto-generated method stub
-//      new ProdManager();
-//   }
-
+      }
 }
