@@ -19,8 +19,8 @@ public class AdminView extends JPanel {
 	// Login_Panel_Component
 	protected CardLayout cardLayout;
 	protected Container tab;
-	JButton cm_btn = new JButton("绊按包府");
-	JButton pm_btn = new JButton("惑前包府");
+	public JButton cm_btn = new JButton("绊按包府");
+	public JButton pm_btn = new JButton("惑前包府");
 	private LoginPanel LP = new LoginPanel();
 	JLabel title = new JLabel("Server Mode");
 	private static Container c;
@@ -43,12 +43,10 @@ public class AdminView extends JPanel {
 		cm_btn.setBackground(Color.black);
 		cm_btn.setFont(new Font("绊雕眉", Font.BOLD, 19));
 		cm_btn.setForeground(Color.WHITE);
-		cm_btn.addActionListener(new MyActionListener());
 
 		pm_btn.setBackground(Color.black);
 		pm_btn.setFont(new Font("绊雕眉", Font.BOLD, 19));
 		pm_btn.setForeground(Color.WHITE);
-		pm_btn.addActionListener(new MyActionListener());
 
 		title.setFont(new Font("绊雕眉", Font.BOLD, 29));
 		title.setForeground(Color.BLACK);
@@ -74,20 +72,8 @@ public class AdminView extends JPanel {
 		}
 	}
 
-	private class MyActionListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			JButton btn = (JButton) e.getSource();
-
-			if (btn.getText().equals("绊按包府")) {
-				
-				CM.getInstance().setVisible(true);
-				LV.getInstance().setVisible(false);
-			} else { // 惑前包府
-				PM.getInstance().setVisible(true);
-				LV.getInstance().setVisible(false);
-			}
-		}
+	public void addButtonActionListener(ActionListener listener) {
+		cm_btn.addActionListener(listener);
+		pm_btn.addActionListener(listener);
 	}
 }

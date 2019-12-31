@@ -4,11 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
@@ -23,38 +19,32 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-import Controller.LoginController;
-import Controller.SignUpView_Controller;
 import View.AdminView;
 import View.SignUpView;
 
 public class LoginView extends JFrame{
 	private static LoginView LV = new LoginView();
-	GUIView GV = GUIView.getInstance();
-	CardLayout cardLayout;
-	JPanel window;
-	SignUpView signUpView;
-	AdminView adminView;
+	public GUIView GV = GUIView.getInstance();
+	public CardLayout cardLayout;
+	public JPanel window;
+	public SignUpView signUpView;
+	public AdminView adminView;
 	BufferedImage img = null;
 	JTextField loginTextField;
 	JPasswordField passwordField;
-	JButton loginbt, SignUpbtn;
+	public JButton loginbt, SignUpbtn;
 	JLabel idlb;
 	JLabel passlb;
 	JLabel la;
 	boolean flag;
-	JRadioButton user = new JRadioButton("user MODE");
-	JRadioButton server = new JRadioButton("server MODE");
+	public JRadioButton user = new JRadioButton("user MODE");
+	public JRadioButton server = new JRadioButton("server MODE");
 	ButtonGroup goup = new ButtonGroup();
 	
 	JToolBar bar = new JToolBar();
-	JButton previousBtn = new JButton("< 이전");
-	JButton nextBtn = new JButton("> 앞으로");
+	public JButton previousBtn = new JButton("< 이전");
 	
-//	JToolBar bar = new JToolBar();
-
-	
-	public LoginView() {
+	private LoginView() {
 		setTitle("로그인");
 		setSize(700, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,9 +124,9 @@ public class LoginView extends JFrame{
 		SignUpbtn.setBounds(240, 400, 200, 48);
 
 		layeredpane.add(SignUpbtn);
+
 		layeredpane.add(panel);
-		
-		//////////////
+
 		window = new JPanel();
 		cardLayout = new CardLayout();
 		window.setLayout(cardLayout);
@@ -145,37 +135,18 @@ public class LoginView extends JFrame{
 		window.add(layeredpane, "layer");
 		window.add(adminView, "admin");
 		window.add(signUpView, "signUp");
-		loginbt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (server.isSelected()) {
-					 cardLayout.show(window, "admin");
-				 } else if (user.isSelected()) {
-					 setVisible(false);
-					 GV.getInstance().setVisible(true);
-				 } else {
-					 
-				 }
-			}
-		});
-		SignUpbtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(window, "signUp");
-			}
-		});
-
-		previousBtn.addActionListener(e -> cardLayout.show(window, "layer"));
+		
 		add(window);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		
 	}
+	
 	public static LoginView getInstance() {
 		return LV;
 	}
-	
 	public void addButtonActionListener(ActionListener listener) {
 		loginbt.addActionListener(listener);
+		SignUpbtn.addActionListener(listener);
+		previousBtn.addActionListener(listener);
 	}
 }

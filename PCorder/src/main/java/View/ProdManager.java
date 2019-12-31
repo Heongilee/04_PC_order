@@ -25,7 +25,6 @@ import javax.swing.JToolBar;
 public class ProdManager extends JFrame {
 	private static ProdManager PM = new ProdManager();
 	LoginView LV = LoginView.getInstance();
-	private static Container c;
 	JLabel title = new JLabel("상품관리");
 	JLabel stateText = new JLabel("##");
 	JPanel leftPanel = new JPanel();
@@ -45,10 +44,8 @@ public class ProdManager extends JFrame {
 	private ShowPanel SP = new ShowPanel();
 
 	JToolBar bar = new JToolBar();
-	JButton previousBtn = new JButton("< 이전");
-	JButton nextBtn = new JButton("> 앞으로");
-	JButton loginBtn = new JButton("로그인");
-	JButton logoutBtn = new JButton("로그아웃");
+	public JButton previousBtn = new JButton("< 이전");
+	public JButton logoutBtn = new JButton("로그아웃");
 	
 	private ProdManager() {
 		super("상품관리");
@@ -67,9 +64,6 @@ public class ProdManager extends JFrame {
 		wrapPanel.setLayout(new GridLayout(1, 2));
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
-//		leftPanel.add(bar, BorderLayout.NORTH); /////// *****bar 위치 이상 ㅠㅜㅠㅜㅠ ****//////
-
-		
 		// title 폰트 크기
 		title.setFont(new Font("굴림", Font.BOLD, 45));
 		// 오른쪽 정렬
@@ -82,9 +76,6 @@ public class ProdManager extends JFrame {
 		stateText.setFont(new Font("고딕체", Font.ITALIC, 14));
 		stateText.setForeground(Color.BLACK); // 메세지 뜰때마다 빨강으로 전환하기
 
-		
-		
-		
 		northPanel.add(title);
 		northPanel.add(stateText);
 		panel.add(northPanel, BorderLayout.NORTH);
@@ -103,28 +94,9 @@ public class ProdManager extends JFrame {
         setResizable(false);
         
 		setVisible(false);
-		
-		previousBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				LV.getInstance().setVisible(true);
-				
-			}
-		});
-		logoutBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				LV.getInstance().setVisible(true);
-				LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
-			}
-		});
 	}
 
 	public class ProductPanel extends JPanel {
-//         final String[] seatName = {""}
-
 		public ProductPanel() {
 			setLayout(new GridLayout(4, 2, 10, 30));
 			setPreferredSize(new Dimension((int) (400), (int) (300)));
@@ -164,9 +136,12 @@ public class ProdManager extends JFrame {
 			}
 			add(pa);
 		}
-
 	}
 	public static ProdManager getInstance() {
 		return PM;
+	}
+	public void addButtonActionListener(ActionListener listener) {
+		previousBtn.addActionListener(listener);
+		logoutBtn.addActionListener(listener);
 	}
 }

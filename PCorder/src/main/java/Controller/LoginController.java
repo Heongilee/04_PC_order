@@ -17,13 +17,15 @@ public class LoginController{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn = (JButton)e.getSource();
-				System.out.println(btn);
 				if(btn.getText().equals("·Î±×ÀÎ")) {
+					cl.Mode_Check();
 				}
 				else {
+					
 				}
 			}
 		});
+		
 		return;
 	}
 	

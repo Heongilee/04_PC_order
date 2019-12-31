@@ -78,37 +78,26 @@ public class Customers_DAO implements DAO_Interface{
 		rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
-			dto = new Customer_DTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6));
-			
+			dto = new Customer_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
 			
 		}
 		
 		return;
 	}
-	
-	public boolean insert (Customer_DTO dto) {
+	public boolean Idselect(String id) {//id 중복체크 메소드
 		boolean ok = false;
 		
+		System.out.println("[3] : " + id);
 		try {
 			conn = getConnection();
-			String sql = "INSERT INTO CUSTOMERS(cNAME,cPW,cNICKNAME,cEMAIL) VALUES(?,?,?,?)";
+			String sql = "SELECT cNAME FROM CUSTOMERS WHERE cNAME= ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getCname());
-			pstmt.setString(2, dto.getCpw());
-			pstmt.setString(3, dto.getCnickname());
-			pstmt.setString(4, dto.getCemail());
-			int r = pstmt.executeUpdate();
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 			
-			String sql2 = "SET @CNT = 0";
-			stmt = conn.createStatement();
-			stmt.executeQuery(sql2);
-			
-			String sql3 = "UPDATE CUSTOMERS SET CUSTOMERS.cID = @CNT:=@CNT+1";
-			stmt = conn.createStatement();
-			stmt.executeQuery(sql3);
-			
-			if(r>0) {
-				ok=true;
+			System.out.println("[2] : ");
+			if(rs.next()) {
+				ok = true;
 			}
 		}
 		catch(Exception e) {
@@ -117,5 +106,4 @@ public class Customers_DAO implements DAO_Interface{
 		Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
 		return ok;
 	}
-	
 }
