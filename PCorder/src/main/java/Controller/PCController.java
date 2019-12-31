@@ -74,13 +74,16 @@ public class PCController {
 					CM.chatInput.getText();
 					CM.chatContent.setText(CM.chatContent.getText() + CM.chatInput.getText() + "\n");
 					CM.chatInput.setText("");
+					cl.Mode_Check();
 				 } else if (obj == CM.previousBtn) {
 					 CM.setVisible(false);
 					 LV.getInstance().setVisible(true);
+					 cl.Mode_Check();
 				 } else if (obj == CM.logoutBtn){
 					 CM.setVisible(false);
 					 LV.getInstance().setVisible(true);
 					 LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
+					 cl.Mode_Check();
 				 } else {
 					 
 				 }
@@ -93,10 +96,12 @@ public class PCController {
 				 if (obj == PM.previousBtn) {
 					 PM.setVisible(false);
 					 LV.getInstance().setVisible(true);
+					 cl.Mode_Check();
 				 } else if (obj == PM.logoutBtn){
 					 PM.setVisible(false);
 					 LV.getInstance().setVisible(true);
 					 LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
+					 cl.Mode_Check();
 				 } else {
 					 
 				 }

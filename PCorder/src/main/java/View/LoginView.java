@@ -48,12 +48,6 @@ public class LoginView extends JFrame{
 	JToolBar bar = new JToolBar();
 	public JButton previousBtn = new JButton("< 이전");
 	
-//	JToolBar bar = new JToolBar();
-
-	
-	
-
-	
 	private LoginView() {
 		setTitle("로그인");
 		setSize(700, 600);
@@ -145,27 +139,7 @@ public class LoginView extends JFrame{
 		window.add(layeredpane, "layer");
 		window.add(adminView, "admin");
 		window.add(signUpView, "signUp");
-//		loginbt.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				if (server.isSelected()) {
-//					 cardLayout.show(window, "admin");
-//				 } else if (user.isSelected()) {
-//					 setVisible(false);
-//					 GV.getInstance().setVisible(true);
-//				 } else {
-//					 
-//				 }
-//			}
-//		});
-//		SignUpbtn.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(window, "signUp");
-//			}
-//		});
-
-//		previousBtn.addActionListener(e -> cardLayout.show(window, "layer"));
+		
 		add(window);
 		setLocationRelativeTo(null);
 		setVisible(true);
