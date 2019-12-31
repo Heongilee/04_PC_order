@@ -274,9 +274,4 @@ public class GUIView extends JFrame {
 	public static GUIView getInstance() {
 		return GV;
 	}
-//	public static void main(String[] args) {
-//		 TODO Auto-generated method stub
-//		new GUIView();
-//	}
-
 }

@@ -37,8 +37,8 @@ public class CusManager extends JFrame {
 	JPanel leftPanel = new JPanel();
 	JPanel rightPanel = new JPanel();
 	JComboBox<String> chatSeat = new JComboBox<String>();
-	JTextArea chatContent = new JTextArea("", 12, 50);
-	JTextField chatInput = new JTextField(10);
+	public JTextArea chatContent = new JTextArea("", 12, 50);
+	public JTextField chatInput = new JTextField(10);
 	JButton chatSubmit = new JButton("send");
 	JLabel order[];
 	TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK), "ÁÂ¼®");
@@ -50,8 +50,9 @@ public class CusManager extends JFrame {
 	private ChatPanel CP = new ChatPanel();
 
 	JToolBar bar = new JToolBar();
-	JButton previousBtn = new JButton("< ÀÌÀü");
-	JButton logoutBtn = new JButton("·Î±×¾Æ¿ô");
+	public JButton previousBtn = new JButton("< ÀÌÀü");
+	public JButton logoutBtn = new JButton("·Î±×¾Æ¿ô");
+	
 	private CusManager() {
 		super("°í°´°ü¸®");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,31 +84,15 @@ public class CusManager extends JFrame {
 		super.setResizable(false);
 		
 		setVisible(false);
-		previousBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				LV.getInstance().setVisible(true);
-				
-			}
-		});
-		logoutBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				LV.getInstance().setVisible(true);
-				LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
-			}
-		});
-		chatInput.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				chatInput.getText();
-				chatContent.setText(chatContent.getText() + chatInput.getText() + "\n");
-				chatInput.setText("");
-			}
-		});
+//		chatInput.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				chatInput.getText();
+//				chatContent.setText(chatContent.getText() + chatInput.getText() + "\n");
+//				chatInput.setText("");
+//			}
+//		});
 	}
 
 	public static CusManager getInstance() {
@@ -157,4 +142,9 @@ public class CusManager extends JFrame {
 			add(msgPanel, BorderLayout.SOUTH);
 		}
 	}// ChatPanel
+	public void addButtonActionListener(ActionListener listener) {
+		chatInput.addActionListener(listener);
+		previousBtn.addActionListener(listener);
+		logoutBtn.addActionListener(listener);
+	}
 }

@@ -28,28 +28,25 @@ import View.SignUpView;
 
 public class LoginView extends JFrame{
 	private static LoginView LV = new LoginView();
-	GUIView GV = GUIView.getInstance();
-	CardLayout cardLayout;
-	JPanel window;
-	SignUpView signUpView;
-	AdminView adminView;
+	public GUIView GV = GUIView.getInstance();
+	public CardLayout cardLayout;
+	public JPanel window;
+	public SignUpView signUpView;
+	public AdminView adminView;
 	BufferedImage img = null;
 	JTextField loginTextField;
 	JPasswordField passwordField;
-	JButton loginbt, SignUpbtn;
+	public JButton loginbt, SignUpbtn;
 	JLabel idlb;
 	JLabel passlb;
 	JLabel la;
 	boolean flag;
-	JRadioButton user = new JRadioButton("user MODE");
-	JRadioButton server = new JRadioButton("server MODE");
+	public JRadioButton user = new JRadioButton("user MODE");
+	public JRadioButton server = new JRadioButton("server MODE");
 	ButtonGroup goup = new ButtonGroup();
 	
 	JToolBar bar = new JToolBar();
-	JButton previousBtn = new JButton("< 이전");
-	JButton nextBtn = new JButton("> 앞으로");
-	JButton loginBtn = new JButton("로그인");
-	JButton logoutBtn = new JButton("로그아웃");
+	public JButton previousBtn = new JButton("< 이전");
 	
 //	JToolBar bar = new JToolBar();
 
@@ -148,26 +145,27 @@ public class LoginView extends JFrame{
 		window.add(layeredpane, "layer");
 		window.add(adminView, "admin");
 		window.add(signUpView, "signUp");
-		loginbt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (server.isSelected()) {
-					 cardLayout.show(window, "admin");
-				 } else if (user.isSelected()) {
-					 GV.getInstance().setVisible(true);
-				 } else {
-					 
-				 }
-			}
-		});
-		SignUpbtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(window, "signUp");
-			}
-		});
+//		loginbt.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if (server.isSelected()) {
+//					 cardLayout.show(window, "admin");
+//				 } else if (user.isSelected()) {
+//					 setVisible(false);
+//					 GV.getInstance().setVisible(true);
+//				 } else {
+//					 
+//				 }
+//			}
+//		});
+//		SignUpbtn.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				cardLayout.show(window, "signUp");
+//			}
+//		});
 
-		previousBtn.addActionListener(e -> cardLayout.show(window, "layer"));
+//		previousBtn.addActionListener(e -> cardLayout.show(window, "layer"));
 		add(window);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -176,8 +174,9 @@ public class LoginView extends JFrame{
 	public static LoginView getInstance() {
 		return LV;
 	}
-	public static void main(String[] args) {
-		LoginView loginView = LoginView.getInstance();
-//		CusManager cusManager = CusManager.getInstance();
+	public void addButtonActionListener(ActionListener listener) {
+		loginbt.addActionListener(listener);
+		SignUpbtn.addActionListener(listener);
+		previousBtn.addActionListener(listener);
 	}
 }
