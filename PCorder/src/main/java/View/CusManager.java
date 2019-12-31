@@ -53,6 +53,8 @@ public class CusManager extends JFrame {
 	public JButton previousBtn = new JButton("< ÀÌÀü");
 	public JButton logoutBtn = new JButton("·Î±×¾Æ¿ô");
 	
+	public boolean loginFlag = false;
+	
 	private CusManager() {
 		super("°í°´°ü¸®");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

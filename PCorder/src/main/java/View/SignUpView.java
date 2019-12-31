@@ -23,17 +23,20 @@ import javax.swing.JTextField;
 
 public class SignUpView extends JPanel {// 회원가입화면
 	LoginView LV = LoginView.getInstance();
+	JPanel p = new JPanel();
+	JLabel SignUpLabel = new JLabel("회원가입");
+	
+	JLabel IdLabel = new JLabel("아이디");
+	JLabel PassLabel = new JLabel("비밀번호");
+	JLabel NameLabel = new JLabel("닉네임");
+	JLabel EmailLabel = new JLabel("이메일");
+	
+	public JButton IdOverlapbtn, NameOverlapbtn, EmailOverlapbtn;
+	
+	public JButton btn = new JButton("완료");
+	
 	public SignUpView() {
 		setLayout(new BorderLayout());
-		JPanel p = new JPanel();
-		JLabel SignUpLabel = new JLabel("회원가입");
-
-		JLabel IdLabel = new JLabel("아이디");
-		JLabel PassLabel = new JLabel("비밀번호");
-		JLabel NameLabel = new JLabel("닉네임");
-		JLabel EmailLabel = new JLabel("이메일");
-
-		JButton IdOverlapbtn, NameOverlapbtn, EmailOverlapbtn;
 		add(SignUpLabel);
 		add(IdLabel);
 		add(PassLabel);
@@ -56,7 +59,6 @@ public class SignUpView extends JPanel {// 회원가입화면
 		add(NameField);
 		add(EmailField);
 
-		JButton btn = new JButton("완료");
 
 		add(btn);
 
@@ -104,30 +106,34 @@ public class SignUpView extends JPanel {// 회원가입화면
 		setSize(700, 600);
 		setVisible(true);
 
-		IdOverlapbtn.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				try {
-
-					JOptionPane.showMessageDialog(null, "이 아이디 중복 없돠 ~~ ");
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "다른 아이디를 입력해주세요");
-				}
-			}
-		});
-		// TODO Auto-generated method stub
-		btn.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try {
-					JOptionPane.showMessageDialog(null, "회원가입을 축하합니다!!");
-					LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "회원가입에 실패하였습니다.");
-				}
-			}
-
-		});
+//		IdOverlapbtn.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//				try {
+//
+//					JOptionPane.showMessageDialog(null, "이 아이디 중복 없돠 ~~ ");
+//				} catch (Exception ex) {
+//					JOptionPane.showMessageDialog(null, "다른 아이디를 입력해주세요");
+//				}
+//			}
+//		});
+//		// TODO Auto-generated method stub
+//		btn.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				try {
+//					JOptionPane.showMessageDialog(null, "회원가입을 축하합니다!!");
+//					LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
+//				} catch (Exception ex) {
+//					JOptionPane.showMessageDialog(null, "회원가입에 실패하였습니다.");
+//				}
+//			}
+//
+//		});
+	}
+	public void addButtonActionListener(ActionListener listener) {
+		IdOverlapbtn.addActionListener(listener);
+		btn.addActionListener(listener);
 	}
 }

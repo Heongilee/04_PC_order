@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -37,6 +38,7 @@ public class GUIView extends JFrame {
 	boolean toggle = true;
 	JPanel np1 = new JPanel();// 위쪽 전체 패널
 	JPanel ninp = new JPanel();// 위쪽 오른쪽 라벨 패털
+	JPanel ninp2 = new JPanel();// 위쪽 오른쪽 라벨 패털
 	JPanel weather = new JPanel();// 위쪽 왼쪽 날씨 패널
 	ImageIcon img = null; // 날씨 이미지 정보
 	JLabel weala = null;// 왼쪽 날씨 정보 패널
@@ -50,18 +52,17 @@ public class GUIView extends JFrame {
 	JPanel crp3 = new JPanel();// 가운데 아래 패널
 	JPanel cp3 = new JPanel();// 가운데 패널
 	JPanel ctopp = new JPanel();// 가운데 오른쪽 위쪽 패널
-	 JToolBar bar = new JToolBar();
-	   JButton LogOutbtn = new JButton("로그아웃");
-	
-	   
+	JToolBar bar = new JToolBar();
+	public JButton LogOutbtn = new JButton("로그아웃");
+
 	JLabel cl1 = new JLabel(">> 주문내역");
 	JLabel cl2 = new JLabel("상품명                  가격                   개수");
 	JTextArea ta1 = new JTextArea();// 가운데 센터 텍스트
 	JTextField tf1 = new JTextField("합계   ㅣ");// 합계 텍스트 필드
-	
+
 	JButton sumb = new JButton("결제");
 	JPanel ep4 = new JPanel();// 오른쪽 채팅 패널
-	JTextArea ta2 = new JTextArea();// 오른쪽 텍스트
+	public JTextArea ta2 = new JTextArea("", 10, 30);// 오른쪽 텍스트
 	JLabel cha = new JLabel("Chatting");
 	String ca[] = { "BEST3", "라면류", "음료류", "간식류", "과자류" };
 	JList<String> jl = new JList<String>();// 왼쪽 패널 리스트
@@ -71,10 +72,14 @@ public class GUIView extends JFrame {
 	JPanel topp = new JPanel();// 가운데 왼쪽 패널에 위 레이블 들
 	JLabel Listl1 = new JLabel("상품이름");
 	JLabel Listl2 = new JLabel("가격");
-	String upin[] = { "아이디", "로그인 시간", "포인트" };
+	String upin[] = { "아이디: ", "로그인 시간", "포인트: " };
 	ArrayList<String> menuList = new ArrayList<String>();// 디비에서 가져온 메뉴 리스트\
-	JButton btn[] = new  JButton[5];
-	JLabel la[] = new JLabel [3];
+	JButton btn[] = new JButton[5];
+	public JLabel la[] = new JLabel[3];
+	public String id;// 아이디 출력 문자열
+	public String pointLabel; // 포인트 출력 라벨
+	public String seat;
+	public JTextField msgInput = new JTextField();
 
 	private static String getTagValue(String tag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
@@ -86,7 +91,7 @@ public class GUIView extends JFrame {
 	}
 
 	private GUIView() {
-		
+
 		setTitle("User_View");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
@@ -95,31 +100,31 @@ public class GUIView extends JFrame {
 		// 위쪽 패널 구성
 		weather.setLayout(new BorderLayout());
 		wea.setLayout(new GridLayout(3, 1));
-	
-		//날씨 XML데이터 파싱
+
+		// 날씨 XML데이터 파싱
 		try {
 			String url = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1121571000";
-			
-			//페이지에 접근해줄 Document객체 생성
+
+			// 페이지에 접근해줄 Document객체 생성
 			DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
 			Document doc = dBuilder.parse(url);
 			doc.getDocumentElement().normalize();
 
-			//파싱할 데이터의 tag에 접근
+			// 파싱할 데이터의 tag에 접근
 			NodeList nList = doc.getElementsByTagName("data");
-			Node nNode = nList.item(0);//인덱스 0인 데이터 즉 맨 앞에 있는 데이터를 가져옴
+			Node nNode = nList.item(0);// 인덱스 0인 데이터 즉 맨 앞에 있는 데이터를 가져옴
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
 				weainfo[0] = new JLabel("지역: 서울특별시 광진구 화양동");
-				weainfo[1] = new JLabel("현재 기온: " + getTagValue("temp", eElement)+" ºC");
+				weainfo[1] = new JLabel("현재 기온: " + getTagValue("temp", eElement) + " ºC");
 				if (getTagValue("wfKor", eElement).equals("흐림")) {
 					img = new ImageIcon("img\\w_l3.gif");
 				} else if (getTagValue("wfKor", eElement).equals("비")) {
 					img = new ImageIcon("img\\w_l4.gif");
-				} else if(getTagValue("wfKor", eElement).equals("눈")) {
+				} else if (getTagValue("wfKor", eElement).equals("눈")) {
 					img = new ImageIcon("img\\w_l5.gif");
-				} else if(getTagValue("wfKor", eElement).equals("구름 많음")) {
+				} else if (getTagValue("wfKor", eElement).equals("구름 많음")) {
 					img = new ImageIcon("img\\w_l21.gif");
 				} else {
 					img = new ImageIcon("img\\w_l1.gif");
@@ -130,7 +135,7 @@ public class GUIView extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		for (int i = 0; i < 3; i++) {
 			wea.add(weainfo[i]);
 		}
@@ -138,53 +143,42 @@ public class GUIView extends JFrame {
 		weather.add(wea, BorderLayout.CENTER);
 		weather.setBackground(Color.WHITE);
 		weather.setPreferredSize(new Dimension(250, 0));
-		
+
 		// 오른쪽 사용자 정보 레이블
-		ninp.setLayout(new GridLayout(3, 1));
-		
-		la[0]=new JLabel(upin[0]);
+		ninp.setLayout(new GridLayout(3, 2));
+
+		la[0] = new JLabel(upin[0]);
 		la[0].setAlignmentX(ninp.LEFT_ALIGNMENT);
 		ninp.add(la[0]);
-		
+
 		Date today = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss a");
-		
-		la[1]=new JLabel(upin[1] + ": " + time.format(today));
+
+		la[1] = new JLabel(upin[1] + ": " + time.format(today));
 		la[1].setAlignmentX(ninp.RIGHT_ALIGNMENT);
 		ninp.add(la[1]);
-		
-		
-		la[2]=new JLabel(upin[2]);
+
+		la[2] = new JLabel(upin[2]);
 		la[2].setAlignmentX(ninp.RIGHT_ALIGNMENT);
 		ninp.add(la[2]);
-		
+
 		ninp.setBackground(Color.WHITE);
-		
+
 		np1.setLayout(new BorderLayout(10, 10));
-		
+
 		title.setHorizontalAlignment(JLabel.CENTER);
 		title.setFont(new Font("돋움", Font.PLAIN, 30));
 		np1.add(title, BorderLayout.NORTH);
-		
-		
+
 		mess.setHorizontalAlignment(JLabel.CENTER);
 		mess.setFont(new Font("돋움", Font.PLAIN, 12));
 		mess.setForeground(Color.RED);
 		np1.add(mess);
-		
-		bar.addSeparator(new Dimension(806, 20));
-		   bar.add(LogOutbtn); 
-		   np1.add(bar, BorderLayout.NORTH);  //**********bar 추가 ************//
-		   LogOutbtn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//dispose();
-				System.exit(0);
-			}});
-		   
-		   
+		bar.addSeparator(new Dimension(806, 20));
+		bar.add(LogOutbtn);
+		np1.add(bar, BorderLayout.NORTH); // **********bar 추가 ************//
+
 		np1.add(ninp, BorderLayout.EAST);
 		np1.add(weather, BorderLayout.WEST);
 		np1.setBackground(Color.WHITE);
@@ -198,13 +192,13 @@ public class GUIView extends JFrame {
 		wp2.add(pro);
 		for (int i = 0; i < 5; i++) {
 			btn[i] = new JButton(ca[i]);
-			   btn[i].setBackground(Color.black);
-               btn[i].setFont(new Font("굴림", Font.PLAIN, 12));
-               btn[i].setForeground(Color.WHITE);
+			btn[i].setBackground(Color.black);
+			btn[i].setFont(new Font("굴림", Font.PLAIN, 12));
+			btn[i].setForeground(Color.WHITE);
 			wp2.add(btn[i]);
-			
+
 		}
-		
+
 		if (toggle == true)
 			wp2.setBorder(new TitledBorder(new LineBorder(Color.BLACK)));
 
@@ -232,16 +226,13 @@ public class GUIView extends JFrame {
 		crp2.add(ta1, BorderLayout.CENTER);
 		crp2.add(crp3, BorderLayout.SOUTH);
 		crp3.add(tf1);
-		
-		
+
 		sumb.setBackground(Color.black);
 		sumb.setFont(new Font("고딕체", Font.PLAIN, 10));
 		sumb.setForeground(Color.WHITE);
 
 		crp3.add(sumb);
 
-		
-		
 		if (toggle == true)
 			crp1.setBorder(new TitledBorder(new LineBorder(Color.BLACK)));
 
@@ -252,12 +243,18 @@ public class GUIView extends JFrame {
 		cp3.add(crp2, BorderLayout.CENTER);
 
 		// 오른쪽 패널 구성
+		// JTextArea의 내용을 수정하지 못하도록 한다. 즉, 출력 전용으로 사용한다.
+		ta2.setEditable(false);
+		// 수직 스크롤 바는 항상 나타내고 수평 스크롤 바는 필요할 때 나타나도록 프로그래밍한다.
+		JScrollPane jsp = new JScrollPane(ta2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
 		ep4.setLayout(new BorderLayout(10, 0));
 		ep4.setPreferredSize(new Dimension(300, 10));
 		cha.setHorizontalAlignment(JLabel.CENTER);
 		ep4.add(cha, BorderLayout.NORTH);
 		ep4.add(ta2, BorderLayout.CENTER);
-		ep4.add(new JTextField(), BorderLayout.SOUTH);
+		ep4.add(msgInput, BorderLayout.SOUTH);
 
 		if (toggle == true)
 			ep4.setBorder(new TitledBorder(new LineBorder(Color.BLACK)));
@@ -271,7 +268,13 @@ public class GUIView extends JFrame {
 		setVisible(false);
 		setLocationRelativeTo(null);
 	}
+
 	public static GUIView getInstance() {
 		return GV;
+	}
+
+	public void addButtonActionListener(ActionListener listener) {
+		LogOutbtn.addActionListener(listener);
+		msgInput.addActionListener(listener);
 	}
 }
