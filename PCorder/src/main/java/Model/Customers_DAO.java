@@ -1,6 +1,8 @@
 package Model;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class Customers_DAO implements DAO_Interface{
 	//private static Customers_DAO dao;
@@ -82,8 +84,10 @@ public class Customers_DAO implements DAO_Interface{
 			pstmt.setString(4, dto.getCemail());
 			int r = pstmt.executeUpdate();
 			if(r > 0) {	//삽입 성공
-				
+				JOptionPane.showMessageDialog(null, "쨖쨖쨔ㅉ꺅 회원가입 됐당 새해부터 코딩하는 내 인생 레전드 ㅠㅠ");
 			}
+		} catch(MySQLIntegrityConstraintViolationException e3) {
+			JOptionPane.showMessageDialog(null, "ERROR : 회원가입에 실패했습니다. 초기화면으로 돌아갑니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("ERROR : 회원가입에 실패했습니다. 초기화면으로 돌아갑니다.");
