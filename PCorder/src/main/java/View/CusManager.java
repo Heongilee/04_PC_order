@@ -8,8 +8,13 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,6 +32,7 @@ import javax.swing.border.TitledBorder;
 import Controller.I_ToolBar;
 
 public class CusManager extends JFrame implements I_ToolBar {
+	private static CusManager CM = new CusManager();
 	private static Container c;
 	JLabel title = new JLabel("绊按包府");
 	JPanel leftPanel = new JPanel();
@@ -41,6 +47,7 @@ public class CusManager extends JFrame implements I_ToolBar {
 	JPanel msgPanel = new JPanel();
 	JPanel seatPanel = new JPanel();
 
+//	LoginView LV = LoginView.getInstance();
 	private SeatPanel SP = new SeatPanel();
 	private ChatPanel CP = new ChatPanel();
 
@@ -60,7 +67,7 @@ public class CusManager extends JFrame implements I_ToolBar {
 	@Override
 	public void separator() {}
 
-	public CusManager() {
+	private CusManager() {
 		super("绊按包府");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,8 +94,17 @@ public class CusManager extends JFrame implements I_ToolBar {
 		setLocationRelativeTo(null);
 		// 农扁 绊沥
 		super.setResizable(false);
-		setVisible(true);
-
+		setVisible(false);
+		previousBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginView LV = LoginView.getInstance();
+				LV.getInstance().setVisible(true);
+				LV.cardLayout.show(LV.window, "admin");
+//				LV.getInstance().cardLayout.;
+				setVisible(false);
+			}
+		});
 		chatInput.addActionListener(new ActionListener() {
 
 			@Override
@@ -98,8 +114,29 @@ public class CusManager extends JFrame implements I_ToolBar {
 				chatInput.setText("");
 			}
 		});
+//		WindowListener wl = new WindowAdapter() {
+//			ArrayList<Window> windows = new ArrayList<Window>();
+//
+//			@Override
+//			public void windowOpened(WindowEvent e) {
+//				windows.add(e.getWindow());
+//			}
+//
+//			@Override
+//			public void windowClosing(WindowEvent e) {
+//				if(windows.size() > 1) {
+//					windows.remove(e.getWindow());
+//					e.getWindow().dispose();
+//				}
+//			}
+//			
+//			
+//		};
 	}
 
+	public static CusManager getInstance() {
+		return CM;
+	}
 	public class SeatPanel extends JPanel {
 		JButton[] seatBtn = new JButton[12];
 

@@ -8,6 +8,7 @@ public interface I_ToolBar {
 	JButton previousBtn = new JButton("< 이전");
 	JButton nextBtn = new JButton("> 앞으로");
 	JButton logoutBtn = new JButton("로그아웃");
+	JButton loginBtn = new JButton("로그인");
 
 	void previousButton();
 	void nextButton();
