@@ -1,13 +1,11 @@
 package View;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -33,6 +31,7 @@ import javax.swing.border.TitledBorder;
 
 
 public class CusManager extends JFrame {
+	private static CusManager CM = new CusManager();
 	private static Container c;
 	JLabel title = new JLabel("고객관리");
 	JPanel leftPanel = new JPanel();
@@ -46,21 +45,22 @@ public class CusManager extends JFrame {
 	JViewport vp = new JViewport();
 	JPanel msgPanel = new JPanel();
 	JPanel seatPanel = new JPanel();
-	JToolBar bar = new JToolBar();
-	JButton Previousbtn = new JButton("< 이전");
-	JButton LogOutbtn = new JButton("로그아웃");
+	LoginView LV = LoginView.getInstance();
 	private SeatPanel SP = new SeatPanel();
 	private ChatPanel CP = new ChatPanel();
 
-	public CusManager() {
+	JToolBar bar = new JToolBar();
+	JButton previousBtn = new JButton("< 이전");
+	JButton logoutBtn = new JButton("로그아웃");
+	private CusManager() {
 		super("고객관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 
-		   bar.add(Previousbtn); bar.addSeparator(new Dimension(750, 30));
-		///   bar.add(LogOutbtn );
-		   add(bar, BorderLayout.NORTH);
+
 		// 툴바 interface
-		//add(bar, BorderLayout.NORTH);
+		bar.add(previousBtn);
+		bar.addSeparator(new Dimension(750, 30));
+		bar.add(logoutBtn);
+		add(bar, BorderLayout.NORTH);
 		
 		JLayeredPane layeredpane = new JLayeredPane();
 		layeredpane.setBounds(0, 0, 700, 600);
@@ -81,11 +81,22 @@ public class CusManager extends JFrame {
 		setLocationRelativeTo(null);
 		// 크기 고정
 		super.setResizable(false);
+		
 		setVisible(false);
-		Previousbtn.addActionListener(new ActionListener() {
+		previousBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				LV.getInstance().setVisible(true);
 				
+			}
+		});
+		logoutBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				LV.getInstance().setVisible(true);
+				LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
 			}
 		});
 		chatInput.addActionListener(new ActionListener() {
@@ -97,15 +108,11 @@ public class CusManager extends JFrame {
 				chatInput.setText("");
 			}
 		});
-	      Previousbtn.addActionListener(new ActionListener() {  
-				@Override
-				public void actionPerformed(ActionEvent e) {
-				
-				}
-				});
-	  
 	}
-	
+
+	public static CusManager getInstance() {
+		return CM;
+	}
 	public class SeatPanel extends JPanel {
 		JButton[] seatBtn = new JButton[12];
 
@@ -127,6 +134,7 @@ public class CusManager extends JFrame {
 	public class ChatPanel extends JPanel {
 
 		public ChatPanel() {
+
 			setLayout(new BorderLayout());
 			setBorder(border);
 			setPreferredSize(new Dimension((int) (350), (int) (600))); // 채팅창
@@ -148,5 +156,5 @@ public class CusManager extends JFrame {
 			msgPanel.add(BorderLayout.EAST, chatSubmit);
 			add(msgPanel, BorderLayout.SOUTH);
 		}
-	}
- }
+	}// ChatPanel
+}

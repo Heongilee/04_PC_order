@@ -33,7 +33,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class GUIView extends JFrame {
-	
+	private static GUIView GV = new GUIView();
 	boolean toggle = true;
 	JPanel np1 = new JPanel();// 위쪽 전체 패널
 	JPanel ninp = new JPanel();// 위쪽 오른쪽 라벨 패털
@@ -85,7 +85,7 @@ public class GUIView extends JFrame {
 		return nValue.getNodeValue();
 	}
 
-	GUIView() {
+	private GUIView() {
 		
 		setTitle("User_View");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -268,13 +268,15 @@ public class GUIView extends JFrame {
 		c.add(ep4, BorderLayout.EAST);
 
 		setSize(900, 700);
-		setVisible(true);
+		setVisible(false);
 		setLocationRelativeTo(null);
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new GUIView();
+	public static GUIView getInstance() {
+		return GV;
 	}
+//	public static void main(String[] args) {
+//		 TODO Auto-generated method stub
+//		new GUIView();
+//	}
 
 }

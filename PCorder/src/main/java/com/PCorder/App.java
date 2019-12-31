@@ -9,7 +9,7 @@ public class App
 	// Test Bench
 	/////////////////////////////////////
     public static void main( String[] args) throws Exception{
-    	new LoginView(null);
+    	//new LoginView(null);
     	//Customers_DAO.getInstance(); //해줘도 되고 안 해줘도 됨. 바로 메모리 할당 해버리기 때문.
     	Customers_DAO.getConnection();
     	Customers_DAO.CUSTOMERS_FUNC_1();

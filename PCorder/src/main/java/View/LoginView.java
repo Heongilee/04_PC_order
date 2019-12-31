@@ -23,10 +23,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import View.AdminView;
+import View.SignUpView;
 
-public class LoginView extends JPanel {
-	protected CardLayout cardLayout;
-	protected JPanel window;
+public class LoginView extends JFrame{
+	private static LoginView LV = new LoginView();
+	GUIView GV = GUIView.getInstance();
+	CardLayout cardLayout;
+	JPanel window;
 	SignUpView signUpView;
 	AdminView adminView;
 	BufferedImage img = null;
@@ -36,154 +40,144 @@ public class LoginView extends JPanel {
 	JLabel idlb;
 	JLabel passlb;
 	JLabel la;
-	
+	boolean flag;
 	JRadioButton user = new JRadioButton("user MODE");
 	JRadioButton server = new JRadioButton("server MODE");
 	ButtonGroup goup = new ButtonGroup();
-   
-   
-	private MainFrame mainf;
+	
+	JToolBar bar = new JToolBar();
+	JButton previousBtn = new JButton("< 이전");
+	JButton nextBtn = new JButton("> 앞으로");
+	JButton loginBtn = new JButton("로그인");
+	JButton logoutBtn = new JButton("로그아웃");
+	
+//	JToolBar bar = new JToolBar();
 
+	
+	
 
-  
-   public LoginView(MainFrame mainf) {
-	   this.mainf = mainf;
-     
-     // setSize(700, 600);
-     
-      
-    
-      
-      goup.add(server);
-      goup.add(user);
-    //  Container c = new Container();
-
-      try {
-         // img = ImageIO.read(new File("img/login.jpg"));//img/login.jpg
-      } catch (Exception e) {
-         e.printStackTrace();
-         System.exit(0);
-      }
-
-   //   JLayeredPane layeredpane = new JLayeredPane();
-   //   layeredpane.setBounds(0, 0, 700, 600);
-   //   layeredpane.setLayout(null);
-
-      JPanel panel = new JPanel();
-      panel.setBounds(0, 0, 700, 600);
-      panel.setLayout(null)      ;
-      
-      user.setFont(new Font("고딕체", Font.BOLD, 18));
-      user.setForeground(Color.BLACK);
-      user.setBounds(200, 50, 200, 30);
-
-      add(user);
-
-      server.setFont(new Font("고딕체", Font.BOLD, 18));
-      server.setForeground(Color.BLACK);
-      server.setBounds(400, 50, 200, 30);
-
-     add(server);
-
-      idlb = new JLabel("아이디");
-      idlb.setFont(new Font("고딕체", Font.BOLD, 18));
-      idlb.setForeground(Color.BLACK);
-      idlb.setBounds(100, 109, 100, 30);
-      loginTextField = new JTextField(15);
-      loginTextField.setBounds(200, 109, 320, 30);
-
-     add(idlb);
-      add(loginTextField);
-
-      passlb = new JLabel("비밀번호");
-      passlb.setFont(new Font("고딕체", Font.BOLD, 18));
-      passlb.setForeground(Color.BLACK);
-      passlb.setBounds(100, 209, 100, 30);
-      passwordField = new JPasswordField(15);
-      passwordField.setBounds(200, 209, 320, 30);
-
-     add(passlb);
-     add(passwordField);
-
-      loginbt = new JButton("로그인");
-      loginbt.setBackground(Color.black);
-      loginbt.setFont(new Font("고딕체", Font.BOLD, 18));
-      loginbt.setForeground(Color.WHITE);
-      loginbt.setBounds(240, 300, 200, 48);
-
-      add(loginbt);
-
-      la = new JLabel("or");
-      la.setBackground(Color.BLACK);
-      la.setFont(new Font("고딕체", Font.PLAIN, 23));
-      la.setForeground(Color.BLACK);
-      la.setBounds(330, 350, 200, 48);
-
-      add(la);
-
-      SignUpbtn = new JButton("회원가입");
-      SignUpbtn.setBackground(Color.black);
-      SignUpbtn.setFont(new Font("고딕체", Font.BOLD, 18));
-      SignUpbtn.setForeground(Color.WHITE);
-      SignUpbtn.setBounds(240, 400, 200, 48);
-
-      add(SignUpbtn);
-
-   add(panel);
-
-
-
-     /* window = new JPanel();
-      cardLayout = new CardLayout();
-      window.setLayout(cardLayout);
-      adminView = new AdminView();
-    //  signUpView = new SignUpView();
-      window.add(layeredpane, "layer");
-      window.add(adminView, "admin");
-      window.add(signUpView, "signUp");*/
+	
+	private LoginView() {
+		setTitle("로그인");
+		setSize(700, 600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
- 
-			
-		loginbt.addActionListener(new ActionListener() {  /////***** server 모드 선택하고 로그인 눌렀을떄는 admin card
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub				
-			     if (server.isSelected()) {
-			    				    	
-				mainf.change("ChAmin");
-				
-			     }
-			     // 로그인창 지우기 
-			}});
+		// 툴바 interface
+		bar.add(previousBtn);
+		add(bar, BorderLayout.NORTH);
+		
+		goup.add(server);
+		goup.add(user);
+		Container c = getContentPane();
 
-		loginbt.addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
+		try {} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+
+		JLayeredPane layeredpane = new JLayeredPane();
+		layeredpane.setBounds(0, 0, 700, 600);
+		layeredpane.setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 700, 600);
+
+		user.setFont(new Font("고딕체", Font.BOLD, 18));
+		user.setForeground(Color.BLACK);
+		user.setBounds(200, 50, 200, 30);
+
+		layeredpane.add(user);
+
+		server.setFont(new Font("고딕체", Font.BOLD, 18));
+		server.setForeground(Color.BLACK);
+		server.setBounds(400, 50, 200, 30);
+
+		layeredpane.add(server);
+
+		idlb = new JLabel("아이디");
+		idlb.setFont(new Font("고딕체", Font.BOLD, 18));
+		idlb.setForeground(Color.BLACK);
+		idlb.setBounds(100, 109, 100, 30);
+		loginTextField = new JTextField(15);
+		loginTextField.setBounds(200, 109, 320, 30);
+
+		layeredpane.add(idlb);
+		layeredpane.add(loginTextField);
+
+		passlb = new JLabel("비밀번호");
+		passlb.setFont(new Font("고딕체", Font.BOLD, 18));
+		passlb.setForeground(Color.BLACK);
+		passlb.setBounds(100, 209, 100, 30);
+		passwordField = new JPasswordField(15);
+		passwordField.setBounds(200, 209, 320, 30);
+
+		layeredpane.add(passlb);
+		layeredpane.add(passwordField);
+
+		loginbt = new JButton("로그인");
+		loginbt.setBackground(Color.black);
+		loginbt.setFont(new Font("고딕체", Font.BOLD, 18));
+		loginbt.setForeground(Color.WHITE);
+		loginbt.setBounds(240, 300, 200, 48);
+
+		layeredpane.add(loginbt);
+
+		la = new JLabel("or");
+		la.setBackground(Color.BLACK);
+		la.setFont(new Font("고딕체", Font.PLAIN, 23));
+		la.setForeground(Color.BLACK);
+		la.setBounds(330, 350, 200, 48);
+
+		layeredpane.add(la);
+
+		SignUpbtn = new JButton("회원가입");
+		SignUpbtn.setBackground(Color.black);
+		SignUpbtn.setFont(new Font("고딕체", Font.BOLD, 18));
+		SignUpbtn.setForeground(Color.WHITE);
+		SignUpbtn.setBounds(240, 400, 200, 48);
+
+		layeredpane.add(SignUpbtn);
+
+		layeredpane.add(panel);
+
+		window = new JPanel();
+		cardLayout = new CardLayout();
+		window.setLayout(cardLayout);
+		adminView = new AdminView();
+		signUpView = new SignUpView();
+		window.add(layeredpane, "layer");
+		window.add(adminView, "admin");
+		window.add(signUpView, "signUp");
+		loginbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			     if (user.isSelected()) {
-			  
-			
-					new GUIView();
-					
-			     }
-			   
-			  
-			     }});
-			
-		SignUpbtn.addActionListener(new ActionListener() {  /////***** user 모드 선택하고 로그인 눌렀을떄는 admin card
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				mainf.change("ChSign");
-				
+				if (server.isSelected()) {
+					 cardLayout.show(window, "admin");
+				 } else if (user.isSelected()) {
+					 GV.getInstance().setVisible(true);
+				 } else {
+					 
+				 }
 			}
-			});
-				
+		});
+		SignUpbtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(window, "signUp");
+			}
+		});
 
-    
-  //    add(window);
-     //setLocationRelativeTo(null);
-     // setVisible(true);
-   }
+		previousBtn.addActionListener(e -> cardLayout.show(window, "layer"));
+		add(window);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	
+	public static LoginView getInstance() {
+		return LV;
+	}
+	public static void main(String[] args) {
+		LoginView loginView = LoginView.getInstance();
+//		CusManager cusManager = CusManager.getInstance();
+	}
 }

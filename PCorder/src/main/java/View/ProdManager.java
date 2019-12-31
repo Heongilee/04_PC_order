@@ -2,12 +2,13 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,120 +20,153 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.JViewport;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-
 
 //annotation test
-public class ProdManager extends JFrame{
-      
-      private static Container c;
-      JLabel title = new JLabel("상품관리");
-      JLabel stateText = new JLabel("##");
-      JPanel leftPanel = new JPanel();
-      JPanel rightPanel = new JPanel();
-      JPanel wrapPanel = new JPanel();
-      JPanel northPanel = new JPanel();
-      String[] prodLabel_str = {"상품 번호", "상품명", "단가", "제조사"};
-      JLabel[] prodLabel = new JLabel[4];
-      JComboBox<String> prodCombo = new JComboBox<String>();
-      JTextField[] prodtf = new JTextField[3];
-      String ta_col = "관리번호\t상품명\t단가\t제조사";
-      JTextArea ta = new JTextArea(ta_col, 27, 30);
-      String[] btn_str = {"등록", "조회", "삭제"};
-      JButton[] btn = new JButton[3];
-      JToolBar bar = new JToolBar();
- 	 JButton Previousbtn = new JButton("< 이전");
- 	 
- 	 
-      private ProductPanel PP = new ProductPanel();
-      private ShowPanel SP = new ShowPanel();
-      public ProdManager() {
-         super("상품관리");
-         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         
-         c = getContentPane();
-         c.setLayout(new BorderLayout());
-         wrapPanel.setLayout(new GridLayout(1,2));
-         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-         
-         
-         bar.add(Previousbtn);
-         leftPanel.add(bar, BorderLayout.NORTH); ///////*****bar 위치 이상 ㅠㅜㅠㅜㅠ ****//////
-         
-         //title 폰트 크기
-         title.setFont(new Font("굴림", Font.BOLD, 45));
-         //오른쪽 정렬
-         leftPanel.setLayout(new FlowLayout( FlowLayout.RIGHT ));
-         
-         northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
-         title.setAlignmentX(CENTER_ALIGNMENT);
-      
-         
-         stateText.setAlignmentX(CENTER_ALIGNMENT);
-         stateText.setFont(new Font("고딕체", Font.ITALIC, 14));
-         stateText .setForeground(Color.BLACK);   // 메세지 뜰때마다 빨강으로 전환하기
-         
-         
-         northPanel.add(title);
-         northPanel.add(stateText);
-         c.add(northPanel, BorderLayout.NORTH);
-         leftPanel.add(PP);
-         wrapPanel.add(leftPanel);
-         
-         rightPanel.add(SP);
-         wrapPanel.add(rightPanel);
-         c.add(wrapPanel, BorderLayout.CENTER);
-         setSize(900,700);
-         setLocationRelativeTo(null);
-         // 크기 고정
-//           super.setResizable(false);
-         setVisible(true);
-      }
-      public class ProductPanel extends JPanel {
-//         final String[] seatName = {""}
-         
-         public ProductPanel() {
-            setLayout(new GridLayout(4,2,10,30));
-            setPreferredSize(new Dimension((int)(400), (int)(300)));
-            
-            
-            for(int i=0;i<4;i++)
-            {
-               prodLabel[i] = new JLabel(prodLabel_str[i]);
-               prodLabel[i].setFont(new Font("고딕체", Font.PLAIN, 16));
-               add(prodLabel[i]);
-               
-               if(i == 0) add(prodCombo);
-               else {
-                  prodtf[i - 1] = new JTextField();
-              
-                  add(prodtf[i - 1]);
-               }
-            }
-         }
-      }// ProductPanel
-      public class ShowPanel extends JPanel {
-         
-         public ShowPanel() {
-            
-            setLayout(new GridLayout(2,1));
-            ta.setEditable(false);
-            add(new JScrollPane(ta));
-            JPanel pa = new JPanel();
-            for(int i=0;i<3;i++) 
-            {
-           
-               btn[i] = new JButton(btn_str[i]);
-               btn[i].setBackground(Color.black);
-               btn[i].setFont(new Font("고딕체", Font.PLAIN, 20));
-               btn[i].setForeground(Color.WHITE);
+public class ProdManager extends JFrame {
+	private static ProdManager PM = new ProdManager();
+	LoginView LV = LoginView.getInstance();
+	private static Container c;
+	JLabel title = new JLabel("상품관리");
+	JLabel stateText = new JLabel("##");
+	JPanel leftPanel = new JPanel();
+	JPanel rightPanel = new JPanel();
+	JPanel wrapPanel = new JPanel();
+	JPanel northPanel = new JPanel();
+	String[] prodLabel_str = { "상품 번호", "상품명", "단가", "제조사" };
+	JLabel[] prodLabel = new JLabel[4];
+	JComboBox<String> prodCombo = new JComboBox<String>();
+	JTextField[] prodtf = new JTextField[3];
+	String ta_col = "관리번호\t상품명\t단가\t제조사";
+	JTextArea ta = new JTextArea(ta_col, 27, 30);
+	String[] btn_str = { "등록", "조회", "삭제" };
+	JButton[] btn = new JButton[3];
+
+	private ProductPanel PP = new ProductPanel();
+	private ShowPanel SP = new ShowPanel();
+
+	JToolBar bar = new JToolBar();
+	JButton previousBtn = new JButton("< 이전");
+	JButton nextBtn = new JButton("> 앞으로");
+	JButton loginBtn = new JButton("로그인");
+	JButton logoutBtn = new JButton("로그아웃");
+	
+	private ProdManager() {
+		super("상품관리");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+
+		// 툴바 interface
+		bar.add(previousBtn);
+		bar.addSeparator(new Dimension(750, 30));
+		bar.add(logoutBtn);
+		add(bar, BorderLayout.NORTH);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		
+		wrapPanel.setLayout(new GridLayout(1, 2));
+		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+
+//		leftPanel.add(bar, BorderLayout.NORTH); /////// *****bar 위치 이상 ㅠㅜㅠㅜㅠ ****//////
+
+		
+		// title 폰트 크기
+		title.setFont(new Font("굴림", Font.BOLD, 45));
+		// 오른쪽 정렬
+		leftPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+		title.setAlignmentX(CENTER_ALIGNMENT);
+
+		stateText.setAlignmentX(CENTER_ALIGNMENT);
+		stateText.setFont(new Font("고딕체", Font.ITALIC, 14));
+		stateText.setForeground(Color.BLACK); // 메세지 뜰때마다 빨강으로 전환하기
+
+		
+		
+		
+		northPanel.add(title);
+		northPanel.add(stateText);
+		panel.add(northPanel, BorderLayout.NORTH);
+		leftPanel.add(PP);
+		wrapPanel.add(leftPanel);
+
+		rightPanel.add(SP);
+		wrapPanel.add(rightPanel);
+		panel.add(wrapPanel, BorderLayout.CENTER);
+		
+		add(panel, BorderLayout.CENTER);
+		
+		setSize(900, 700);
+		setLocationRelativeTo(null);
+		// 크기 고정
+        setResizable(false);
         
-               pa.add(btn[i]);
-            }
-            add(pa);
-         }
-         
-      }
+		setVisible(false);
+		
+		previousBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				LV.getInstance().setVisible(true);
+				
+			}
+		});
+		logoutBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				LV.getInstance().setVisible(true);
+				LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
+			}
+		});
+	}
+
+	public class ProductPanel extends JPanel {
+//         final String[] seatName = {""}
+
+		public ProductPanel() {
+			setLayout(new GridLayout(4, 2, 10, 30));
+			setPreferredSize(new Dimension((int) (400), (int) (300)));
+
+			for (int i = 0; i < 4; i++) {
+				prodLabel[i] = new JLabel(prodLabel_str[i]);
+				prodLabel[i].setFont(new Font("고딕체", Font.PLAIN, 16));
+				add(prodLabel[i]);
+
+				if (i == 0)
+					add(prodCombo);
+				else {
+					prodtf[i - 1] = new JTextField();
+
+					add(prodtf[i - 1]);
+				}
+			}
+		}
+	}// ProductPanel
+
+	public class ShowPanel extends JPanel {
+
+		public ShowPanel() {
+
+			setLayout(new GridLayout(2, 1));
+			ta.setEditable(false);
+			add(new JScrollPane(ta));
+			JPanel pa = new JPanel();
+			for (int i = 0; i < 3; i++) {
+
+				btn[i] = new JButton(btn_str[i]);
+				btn[i].setBackground(Color.black);
+				btn[i].setFont(new Font("고딕체", Font.PLAIN, 20));
+				btn[i].setForeground(Color.WHITE);
+
+				pa.add(btn[i]);
+			}
+			add(pa);
+		}
+
+	}
+	public static ProdManager getInstance() {
+		return PM;
+	}
 }
