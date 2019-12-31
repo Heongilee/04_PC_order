@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.logging.Logger;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
@@ -29,6 +31,7 @@ public class PCController{
 	private final C_login cl;
 	private final C_SignUp cs;
 	private final PCChatData chatData;
+	private static Customers_DAO dao;
 	
 	Gson gson = new Gson();
 	
@@ -43,23 +46,24 @@ public class PCController{
 	PrintWriter outMsg;
 	Thread thread;
 	boolean status;
+	
 	public PCController(LoginView LV, CusManager CM, ProdManager PM, AdminView AV, SignUpView SUV, C_login cl, C_SignUp cs, PCChatData chatData) {
 		// 로거 객체 초기화
 		logger = Logger.getLogger(this.getClass().getName());
 		
-		this.LV = LV;
-		this.CM = CM;
-		this.PM = PM;
-		this.AV = AV;
-		this.SUV = SUV;
-		this.cl = cl;
-		this.cs = cs;
+		this.LV = LV;				// LoginView 참조객체 연결
+		this.CM = CM;				// CusManager 참조객체 연결
+		this.PM = PM;				// ProdManager 참조객체 연결
+		this.AV = AV;				// AdminView 참조객체 연결
+		this.SUV = SUV;				// SignUpView 참조객체 연결
+		this.cl = cl;				// C_login 참조객체 연결
+		this.cs = cs;				// C_SignUp 참조객체 연결
 		
-		this.chatData = chatData;
+		this.chatData = chatData;	// PCChatData 참조객체 연결
 	}
 	public void appMain() {
 		
-		//LoginView
+		//로그인 뷰 이벤트 처리
 		LV.addButtonActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,6 +90,8 @@ public class PCController{
 				 }
 			}
 		});
+		
+		//로그인 뷰->관리자 뷰 이벤트 처리		
 		LV.adminView.addButtonActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -94,23 +100,33 @@ public class PCController{
 
 		});
 		
-		//회원가입 이벤트 처리
+		//로그인 뷰->회원가입 뷰 이벤트 처리
 		LV.signUpView.addButtonActionListener(new ActionListener() {
-			Customers_DAO dao = Customers_DAO.getInstance();
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					if(dao.Idselect(LV.signUpView.IdField.getText()))
-						JOptionPane.showMessageDialog(null, "다른 아이디를 입력해주세요");
-					else
-						JOptionPane.showMessageDialog(null, "이 아이디 중복 없돠 ~~ ");
-						
-				} catch (Exception ex) {
-					ex.printStackTrace();
+				JButton btn = (JButton)e.getSource();
+				
+				//SignUpView에서 setName한 값을 가지고 if-else문으로 분기조건을 주었다.
+				if(btn.getName().equals("IdOverlapbtn")) {
+					cs.Valid_Check(0);
 				}
+				else if(btn.getName().equals("NameOverlapbtn")) {
+					cs.Valid_Check(1);
+				}
+				else if(btn.getName().equals("EmailOverlapbtn")) {
+					cs.Valid_Check(2);
+				}
+				else { //회원가입 제출 버튼 (btn)
+					try {
+						cs.Register_Complete();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+				
 			}
 		});
+		//고객 관리 이벤트 처리
 		CM.addButtonActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -134,6 +150,8 @@ public class PCController{
 				 }
 			}
 		});
+		
+		//상품 관리 이벤트 처리
 		PM.addButtonActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -198,14 +216,16 @@ public class PCController{
 //		}
 //		logger.info("[MultiChatUI]" + thread.getName() + " 메시지 수신 스레드 종료됨!!");
 //	} // run()
-	public static void main(String[] args) {
-		PCController app = new PCController(
-						LoginView.getInstance(), CusManager.getInstance(), 
-						ProdManager.getInstance(), new AdminView(), 
-						new SignUpView(), new C_login(), 
-						new C_SignUp(), new PCChatData()
-						); 
-		app.appMain();
-	}
+	
+//	public static void main(String[] args) {
+//		PCController app = new PCController(
+//						LoginView.getInstance(), CusManager.getInstance(), 
+//						ProdManager.getInstance(), new AdminView(), 
+//						new SignUpView(), new C_login(), 
+//						new C_SignUp(), new PCChatData()
+//						);
+//		dao = Customers_DAO.getInstance();
+//		app.appMain();
+//	}
 
 }
