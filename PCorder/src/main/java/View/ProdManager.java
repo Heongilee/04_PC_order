@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -26,17 +27,18 @@ public class ProdManager extends JFrame {
 	public static ProdManager PM = ProdManager.getInstance();
 	LoginView LV = LoginView.getInstance();
 	JLabel title = new JLabel("상품관리");
-	JLabel stateText = new JLabel("##");
+	public JLabel stateText = new JLabel("## 메시지 : ");
 	JPanel leftPanel = new JPanel();
 	JPanel rightPanel = new JPanel();
 	JPanel wrapPanel = new JPanel();
 	JPanel northPanel = new JPanel();
 	String[] prodLabel_str = { "상품 번호", "상품명", "단가", "제조사" };
 	JLabel[] prodLabel = new JLabel[4];
-	JComboBox<String> prodCombo = new JComboBox<String>();
+	public Vector<Model.Product_DTO> v = new Vector<Model.Product_DTO>();
+	public JComboBox<String> prodCombo = new JComboBox<String>();
 	JTextField[] prodtf = new JTextField[3];
 	String ta_col = "관리번호\t상품명\t단가\t제조사";
-	JTextArea ta = new JTextArea(ta_col, 27, 30);
+	public JTextArea ta = new JTextArea(ta_col, 27, 30);
 	String[] btn_str = { "등록", "조회", "삭제" };
 	public JButton[] btn = new JButton[3];
 
@@ -106,11 +108,11 @@ public class ProdManager extends JFrame {
 				prodLabel[i].setFont(new Font("고딕체", Font.PLAIN, 16));
 				add(prodLabel[i]);
 
-				if (i == 0)
+				if (i == 0) {
 					add(prodCombo);
+				}
 				else {
 					prodtf[i - 1] = new JTextField();
-
 					add(prodtf[i - 1]);
 				}
 			}

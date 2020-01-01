@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import View.ProdManager;
+
 public class Product_DAO implements DAO_Interface{
+	public static ProdManager PM = ProdManager.getInstance();
 	private static Product_DAO dao = Product_DAO.getInstance();
 	public static Connection conn;
 	public static PreparedStatement pstmt;
@@ -64,7 +67,47 @@ public class Product_DAO implements DAO_Interface{
 	}
 	
 	public void SQL_SHOW() {
+		String sql = "SELECT * FROM PRODUCTS";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			Product_DTO dto = new Product_DTO();
+			
+			String str = "";
+			PM.ta.setText("관리번호\t상품명\t단가\t제조사\n");
+			PM.prodCombo.removeAllItems();
+			PM.prodCombo.addItem("전체");	//"전체"
+			while(rs.next()) {
+				dto.setpID(rs.getInt(1));
+				System.out.println("[1] : "+dto.getpID());
+				str += String.valueOf(dto.getpID());
+				str += "\t";
+				dto.setpNAME(rs.getString(2));
+				str += dto.getpNAME();
+				str += "\t";
+				dto.setpPrice(rs.getInt(3));
+				str += String.valueOf(dto.getpPrice());
+				str += "\t";
+				//pTYPE은 생략
+				dto.setpMANUF(rs.getString(5));
+				str += dto.getpMANUF();
+				str += "\n";
+				
+				PM.v.add(dto); //벡터에 추가.
+				PM.prodCombo.addItem(String.valueOf(dto.getpID()));
+			}
+			PM.ta.append(str);
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} catch(Exception e2) {
+			e2.printStackTrace();
+		} finally {
+			Product_DAO.closeJDBC(conn, pstmt, pstmt, rs);
+		}
 		
+		return;
 	}
 	public void SQL_INSERT() {
 		
