@@ -30,9 +30,10 @@ public class LoginView extends JFrame{
 	public SignUpView signUpView;
 	public AdminView adminView;
 	BufferedImage img = null;
-	public JTextField loginTextField;
-	JPasswordField passwordField;
-	public JButton loginbt, SignUpbtn;
+	public JTextField loginTextField;			//아이디 필드
+	public JPasswordField passwordField;		//패스워드 필드
+	public JButton loginbt = new JButton("로그인");
+	public JButton SignUpbtn = new JButton("회원가입");
 	JLabel idlb;
 	JLabel passlb;
 	JLabel la;
@@ -103,7 +104,6 @@ public class LoginView extends JFrame{
 		layeredpane.add(passlb);
 		layeredpane.add(passwordField);
 
-		loginbt = new JButton("로그인");
 		loginbt.setBackground(Color.black);
 		loginbt.setFont(new Font("고딕체", Font.BOLD, 18));
 		loginbt.setForeground(Color.WHITE);
@@ -119,7 +119,6 @@ public class LoginView extends JFrame{
 
 		layeredpane.add(la);
 
-		SignUpbtn = new JButton("회원가입");
 		SignUpbtn.setBackground(Color.black);
 		SignUpbtn.setFont(new Font("고딕체", Font.BOLD, 18));
 		SignUpbtn.setForeground(Color.WHITE);
@@ -147,8 +146,8 @@ public class LoginView extends JFrame{
 		return LV;
 	}
 	public void addButtonActionListener(ActionListener listener) {
-		loginbt.addActionListener(listener);
-		SignUpbtn.addActionListener(listener);
-		previousBtn.addActionListener(listener);
+		loginbt.addActionListener(listener);			//로그인 버튼
+		SignUpbtn.addActionListener(listener);			//회원가입 버튼
+		previousBtn.addActionListener(listener);		//이전 버튼
 	}
 }

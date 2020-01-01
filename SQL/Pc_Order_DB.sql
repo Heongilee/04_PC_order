@@ -15,11 +15,19 @@ DESC CUSTOMERS;
 DESC ORDERS;
 DESC PRODUCTS;
 
+-- 해당 아이디 관리자 모드로 바꾸기
+UPDATE CUSTOMERS SET cMODE = 0 WHERE cID = 4;
+
 -- 해당 테이블 모든 튜플 조회
 SELECT * FROM CUSTOMERS;
 SELECT * FROM ORDERS;
 SELECT * FROM PRODUCTS;
 
+-- 비밀번호 바꾸는 쿼리 (※ 반드시 WorkBench에서 실행해야함.)
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1111';
+
+
+SELECT cMODE FROM CUSTOMERS WHERE cNAME = '이헌기';
 SELECT cNAME FROM CUSTOMERS WHERE cNAME = '12312313';
 
 -- 만약에 튜플이 한 개라도 존재하면 중복 있음 -> 에러 메시지 / 없으면 정상 처리.(FLAG변수 3개 넣어서 처리...)

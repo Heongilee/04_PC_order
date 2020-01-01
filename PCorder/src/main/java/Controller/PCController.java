@@ -83,23 +83,38 @@ public class PCController implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				Object obj = e.getSource();
 				if (obj == LV.loginbt) { // 로그인 버튼을 눌렀을 때
-					if (LV.server.isSelected()) { // server mode에 체크 되어있을 경우
-						LV.cardLayout.show(LV.window, "admin");
-						CM.loginFlag = true;
-						cl.Mode_Check();
-						/* 관리자 로그인 들어갔을 경우 이벤트 처리 */
-						connectServer();
-					} else if (LV.user.isSelected()) { // user mode에 체크 되어있을 경우
-						LV.setVisible(false);
-						LV.GV.getInstance().setVisible(true);
-						cl.Mode_Check();
-						/* 사용자 로그인 들어갔을 경우 이벤트 처리 */
-						GUI.id = LV.loginTextField.getText();
-						GUI.la[0].setText("아이디 : " + GUI.id);
-						connectServer();
-					} else {
-
-					}
+					if (LV.server.isSelected()) { // server mode에 체크 되어있을 경우 (관리자 cMODE : 0)
+						if(cl.Mode_Check(LV.loginTextField.getText(), LV.passwordField.getText(), 0)) {
+							// ------- 로그인 성공!! -------
+							LV.cardLayout.show(LV.window, "admin");
+							CM.loginFlag = true;
+							
+							/* 관리자 로그인 들어갔을 경우 이벤트 처리 */
+							connectServer();
+						}
+						else {
+							// ------- 로그인 실패... -------
+							return;
+						}
+						
+					} else if (LV.user.isSelected()) { // user mode에 체크 되어있을 경우 (사용자 cMODE : 1)
+						if(cl.Mode_Check(LV.loginTextField.getText(), LV.passwordField.getText(), 1)) {
+							// ------- 로그인 성공!! -------
+							
+							/*	화면 전환	*/
+							LV.setVisible(false);
+							LV.GV.getInstance().setVisible(true);
+							
+							/*	사용자 로그인 들어갔을 경우 이벤트 처리	*/
+							GUI.id = LV.loginTextField.getText();
+							GUI.la[0].setText("아이디 : " + GUI.id);
+							connectServer();
+						}
+						else {
+							// ------- 로그인 실패... -------
+							return;
+						}
+					} else {}
 				} else if (obj == LV.SignUpbtn) { // 회원가입 버튼을 눌렀을 경우
 					LV.cardLayout.show(LV.window, "signUp");
 				} else if (obj == LV.previousBtn) { // 툴바 이전 버튼을 눌렀을 경우
@@ -119,11 +134,9 @@ public class PCController implements Runnable {
 				if (obj == LV.adminView.cm_btn) { // 관리자 뷰에서 고객관리 버튼을 눌렀을 경우
 					CM.getInstance().setVisible(true);
 					LV.getInstance().setVisible(false);
-					cl.Mode_Check();
 				} else if (obj == LV.adminView.pm_btn) { // 관리자 뷰에서 상품관리 버튼을 눌렀을 경우
 					PM.getInstance().setVisible(true);
 					LV.getInstance().setVisible(false);
-					cl.Mode_Check();
 				}
 			}
 		});
@@ -163,17 +176,14 @@ public class PCController implements Runnable {
 					CM.chatInput.getText();
 					CM.chatContent.setText(CM.chatContent.getText() + CM.chatInput.getText() + "\n");
 					CM.chatInput.setText("");
-					cl.Mode_Check();
 				} else if (obj == CM.previousBtn) { // 고객관리 뷰에서 이전 버튼을 눌렀을 경우
 					CM.setVisible(false);
 					LV.getInstance().setVisible(true);
-					cl.Mode_Check();
 				} else if (obj == CM.logoutBtn) { // 고객관리 뷰에서 로그아웃 버튼을 눌렀을 경우
 					CM.chatContent.setText("");
 					CM.setVisible(false);
 					LV.getInstance().setVisible(true);
 					LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
-					cl.Mode_Check();
 				} else {
 
 				}
@@ -188,12 +198,10 @@ public class PCController implements Runnable {
 				if (obj == PM.previousBtn) { // 상품관리 뷰에서 이전 버튼을 눌렀을 경우
 					PM.setVisible(false);
 					LV.getInstance().setVisible(true);
-					cl.Mode_Check();
 				} else if (obj == PM.logoutBtn) { // 상품관리 뷰에서 로그아웃 버튼을 눌렀을 경우
 					PM.setVisible(false);
 					LV.getInstance().setVisible(true);
 					LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
-					cl.Mode_Check();
 				} else {
 
 				}
@@ -206,7 +214,6 @@ public class PCController implements Runnable {
 				Object obj = e.getSource();
 				if (obj == GUI.LogOutbtn) { // 상품관리 뷰에서 로그아웃 버튼을 눌렀을 경우
 					outMsg.println(gson.toJson(new Message(GUI.seat, GUI.id, "", "", "logout", "")));
-					cl.Mode_Check();
 					try {
 						outMsg.close();
 						inMsg.close();

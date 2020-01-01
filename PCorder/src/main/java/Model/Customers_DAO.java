@@ -186,5 +186,45 @@ public class Customers_DAO implements DAO_Interface{
 		}
 		return ok;
 	}
-
+	
+	public boolean Try_Login(String id, String pw, int f) {
+		boolean RET = false;
+		String sql  = "SELECT cNAME, cPW, cMODE FROM CUSTOMERS WHERE cNAME = ?";
+		try {
+			conn = getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) { //튜플이 존재 -> 아이디 조회 성공!
+				if((rs.getString(2).equals(pw))&&(rs.getInt(3) == f)) { //비밀번호와 모드 접근이 일치하다면...
+					RET = true;
+				}
+				else if(!(rs.getString(2).equals(pw))) {	//비밀번호가 다르다면...
+					JOptionPane.showMessageDialog(null, "ERROR", "비밀번호가 일치하지 않습니다.", JOptionPane.ERROR_MESSAGE);
+					RET = false;
+				}
+				else if(rs.getInt(3) != f) {	//비밀번호는 맞는데 모드 접근이 다르다면...
+					JOptionPane.showMessageDialog(null, "ACESS DENIED", "잘못된 접근입니다.", JOptionPane.ERROR_MESSAGE);
+					RET = false;
+				}
+				else {}
+			}
+			else { //튜플이 없음 -> 에러 메시지 출력(없는 아이디 입니다...)
+				JOptionPane.showMessageDialog(null, "ERROR", "없는 아이디 입니다.", JOptionPane.ERROR_MESSAGE);
+				RET = false;
+			}
+		} catch(SQLException e1) {
+			JOptionPane.showMessageDialog(null, "SQLException", "SQLException()이 발생되었습니다.", JOptionPane.ERROR_MESSAGE);
+			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
+		}
+		
+		return RET;
+	}
+	
+	//public void ...
 }
