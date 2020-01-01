@@ -1,5 +1,6 @@
 package com.PCorder;
 
+import Controller.C_ProdManager;
 import Controller.C_SignUp;
 import Controller.C_login;
 import Controller.PCController;
@@ -33,7 +34,8 @@ public class App
 								ProdManager.getInstance(), GUIView.getInstance(),
 								new AdminView(), new SignUpView(), 
 								new C_login(), new C_SignUp(), 
-								new PCChatData(), new PCChatData()
+								new C_ProdManager(), new PCChatData(), 
+								new PCChatData()
 								);
 		
 		//绊按 DAO按眉 积己

@@ -39,6 +39,7 @@ public class PCController implements Runnable {
 	public final SignUpView SUV;
 	public final C_login cl;
 	public final C_SignUp cs;
+	public final C_ProdManager cp;
 	public final PCChatData chatData;
 	public final PCChatData chatData2;
 	public static Customers_DAO dao;
@@ -56,7 +57,7 @@ public class PCController implements Runnable {
 	Thread thread;
 	boolean status;
 	
-	public PCController(LoginView LV, CusManager CM, ProdManager PM, GUIView GUI, AdminView AV, SignUpView SUV, C_login cl, C_SignUp cs, PCChatData chatData, PCChatData chatData2) {
+	public PCController(LoginView LV, CusManager CM, ProdManager PM, GUIView GUI, AdminView AV, SignUpView SUV, C_login cl, C_SignUp cs, C_ProdManager cp, PCChatData chatData, PCChatData chatData2) {
 		// ·Î°Å °´Ã¼ ÃÊ±âÈ­
 		logger = Logger.getLogger(this.getClass().getName());
 		
@@ -68,6 +69,7 @@ public class PCController implements Runnable {
 		this.SUV = SUV;				// SignUpView ÂüÁ¶°´Ã¼ ¿¬°á
 		this.cl = cl;				// C_login ÂüÁ¶°´Ã¼ ¿¬°á
 		this.cs = cs;				// C_SignUp ÂüÁ¶°´Ã¼ ¿¬°á
+		this.cp = cp;				// C_ProdManager ÂüÁ¶°´Ã¼ ¿¬°á
 		this.chatData = chatData;	// PCChatData ÂüÁ¶°´Ã¼ ¿¬°á
 		this.chatData2 = chatData2;	// PCChatData2 ÂüÁ¶°´Ã¼ ¿¬°á
 	}
@@ -168,6 +170,7 @@ public class PCController implements Runnable {
 			}
 		});
 		
+		//°í°´ °ü¸® ºä ÀÌº¥Æ® Ã³¸®
 		CM.addButtonActionListener(new ActionListener() { // °í°´°ü¸® ºä
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -202,9 +205,13 @@ public class PCController implements Runnable {
 					PM.setVisible(false);
 					LV.getInstance().setVisible(true);
 					LV.getInstance().cardLayout.show(LV.getInstance().window, "layer");
-				} else {
-
-				}
+				} else if(obj == PM.btn[0]){  //µî·Ï
+					cp.insertion();
+				} else if(obj == PM.btn[1]) { //Á¶È¸
+					cp.show();
+				} else if(obj == PM.btn[2]) { //»èÁ¦
+					cp.deletion();
+				} else {}
 			}
 		});
 		
