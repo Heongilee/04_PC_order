@@ -30,7 +30,7 @@ public class LoginView extends JFrame{
 	public SignUpView signUpView;
 	public AdminView adminView;
 	BufferedImage img = null;
-	JTextField loginTextField;
+	public JTextField loginTextField;
 	JPasswordField passwordField;
 	public JButton loginbt, SignUpbtn;
 	JLabel idlb;
@@ -43,6 +43,8 @@ public class LoginView extends JFrame{
 	
 	JToolBar bar = new JToolBar();
 	public JButton previousBtn = new JButton("< 이전");
+	
+	public String id;
 	
 	private LoginView() {
 		setTitle("로그인");

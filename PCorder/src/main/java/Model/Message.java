@@ -1,40 +1,43 @@
 package Model;
 
 public class Message {
+	private String seat;
 	private String id;
-	private String receive_id;
 	private String password;
-	private String type;
 	private String msg;
+	private String type;
+	private String receiveId;
 	
 	public Message() {
-		
+		this.seat = "";
+		this.id = "";
+		this.password = "";
+		this.msg = "";
+		this.type = "";
+		this.receiveId = "";
 	}
-	
-	public Message(String id, String password, String receive_id, String type, String msg) {
-		super();
-		this.id = id;
-		this.receive_id = receive_id;
-		this.password = password;
-		this.type = type;
-		this.msg = msg;
-	}
-
-	public Message(String id, String password, String msg, String type) {
-		super();
+	public Message(String seat, String id, String password, String msg, String type, String receiveId) {
+		this.seat = seat;
 		this.id = id;
 		this.password = password;
 		this.msg = msg;
 		this.type = type;
+		this.receiveId = receiveId;
 	}
-	
-	
-	public String getReceive_id() {
-		return receive_id;
+	public String getSeat() {
+		return seat;
 	}
 
-	public void setReceive_id(String receive_id) {
-		this.receive_id = receive_id;
+	public void setSeat(String seat) {
+		this.seat = seat;
+	}
+	
+	public String getReceiveId() {
+		return receiveId;
+	}
+
+	public void setReceiveId(String receiveId) {
+		this.receiveId = receiveId;
 	}
 
 	public String getId() {

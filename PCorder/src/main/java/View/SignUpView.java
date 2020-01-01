@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 public class SignUpView extends JPanel {// 회원가입화면
 	public LoginView LV = LoginView.getInstance();
 	public JPanel p = new JPanel();
-	public JLabel SignUpLabel = new JLabel("회원가입");
+	public 	JLabel SignUpLabel = new JLabel("회원가입");
 	public JLabel IdLabel = new JLabel("아이디");
 	public JLabel PassLabel = new JLabel("비밀번호");
 	public JLabel NameLabel = new JLabel("닉네임");
@@ -59,7 +59,6 @@ public class SignUpView extends JPanel {// 회원가입화면
 		add(PassField);
 		add(NameField);
 		add(EmailField);
-		
 		add(btn);
 
 		SignUpLabel.setBounds(300, 0, 130, 100);
