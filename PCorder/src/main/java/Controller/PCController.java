@@ -65,7 +65,10 @@ public class PCController implements Runnable {
 	boolean status;
 
 	boolean comboFlag = false;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 	public PCController(LoginView LV, CusManager CM, ProdManager PM, GUIView GUI, AdminView AV, SignUpView SUV,
 			C_login cl, PCChatData CMchatData, PCChatData GUIchatData) {
 		// 로거 객체 초기화
@@ -88,6 +91,10 @@ public class PCController implements Runnable {
 		CMchatData.addObjCus(CM.chatContent);
 		GUIchatData.addObjGUI(GUI.ta2);
 		CMchatData.addObjCombo(CM.chatComboBox);
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 		LV.addButtonActionListener(new ActionListener() { // 로그인 뷰 레이아웃
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -100,6 +107,10 @@ public class PCController implements Runnable {
 						/* 관리자 로그인 들어갔을 경우 이벤트 처리 */
 //						CM.chatContent
 						connectServer();
+<<<<<<< HEAD
+=======
+						
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 //						comboFlag = true;
 					} else if (LV.user.isSelected()) { // user mode에 체크 되어있을 경우
 						LV.setVisible(false);
@@ -222,9 +233,14 @@ public class PCController implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				Object obj = e.getSource();
 				
+<<<<<<< HEAD
 				if (obj == GUI.LogOutbtn) { // 사용자 뷰에서 로그아웃 버튼을 눌렀을 경우
 					outMsg.println(gson.toJson(new Message(GUI.seat, GUI.id, "", "", "logout", "adminlogin")));
 					GUI.msgInput.setText("");
+=======
+				if (obj == GUI.LogOutbtn) { // 상품관리 뷰에서 로그아웃 버튼을 눌렀을 경우
+					outMsg.println(gson.toJson(new Message(m.getSeat(), m.getId(), "", "", "logout", "")));
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 					cl.Mode_Check();
 					try {
 						outMsg.close();
@@ -236,9 +252,13 @@ public class PCController implements Runnable {
 					status = false;
 					System.exit(0);
 				} else if (obj == GUI.msgInput) {
+<<<<<<< HEAD
 					String test = gson.toJson(new Message(GUI.seat, GUI.id, "", GUI.msgInput.getText(), "sendtoadmin", "admins"));
 					outMsg.println(test);
 					System.out.println(test);
+=======
+					outMsg.println(gson.toJson(new Message(m.getSeat(), GUI.id, "", GUI.msgInput.getText(), "sendtoadmin", "")));
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 					GUI.msgInput.setText("");
 				}
 			}
@@ -257,16 +277,31 @@ public class PCController implements Runnable {
 			outMsg = new PrintWriter(socket.getOutputStream(), true);
 
 			// 서버에 로그인 메시지 전달
+<<<<<<< HEAD
 			if (CM.loginFlag) {
 				m = new Message("카운터", CM.id, "", "", "adminlogin", "");
 			} else {
 				m = new Message("0", GUI.id, "", "", "login", "adminlogin");
 			}
 			outMsg.println(gson.toJson(m));
+=======
+			if (CM.loginFlag == true) {
+				m = new Message("0", GUI.id, "", "", "adminlogin", "");
+			} else {
+				m = new Message("0", GUI.id, "", "", "login", "");
+			}
+			outMsg.println(gson.toJson(m));
+			
+
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 			// 메시지 수신을 위한 스레드 생성
 			thread = new Thread(this);
 			thread.start();
 			
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 			// 사용자 뷰에 시트 번호 저장
 //			GUI.seat = m.getSeat();
 //			GUI.id = m.getId();
@@ -285,6 +320,7 @@ public class PCController implements Runnable {
 			try {
 				// 메시지 수신 및 파싱
 				msg = inMsg.readLine();
+<<<<<<< HEAD
 				Message m_temp = gson.fromJson(msg, Message.class);
 				System.out.println(msg);
 //				System.out.println(m.getSeat());
@@ -308,6 +344,20 @@ public class PCController implements Runnable {
 				else {
 					System.out.println("사용자 코드");
 				GUIchatData.refreshData(GUI.seat + " 좌석(" + m_temp.getId() + "):" + m_temp.getMsg() + "\n");
+=======
+				m = gson.fromJson(msg, Message.class);
+ 
+				// comboBox 갱신
+//				if(comboFlag == true) {
+				CMchatData.comboRefreshData(m.getSeat());
+//					comboFlag = false;
+//				}
+				// MultiChatData 객체로 데이터 갱신
+				CMchatData.refreshData(m.getSeat() + "번 좌석(" + m.getId() + "):" + m.getMsg() + "\n");
+				GUIchatData.refreshData(m.getSeat() + "번 좌석(" + m.getId() + "):" + m.getMsg() + "\n");
+				// 커서를 현재 대화 메시지에 표시
+				CM.chatContent.setCaretPosition(CM.chatContent.getDocument().getLength());
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 				GUI.ta2.setCaretPosition(GUI.ta2.getDocument().getLength());
 				}
 				// 커서를 현재 대화 메시지에 표시

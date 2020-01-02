@@ -51,8 +51,11 @@ public class CusManager extends JFrame {
 	
 	public JPanel chatBang = new JPanel();
 	
+<<<<<<< HEAD
 	public String id = "包府磊";
 	
+=======
+>>>>>>> 0dc03679d7d637e8d09dc6b4506f4b2e92edcc2f
 	private CusManager() {
 		super("绊按包府");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
