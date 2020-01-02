@@ -65,7 +65,7 @@ public class PCServer {
 		// 입출력 스트림
 		private BufferedReader inMsg = null;
 		private PrintWriter outMsg = null;
-
+  
 		@Override
 		public void run() {
 			try {
