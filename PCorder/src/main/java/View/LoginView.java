@@ -4,11 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
@@ -23,176 +19,135 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-import Controller.I_ToolBar;
+import View.AdminView;
+import View.SignUpView;
 
-public class LoginView extends JFrame implements I_ToolBar{
-   protected CardLayout cardLayout;
-   protected JPanel window;
-   SignUpView signUpView;
-   AdminView adminView;
-   BufferedImage img = null;
-   JTextField loginTextField;
-   JPasswordField passwordField;
-   JButton loginbt, SignUpbtn;
-   JLabel idlb;
-   JLabel passlb;
-   JLabel la;
-
-   JRadioButton user = new JRadioButton("user MODE");
-   JRadioButton server = new JRadioButton("server MODE");
-   ButtonGroup goup = new ButtonGroup();
-   
-//   JToolBar bar = new JToolBar();
-
-   @Override
-   public void previousButton() {
-      // TODO Auto-generated method stub
-      bar.add(previousBtn);
-   }
-   
-   @Override
-   public void nextButton() {}
-   
-   @Override
-   public void loginButton() {
-      bar.add(logoutBtn);
-   }
-   
-   @Override
-   public void separator() {
-      bar.addSeparator(new Dimension(560, 30));
-   }
-
-   public static void main(String[] args) {
-      new LoginView();
-   }
-
-   public LoginView() {
-      JFrame f = new JFrame();
-      f.setTitle("∑Œ±◊¿Œ");
-      setSize(700, 600);
-      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      
-      // ≈¯πŸ interface
-      previousButton();
-      separator();
-      loginButton();
-      add(bar, BorderLayout.NORTH);
-      
-      goup.add(server);
-      goup.add(user);
-      Container c = getContentPane();
-
-      try {
-         // img = ImageIO.read(new File("img/login.jpg"));//img/login.jpg
-      } catch (Exception e) {
-         e.printStackTrace();
-         System.exit(0);
-      }
-
-      JLayeredPane layeredpane = new JLayeredPane();
-      layeredpane.setBounds(0, 0, 700, 600);
-      layeredpane.setLayout(null);
-
-      JPanel panel = new JPanel();
-      panel.setBounds(0, 0, 700, 600);
-
-      user.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
-      user.setForeground(Color.BLACK);
-      user.setBounds(200, 50, 200, 30);
-
-      layeredpane.add(user);
-
-      server.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
-      server.setForeground(Color.BLACK);
-      server.setBounds(400, 50, 200, 30);
-
-      layeredpane.add(server);
-
-      idlb = new JLabel("æ∆¿Ãµ");
-      idlb.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
-      idlb.setForeground(Color.BLACK);
-      idlb.setBounds(100, 109, 100, 30);
-      loginTextField = new JTextField(15);
-      loginTextField.setBounds(200, 109, 320, 30);
-
-      layeredpane.add(idlb);
-      layeredpane.add(loginTextField);
-
-      passlb = new JLabel("∫Òπ–π¯»£");
-      passlb.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
-      passlb.setForeground(Color.BLACK);
-      passlb.setBounds(100, 209, 100, 30);
-      passwordField = new JPasswordField(15);
-      passwordField.setBounds(200, 209, 320, 30);
-
-      layeredpane.add(passlb);
-      layeredpane.add(passwordField);
-
-      loginbt = new JButton("∑Œ±◊¿Œ");
-      loginbt.setBackground(Color.black);
-      loginbt.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
-      loginbt.setForeground(Color.WHITE);
-      loginbt.setBounds(240, 300, 200, 48);
-
-      layeredpane.add(loginbt);
-
-      la = new JLabel("or");
-      la.setBackground(Color.BLACK);
-      la.setFont(new Font("∞ÌµÒ√º", Font.PLAIN, 23));
-      la.setForeground(Color.BLACK);
-      la.setBounds(330, 350, 200, 48);
-
-      layeredpane.add(la);
-
-      SignUpbtn = new JButton("»∏ø¯∞°¿‘");
-      SignUpbtn.setBackground(Color.black);
-      SignUpbtn.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
-      SignUpbtn.setForeground(Color.WHITE);
-      SignUpbtn.setBounds(240, 400, 200, 48);
-
-      layeredpane.add(SignUpbtn);
-
-      layeredpane.add(panel);
-
-      window = new JPanel();
-      cardLayout = new CardLayout();
-      window.setLayout(cardLayout);
-      adminView = new AdminView();
-      signUpView = new SignUpView();
-      window.add(layeredpane, "layer");
-      window.add(adminView, "admin");
-      window.add(signUpView, "signUp");
+public class LoginView extends JFrame{
+	private static LoginView LV = new LoginView();
+	public GUIView GV = GUIView.getInstance();
+	public CardLayout cardLayout;
+	public JPanel window;
+	public SignUpView signUpView;
+	public AdminView adminView;
+	BufferedImage img = null;
+	public JTextField loginTextField;			//ÏïÑÏù¥Îîî ÌïÑÎìú
+	public JPasswordField passwordField;		//Ìå®Ïä§ÏõåÎìú ÌïÑÎìú
+	public JButton loginbt = new JButton("Î°úÍ∑∏Ïù∏");
+	public JButton SignUpbtn = new JButton("ÌöåÏõêÍ∞ÄÏûÖ");
+	JLabel idlb;
+	JLabel passlb;
+	JLabel la;
+	boolean flag;
+	public JRadioButton user = new JRadioButton("user MODE");
+	public JRadioButton server = new JRadioButton("server MODE");
+	ButtonGroup goup = new ButtonGroup();
+	
+	JToolBar bar = new JToolBar();
+	public JButton previousBtn = new JButton("< Ïù¥Ï†Ñ");
+	
+	public String id;
+	
+	private LoginView() {
+		setTitle("Î°úÍ∑∏Ïù∏");
+		setSize(700, 600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
- 
-			
-			loginbt.addActionListener(new ActionListener() {  /////***** server ∏µÂ º±≈√«œ∞Ì ∑Œ±◊¿Œ ¥≠∑∂¿ªãö¥¬ admin card
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub				
-				     if (server.isSelected()) {
-				    	//  System.out.print("¥≠∑¡¡¸");				    	
-					cardLayout.show(window, "admin");
-				     }
-				}});
+		// Ìà¥Î∞î interface
+		bar.add(previousBtn);
+		add(bar, BorderLayout.NORTH);
+		
+		goup.add(server);
+		goup.add(user);
+		Container c = getContentPane();
 
-			loginbt.addActionListener(new ActionListener() {  /////***** user ∏µÂ º±≈√«œ∞Ì ∑Œ±◊¿Œ ¥≠∑∂¿ªãö¥¬ admin card
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-				
-				     if (user.isSelected()) {
-				    	//  System.out.print("¥≠∑¡¡¸");
-				    			
-						new GUIView();
-				     }
-				}});
+		try {} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
 
-      SignUpbtn.addActionListener(e -> cardLayout.show(window, "signUp"));
+		JLayeredPane layeredpane = new JLayeredPane();
+		layeredpane.setBounds(0, 0, 700, 600);
+		layeredpane.setLayout(null);
 
-      previousBtn.addActionListener(e -> cardLayout.show(window, "layer"));
-      add(window);
-      setLocationRelativeTo(null);
-      setVisible(true);
-   }
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 700, 600);
+
+		user.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+		user.setForeground(Color.BLACK);
+		user.setBounds(200, 50, 200, 30);
+
+		layeredpane.add(user);
+
+		server.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+		server.setForeground(Color.BLACK);
+		server.setBounds(400, 50, 200, 30);
+
+		layeredpane.add(server);
+
+		idlb = new JLabel("ÏïÑÏù¥Îîî");
+		idlb.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+		idlb.setForeground(Color.BLACK);
+		idlb.setBounds(100, 109, 100, 30);
+		loginTextField = new JTextField(15);
+		loginTextField.setBounds(200, 109, 320, 30);
+
+		layeredpane.add(idlb);
+		layeredpane.add(loginTextField);
+
+		passlb = new JLabel("ÎπÑÎ∞ÄÎ≤àÌò∏");
+		passlb.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+		passlb.setForeground(Color.BLACK);
+		passlb.setBounds(100, 209, 100, 30);
+		passwordField = new JPasswordField(15);
+		passwordField.setBounds(200, 209, 320, 30);
+
+		layeredpane.add(passlb);
+		layeredpane.add(passwordField);
+
+		loginbt.setBackground(Color.black);
+		loginbt.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+		loginbt.setForeground(Color.WHITE);
+		loginbt.setBounds(240, 300, 200, 48);
+
+		layeredpane.add(loginbt);
+
+		la = new JLabel("or");
+		la.setBackground(Color.BLACK);
+		la.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.PLAIN, 23));
+		la.setForeground(Color.BLACK);
+		la.setBounds(330, 350, 200, 48);
+
+		layeredpane.add(la);
+
+		SignUpbtn.setBackground(Color.black);
+		SignUpbtn.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+		SignUpbtn.setForeground(Color.WHITE);
+		SignUpbtn.setBounds(240, 400, 200, 48);
+
+		layeredpane.add(SignUpbtn);
+
+		layeredpane.add(panel);
+
+		window = new JPanel();
+		cardLayout = new CardLayout();
+		window.setLayout(cardLayout);
+		adminView = new AdminView();
+		signUpView = new SignUpView();
+		window.add(layeredpane, "layer");
+		window.add(adminView, "admin");
+		window.add(signUpView, "signUp");
+		
+		add(window);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	
+	public static LoginView getInstance() {
+		return LV;
+	}
+	public void addButtonActionListener(ActionListener listener) {
+		loginbt.addActionListener(listener);			//Î°úÍ∑∏Ïù∏ Î≤ÑÌäº
+		SignUpbtn.addActionListener(listener);			//ÌöåÏõêÍ∞ÄÏûÖ Î≤ÑÌäº
+		previousBtn.addActionListener(listener);		//Ïù¥Ï†Ñ Î≤ÑÌäº
+	}
 }

@@ -1,6 +1,6 @@
 package Controller;
 
 public interface I_AdminView {
-	void Goto_CustomerManager();	//°í°´°ü¸® ÆäÀÌÁö·Î ÀÌµ¿ÇÑ´Ù.
-	void Goto_ProductManager();		//»óÇ°°ü¸® ÆäÀÌÁö·Î ÀÌµ¿ÇÑ´Ù.
+	void Goto_CustomerManager();	//ê³ ê°ê´€ë¦¬ í˜ì´ì§€ë¡œ ì´ë™í•œë‹¤.
+	void Goto_ProductManager();		//ìƒí’ˆê´€ë¦¬ í˜ì´ì§€ë¡œ ì´ë™í•œë‹¤.
 }

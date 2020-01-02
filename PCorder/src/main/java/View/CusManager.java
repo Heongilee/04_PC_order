@@ -1,6 +1,5 @@
 package View;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -8,8 +7,13 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,52 +24,45 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.JViewport;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import Controller.I_ToolBar;
 
-public class CusManager extends JFrame implements I_ToolBar {
+public class CusManager extends JFrame {
+	private static CusManager CM = new CusManager();
 	private static Container c;
-	JLabel title = new JLabel("∞Ì∞¥∞¸∏Æ");
+	JLabel title = new JLabel("Í≥†Í∞ùÍ¥ÄÎ¶¨");
 	JPanel leftPanel = new JPanel();
 	JPanel rightPanel = new JPanel();
 	JComboBox<String> chatSeat = new JComboBox<String>();
-	JTextArea chatContent = new JTextArea("", 12, 50);
-	JTextField chatInput = new JTextField(10);
+	public JTextArea chatContent = new JTextArea("", 12, 50);
+	public JTextField chatInput = new JTextField(10);
 	JButton chatSubmit = new JButton("send");
 	JLabel order[];
-	TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK), "¡¬ºÆ");
+	TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK), "Ï¢åÏÑù");
 	JViewport vp = new JViewport();
 	JPanel msgPanel = new JPanel();
 	JPanel seatPanel = new JPanel();
-
+	LoginView LV = LoginView.getInstance();
 	private SeatPanel SP = new SeatPanel();
 	private ChatPanel CP = new ChatPanel();
 
-	@Override
-	public void previousButton() {
-		bar.add(previousBtn);
-	}
-
-	@Override
-	public void nextButton() {}
-
-	@Override
-	public void loginButton() {
-		bar.add(logoutBtn);
-	}
-
-	@Override
-	public void separator() {}
-
-	public CusManager() {
-		super("∞Ì∞¥∞¸∏Æ");
-
+	JToolBar bar = new JToolBar();
+	public JButton previousBtn = new JButton("< Ïù¥Ï†Ñ");
+	public JButton logoutBtn = new JButton("Î°úÍ∑∏ÏïÑÏõÉ");
+	
+	public boolean loginFlag = false;
+	
+	private CusManager() {
+		super("Í≥†Í∞ùÍ¥ÄÎ¶¨");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// ≈¯πŸ interface
+		// Ìà¥Î∞î interface
+		bar.add(previousBtn);
+		bar.addSeparator(new Dimension(750, 30));
+		bar.add(logoutBtn);
 		add(bar, BorderLayout.NORTH);
 		
 		JLayeredPane layeredpane = new JLayeredPane();
@@ -75,7 +72,7 @@ public class CusManager extends JFrame implements I_ToolBar {
 		layeredpane.setLayout(new GridLayout(1, 2));
 
 		leftPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 40));
-		title.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 38));
+		title.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 38));
 		leftPanel.add(title);
 		leftPanel.add(SP);
 		layeredpane.add(leftPanel);
@@ -85,21 +82,24 @@ public class CusManager extends JFrame implements I_ToolBar {
 		add(layeredpane);
 		setSize(900, 700);
 		setLocationRelativeTo(null);
-		// ≈©±‚ ∞Ì¡§
+		// ÌÅ¨Í∏∞ Í≥†Ï†ï
 		super.setResizable(false);
-		setVisible(true);
-
-		chatInput.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				chatInput.getText();
-				chatContent.setText(chatContent.getText() + chatInput.getText() + "\n");
-				chatInput.setText("");
-			}
-		});
+		
+		setVisible(false);
+//		chatInput.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				chatInput.getText();
+//				chatContent.setText(chatContent.getText() + chatInput.getText() + "\n");
+//				chatInput.setText("");
+//			}
+//		});
 	}
 
+	public static CusManager getInstance() {
+		return CM;
+	}
 	public class SeatPanel extends JPanel {
 		JButton[] seatBtn = new JButton[12];
 
@@ -111,7 +111,7 @@ public class CusManager extends JFrame implements I_ToolBar {
 
 				seatBtn[i].setPreferredSize(new Dimension((int) (100), (int) (120))); //
 				seatBtn[i].setBackground(new Color(255, 255, 255));
-				seatBtn[i].setFont(new Font("∞ÌµÒ√º", Font.BOLD, 16));
+				seatBtn[i].setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 16));
 				seatBtn[i].setForeground(Color.BLACK);
 
 			}
@@ -121,9 +121,10 @@ public class CusManager extends JFrame implements I_ToolBar {
 	public class ChatPanel extends JPanel {
 
 		public ChatPanel() {
+
 			setLayout(new BorderLayout());
 			setBorder(border);
-			setPreferredSize(new Dimension((int) (350), (int) (600))); // √§∆√√¢
+			setPreferredSize(new Dimension((int) (350), (int) (600))); // Ï±ÑÌåÖÏ∞Ω
 			seatPanel.setLayout(new BorderLayout());
 
 			seatPanel.add(BorderLayout.NORTH, chatSeat);
@@ -137,11 +138,16 @@ public class CusManager extends JFrame implements I_ToolBar {
 			msgPanel.add(BorderLayout.CENTER, chatInput);
 
 			chatSubmit.setBackground(Color.black);
-			chatSubmit.setFont(new Font("∞ÌµÒ√º", Font.PLAIN, 15));
+			chatSubmit.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.PLAIN, 15));
 			chatSubmit.setForeground(Color.WHITE);
 			msgPanel.add(BorderLayout.EAST, chatSubmit);
 			add(msgPanel, BorderLayout.SOUTH);
 		}
 	}// ChatPanel
+	public void addButtonActionListener(ActionListener listener) {
+		chatInput.addActionListener(listener);
+		previousBtn.addActionListener(listener);
+		logoutBtn.addActionListener(listener);
+	}
+}
 
- }

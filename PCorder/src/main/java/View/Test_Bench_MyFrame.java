@@ -7,89 +7,89 @@ import javax.swing.*;
 import Controller.I_Login;
 
 public class Test_Bench_MyFrame extends JFrame{
-	private JButton[] btn = new JButton[3];	//¸®½º³Ê ÇÚµé·¯¸¦ ÀÛµ¿½ÃÅ³ 3°³ÀÇ JButton
-	public Test_Bench_MyFrame() {
-		super("My TestBench");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container c = getContentPane();
-		c.setLayout(new FlowLayout());
-	
-	
-		for(int i=0;i<3;i++) {
-			btn[i] = new JButton();
-			switch(i) {
-			case 0:
-				btn[i].setText("Submit() ¹öÆ° ÀÌ¿¡¿À");
-				break;
-			case 1:
-				btn[i].setText("Register() ¹öÆ° ÀÌ¿¡¿À");
-				break;
-			case 2:
-				btn[i].setText("Mode_Check() ¹öÆ° ÀÌ¿¡¿À");
-				break;
-			}
-			btn[i].addActionListener(new MyActionListener());
-			c.add(btn[i]);		
-		}
-		c.addMouseListener(new MyActionListener());
-		
-		setSize(700, 150);
-		//this.pack();	//ÄÄÆ÷³ÍÆ® »çÀÌÁî¿¡ ¸Â°Ô ÇÁ·¹ÀÓÀÇ Å©±â°¡ Á¶ÀýµÈ´Ù.
-		setVisible(true);
-		this.setFocusable(true);
-		this.requestFocus();
-	}
-	private class MyActionListener extends MouseAdapter implements ActionListener, I_Login{
-		//ÀÎÅÍÆäÀÌ½º ¸®½º³Ê ÇÚµé·¯¸¦ »ç¿ëÇÒ °æ¿ì ´ÙÀ½°ú °°ÀÌ ÀÛ¼ºÇÕ´Ï´Ù.
-		//Alt + s, v ´ÜÃàÅ°¸¦ ÀÌ¿ëÇØ ÀÚµ¿ ¸Þ¼Òµå ¿À¹ö¶óÀÌµùÀÌ °¡´ÉÇÕ´Ï´Ù.
-		
-		///////////////////////////////
-		// I_Login ÀÎÅÍÆäÀÌ½º ¸Þ¼Òµå ¿À¹ö¶óÀÌµù
-		///////////////////////////////
-		@Override
-		public void Submit() {
-			System.out.println("Submit()¹öÆ°ÀÌ ´­·¶¾î¿©");
-		}
-
-		@Override
-		public void Register() {
-			System.out.println("Register()¹öÆ°ÀÌ ´­·¶¾î¿©");
-		}
-
-		@Override
-		public void Mode_Check() {
-			System.out.println("Mode_Check()¹öÆ°ÀÌ ´­·¶¾î¿©");
-		}
-
-		////////////////////////////////
-		// ActionListener ¸Þ¼Òµå ¿À¹ö¶óÀÌµù
-		////////////////////////////////
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JButton btn = (JButton)e.getSource();
-			if(btn.getText().equals("Submit() ¹öÆ° ÀÌ¿¡¿À")) {
-				Submit();
-			}
-			else if(btn.getText().equals("Register() ¹öÆ° ÀÌ¿¡¿À")) {
-				Register();
-			}
-			else { //Mode_Check() ¹öÆ° ÀÌ¿¡¿À
-				Mode_Check();
-			}
-		}
-
-		///////////////////////////////
-		// MouseAdapter ¸Þ¼Òµå ¿À¹ö¶óÀÌµù
-		////////////////////////////////
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			super.mouseClicked(e);
-			
-			System.out.println("getX() : "+e.getX()+", getY() : "+e.getY());
-		}
-	}
-	
-	public static void main(String[] args) {
-		new Test_Bench_MyFrame();	//½ºÀ® ÇÁ·¹ÀÓ °´Ã¼ »ý¼º
-	}
+//   private JButton[] btn = new JButton[3];   //ë¦¬ìŠ¤ë„ˆ í•¸ë“¤ëŸ¬ë¥¼ ìž‘ë™ì‹œí‚¬ 3ê°œì˜ JButton
+//   public Test_Bench_MyFrame() {
+//      super("My TestBench");
+//      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//      Container c = getContentPane();
+//      c.setLayout(new FlowLayout());
+//   
+//   
+//      for(int i=0;i<3;i++) {
+//         btn[i] = new JButton();
+//         switch(i) {
+//         case 0:
+//            btn[i].setText("Submit() ë²„íŠ¼ ì´ì—ì˜¤");
+//            break;
+//         case 1:
+//            btn[i].setText("Register() ë²„íŠ¼ ì´ì—ì˜¤");
+//            break;
+//         case 2:
+//            btn[i].setText("Mode_Check() ë²„íŠ¼ ì´ì—ì˜¤");
+//            break;
+//         }
+//         btn[i].addActionListener(new MyActionListener());
+//         c.add(btn[i]);      
+//      }
+//      c.addMouseListener(new MyActionListener());
+//      
+//      setSize(700, 150);
+//      //this.pack();   //ì»´í¬ë„ŒíŠ¸ ì‚¬ì´ì¦ˆì— ë§žê²Œ í”„ë ˆìž„ì˜ í¬ê¸°ê°€ ì¡°ì ˆëœë‹¤.
+//      setVisible(true);
+//      this.setFocusable(true);
+//      this.requestFocus();
+//   }
+//   private class MyActionListener extends MouseAdapter implements ActionListener, I_Login{
+//      //ì¸í„°íŽ˜ì´ìŠ¤ ë¦¬ìŠ¤ë„ˆ í•¸ë“¤ëŸ¬ë¥¼ ì‚¬ìš©í•  ê²½ìš° ë‹¤ìŒê³¼ ê°™ì´ ìž‘ì„±í•©ë‹ˆë‹¤.
+//      //Alt + s, v ë‹¨ì¶•í‚¤ë¥¼ ì´ìš©í•´ ìžë™ ë©”ì†Œë“œ ì˜¤ë²„ë¼ì´ë”©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.
+//      
+//      ///////////////////////////////
+//      // I_Login ì¸í„°íŽ˜ì´ìŠ¤ ë©”ì†Œë“œ ì˜¤ë²„ë¼ì´ë”©
+//      ///////////////////////////////
+//      @Override
+//      public void Submit() {
+//         System.out.println("Submit()ë²„íŠ¼ì´ ëˆŒë €ì–´ì—¬");
+//      }
+//
+//      @Override
+//      public void Register() {
+//         System.out.println("Register()ë²„íŠ¼ì´ ëˆŒë €ì–´ì—¬");
+//      }
+//
+//      @Override
+//      public void Mode_Check() {
+//         System.out.println("Mode_Check()ë²„íŠ¼ì´ ëˆŒë €ì–´ì—¬");
+//      }
+//
+//      ////////////////////////////////
+//      // ActionListener ë©”ì†Œë“œ ì˜¤ë²„ë¼ì´ë”©
+//      ////////////////////////////////
+//      @Override
+//      public void actionPerformed(ActionEvent e) {
+//         JButton btn = (JButton)e.getSource();
+//         if(btn.getText().equals("Submit() ë²„íŠ¼ ì´ì—ì˜¤")) {
+//            Submit();
+//         }
+//         else if(btn.getText().equals("Register() ë²„íŠ¼ ì´ì—ì˜¤")) {
+//            Register();
+//         }
+//         else { //Mode_Check() ë²„íŠ¼ ì´ì—ì˜¤
+//            Mode_Check();
+//         }
+//      }
+//
+//      ///////////////////////////////
+//      // MouseAdapter ë©”ì†Œë“œ ì˜¤ë²„ë¼ì´ë”©
+//      ////////////////////////////////
+//      @Override
+//      public void mouseClicked(MouseEvent e) {
+//         super.mouseClicked(e);
+//         
+//         System.out.println("getX() : "+e.getX()+", getY() : "+e.getY());
+//      }
+//   }
+//   
+//   public static void main(String[] args) {
+//      new Test_Bench_MyFrame();   //ìŠ¤ìœ™ í”„ë ˆìž„ ê°ì²´ ìƒì„±
+//   }
 }
