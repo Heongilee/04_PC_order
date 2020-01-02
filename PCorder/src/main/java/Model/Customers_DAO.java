@@ -1,8 +1,6 @@
 package Model;
 
 import java.sql.*;
-import javax.swing.JOptionPane;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class Customers_DAO implements DAO_Interface{
 	//private static Customers_DAO dao;
@@ -58,6 +56,7 @@ public class Customers_DAO implements DAO_Interface{
 				e.printStackTrace();
 			}
 		}
+		System.out.println("-- DataBase 연결을 해제합니다...");
 	}
 	//3. 외부의 인스턴스화를 막는다.
 	private Customers_DAO() {}
@@ -70,161 +69,22 @@ public class Customers_DAO implements DAO_Interface{
 		return dao;
 	}
 	
-	//유효성 검사가 끝난 회원은 회원가입 양식에 따라 dto객체를 만들어서 INSERT문을 수행한다.
-	public void CUSTOMERS_FUNC1(Customer_DTO dto) throws SQLException {
-		System.out.println(dto.toString());
+	public static void CUSTOMERS_FUNC_1() throws SQLException {
+		Customer_DTO dto;
 		
-		try {
-			conn = getConnection();
-			String sql = "INSERT INTO CUSTOMERS(CUSTOMERS.cNAME, CUSTOMERS.cPW, CUSTOMERS.cNICKNAME, CUSTOMERS.cEMAIL) VALUES (?, ?, ?, ?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getCname());
-			pstmt.setString(2, dto.getCpw());
-			pstmt.setString(3, dto.getCnickname());
-			pstmt.setString(4, dto.getCemail());
-			int r = pstmt.executeUpdate();
-			if(r > 0) {	//삽입 성공
-				JOptionPane.showMessageDialog(null, "쨖쨖쨔ㅉ꺅 회원가입 됐당 새해부터 코딩하는 내 인생 레전드 ㅠㅠ");
-			}
-		} catch(MySQLIntegrityConstraintViolationException e3) {
-			JOptionPane.showMessageDialog(null, "ERROR : 회원가입에 실패했습니다. 초기화면으로 돌아갑니다.");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("ERROR : 회원가입에 실패했습니다. 초기화면으로 돌아갑니다.");
+		String sql = "SELECT * FROM CUSTOMERS";
+		stmt = conn.createStatement();
+		
+		rs = stmt.executeQuery(sql);
+		
+		while(rs.next()) {
+			dto = new Customer_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
 			
-		} catch(Exception e1){
-			e1.printStackTrace();
-			
-		} finally {
-			Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
-			
-			//초기화면으로 돌아가는 명령어.
+			/////////////
+			// 
+			/////////////
 		}
 		
 		return;
 	}
-	//삽입및 삭제가 발생하면 이 메소드를 호출해서 cID속성 값들을 갱신할 필요가 있다.
-	public void Renewal_cID() {
-		String sql1 = "SET @CNT = 0";
-		String sql2 = "UPDATE CUSTOMERS SET CUSTOMERS.cID = @CNT:=@CNT+1";
-		int r;
-		try {
-			conn = getConnection();
-			
-			stmt = conn.createStatement();
-			r = stmt.executeUpdate(sql1);
-			
-			stmt = conn.createStatement();
-			r = stmt.executeUpdate(sql2);
-			
-		} catch(SQLException e1) {
-			e1.printStackTrace();
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		} finally {
-			Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
-		}
-	}
-	public boolean Idselect(String id) {//id 중복체크 메소드
-		boolean ok = false;
-		try {
-			conn = getConnection();
-			String sql = "SELECT cNAME FROM CUSTOMERS WHERE cNAME= ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next())
-				ok = true;
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
-		}
-		
-		return ok;
-	}
-	public boolean Nickselect(String Nick) {//닉네임 중복체크 메소드
-		boolean ok = false;
-		try {
-			conn = getConnection();
-			String sql = "SELECT cNICKNAME FROM CUSTOMERS WHERE cNICKNAME= ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, Nick);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				ok = true;
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
-		}
-		return ok;
-	}
-	
-	public boolean Emailselect(String email) {//email 중복체크 메소드
-		boolean ok = false;
-		try {
-			conn = getConnection();
-			String sql = "SELECT cEMAIL FROM CUSTOMERS WHERE cEMAIL= ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, email);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				ok = true;
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
-		}
-		return ok;
-	}
-	
-	   public boolean Try_Login(String id, String pw, int f) {
-		      boolean RET = false;
-		      String sql  = "SELECT cNAME, cPW, cMODE FROM CUSTOMERS WHERE cNAME = ?";
-		      try {
-		         conn = getConnection();
-		         
-		         pstmt = conn.prepareStatement(sql);
-		         pstmt.setString(1, id);
-		         rs = pstmt.executeQuery();
-		         if(rs.next()) { //튜플이 존재 -> 아이디 조회 성공!
-		            if((rs.getString(2).equals(pw))&&(rs.getInt(3) == f)) { //비밀번호와 모드 접근이 일치하다면...
-		               RET = true;
-		            }
-		            else if(!(rs.getString(2).equals(pw))) {   //비밀번호가 다르다면...
-		               JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "ERROR", JOptionPane.ERROR_MESSAGE);
-		               RET = false;
-		            }
-		            else if(rs.getInt(3) != f) {   //비밀번호는 맞는데 모드 접근이 다르다면...
-		               JOptionPane.showMessageDialog(null, "모드 접근이 잘못됐습니다.", "ACCESS DENIED", JOptionPane.ERROR_MESSAGE);
-		               RET = false;
-		            }
-		            else {}
-		         }
-		         else { //튜플이 없음 -> 에러 메시지 출력(없는 아이디 입니다...)
-		            JOptionPane.showMessageDialog(null, "업는 아이디 입니다.", "ERROR", JOptionPane.ERROR_MESSAGE);
-		            RET = false;
-		         }
-		      } catch(SQLException e1) {
-		         JOptionPane.showMessageDialog(null, "SQLException()이 발생했습니다.", "Exception", JOptionPane.ERROR_MESSAGE);
-		         e1.printStackTrace();
-		      } catch (Exception e) {
-		         e.printStackTrace();
-		      } finally {
-		         Customers_DAO.closeJDBC(conn, pstmt, stmt, rs);
-		      }
-		      
-		      return RET;
-		   }
-	
-	//public void ...
 }

@@ -24,7 +24,7 @@ import javax.swing.JToolBar;
 
 //annotation test
 public class ProdManager extends JFrame {
-	public static ProdManager PM = ProdManager.getInstance();
+	private static ProdManager PM = new ProdManager();
 	LoginView LV = LoginView.getInstance();
 	JLabel title = new JLabel("상품관리");
 	public JLabel stateText = new JLabel("## 메시지 : ");
@@ -50,7 +50,7 @@ public class ProdManager extends JFrame {
 	JToolBar bar = new JToolBar();
 	public JButton previousBtn = new JButton("< 이전");
 	public JButton logoutBtn = new JButton("로그아웃");
-	
+
 	private ProdManager() {
 		super("상품관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,17 +61,17 @@ public class ProdManager extends JFrame {
 		bar.addSeparator(new Dimension(750, 30));
 		bar.add(logoutBtn);
 		add(bar, BorderLayout.NORTH);
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		
-		
+
+
 		wrapPanel.setLayout(new GridLayout(1,2));
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
 		// title 폰트 크기
 		title.setFont(new Font("굴림", Font.BOLD, 45));
-		
+
 		// 오른쪽 정렬
 		leftPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
@@ -91,14 +91,14 @@ public class ProdManager extends JFrame {
 		rightPanel.add(SP);
 		wrapPanel.add(rightPanel);
 		panel.add(wrapPanel, BorderLayout.CENTER);
-		
+
 		add(panel, BorderLayout.CENTER);
-		
+
 		setSize(900, 700);
 		setLocationRelativeTo(null);
 		// 크기 고정
         //setResizable(false);
-        
+
 		setVisible(false);
 	}
 
@@ -148,9 +148,6 @@ public class ProdManager extends JFrame {
 
 	   }
 	public static ProdManager getInstance() {
-		if(PM == null) {
-			PM = new ProdManager();
-		}
 		return PM;
 	}
 	public void addButtonActionListener(ActionListener listener) {

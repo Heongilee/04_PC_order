@@ -7,14 +7,14 @@ public class Message {
 	private String msg;
 	private String type;
 	private String receiveId;
-	
-	public Message() {
-		this.seat = "";
-		this.id = "";
-		this.password = "";
-		this.msg = "";
-		this.type = "";
-		this.receiveId = "";
+	public Message() {}
+	public Message(Message m_temp) {
+		this.seat = m_temp.seat;
+		this.id = m_temp.id;
+		this.password = m_temp.password;
+		this.msg = m_temp.msg;
+		this.type = m_temp.type;
+		this.receiveId = m_temp.receiveId;
 	}
 	public Message(String seat, String id, String password, String msg, String type, String receiveId) {
 		this.seat = seat;
@@ -66,7 +66,7 @@ public class Message {
 	}
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", password=" + password + ", type=" + type + ", msg=" + msg + "]";
+		return "Message [seat=" + seat + ", id=" + id + ", password=" + password + ", msg=" + msg + ", type=" + type + ", receiveId=" + receiveId + "]";
 	}
 	
 	
