@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import com.google.gson.Gson;
@@ -16,11 +18,10 @@ public class PCServer {
 	// 서버 소켓 및 클라이언트 연결 소켓
 	private ServerSocket ss = null;
 	private Socket s = null;
-	private boolean completeSendFlag = false;
 	// 연결된 클라이언트 스레드를 관리하는 ArrayList
 	ArrayList<ChatThread> chatThreads = new ArrayList<ChatThread>();
-
-//	ChatThread thread = new ChatThread();
+	int[] seatNum = new int[12];	
+	int[] removeSeat = new int[12];
 	// 로거 객체
 	Logger logger;
 
@@ -73,34 +74,34 @@ public class PCServer {
 
 				while (status) {
 					msg = inMsg.readLine();
-
+					System.out.println(msg);
 					m = gson.fromJson(msg, Message.class);
-
 					if (m.getType().equals("logout")) {
 						chatThreads.remove(this);
 						msgSendToAdmin(gson.toJson(new Message(m.getSeat(), m.getId(), "", "님이 종료했습니다.", "server", "")));
+						seatNum[Integer.parseInt(m.getSeat())-1] = 0;
 						status = false;
 					} else if (m.getType().equals("login")) {
+						boolean flag = false;
+						int i = 0;
+						for(i=0; i<12; i++) {
+							if(seatNum[i] == 0) {
+								seatNum[i] = i+1;
+								break;
+							}
+						}
+						m.setSeat(Integer.toString(seatNum[i]));
 						msgSendToAdmin(gson.toJson(new Message(m.getSeat(), m.getId(), "", "님이 로그인했습니다.", "server", "")));
-					} else if (m.getType().equals("adminlogin")) {
-						MyThread(gson.toJson(new Message("TopSeat", "관리자", "", "님이 로그인했습니다.", "server", "")));
-//						completeSendFlag = false;
-//						ChatThread ctTmp = null;
-//						for (ChatThread ct : chatThreads) {
-//							if (ct.m.getId().equals(m.getReceiveId())) {
-//								completeSendFlag = true;
-//							} else if (ct.m.getId().equals(m.getId())) {
-//								ctTmp = ct;
-//							}
-//						}
-//						if (completeSendFlag == true) {
-//							msgSendWhisper(msg);
-//						} else {
-//							ctTmp.outMsg
-//									.println(gson.toJson(new Message(m.getId(), "", "귓속말 상대를 찾을 수 없습니다.", "none", "")));
-//						}
+					} else if (m.getType().equals("adminlogin") ) {
+						outMsg.println(gson.toJson(new Message(m.getSeat(), m.getId(), "", "님이 로그인했습니다.", "server", "")));
 					} else if (m.getType().equals("sendtoadmin")) {
+						System.out.println(m);
+						System.out.println(msg);
 						msgSendToAdmin(msg);
+					} else if (m.getType().equals("admin")) {
+						msgSendAll(msg);
+					} else {
+						
 					}
 				}
 			} catch (Exception e) {
@@ -112,14 +113,17 @@ public class PCServer {
 			}
 		}
 		void msgSendToAdmin(String msg) {
+			outMsg.println(msg);
 			for (ChatThread ct : chatThreads) {
-				if (ct.m.getType().equals("adminlogin") || ct.m.getId().equals(m.getId())) {
+				if (ct.m.getId().equals("관리자")) {
 					ct.outMsg.println(msg);
 				}
 			}
 		}
-		void MyThread(String msg) {
-			chatThreads.get(chatThreads.size()-1).outMsg.println(msg);
+		void msgSendAll(String msg) {
+			for(ChatThread ct : chatThreads) {
+				ct.outMsg.println(msg);
+			}
 		}
 	}
 	public static void main(String[] args) {

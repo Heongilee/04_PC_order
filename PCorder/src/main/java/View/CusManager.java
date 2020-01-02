@@ -1,19 +1,14 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,31 +24,34 @@ import javax.swing.JViewport;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-
 public class CusManager extends JFrame {
 	private static CusManager CM = new CusManager();
 	private static Container c;
 	JLabel title = new JLabel("고객관리");
 	JPanel leftPanel = new JPanel();
 	JPanel rightPanel = new JPanel();
-	JComboBox<String> chatSeat = new JComboBox<String>();
+	public JComboBox<String> chatComboBox = new JComboBox<String>();
 	public JTextArea chatContent = new JTextArea("", 12, 50);
-	public JTextField chatInput = new JTextField(10);
+	public JTextField chatInput = new JTextField();
 	JButton chatSubmit = new JButton("send");
 	JLabel order[];
 	TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK), "좌석");
 	JViewport vp = new JViewport();
 	JPanel msgPanel = new JPanel();
-	JPanel seatPanel = new JPanel();
+	public JPanel seatPanel = new JPanel();
 	LoginView LV = LoginView.getInstance();
 	private SeatPanel SP = new SeatPanel();
-	private ChatPanel CP = new ChatPanel();
-
+	public ChatPanel CP = new ChatPanel();
+	
 	JToolBar bar = new JToolBar();
 	public JButton previousBtn = new JButton("< 이전");
 	public JButton logoutBtn = new JButton("로그아웃");
 	
 	public boolean loginFlag = false;
+	
+	public JPanel chatBang = new JPanel();
+	
+	public String id = "관리자";
 	
 	private CusManager() {
 		super("고객관리");
@@ -86,15 +84,6 @@ public class CusManager extends JFrame {
 		super.setResizable(false);
 		
 		setVisible(false);
-//		chatInput.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				chatInput.getText();
-//				chatContent.setText(chatContent.getText() + chatInput.getText() + "\n");
-//				chatInput.setText("");
-//			}
-//		});
 	}
 
 	public static CusManager getInstance() {
@@ -127,13 +116,23 @@ public class CusManager extends JFrame {
 			setPreferredSize(new Dimension((int) (350), (int) (600))); // 채팅창
 			seatPanel.setLayout(new BorderLayout());
 
-			seatPanel.add(BorderLayout.NORTH, chatSeat);
+			seatPanel.add(BorderLayout.NORTH, chatComboBox);
 			add(seatPanel, BorderLayout.NORTH);
 
 			vp.add(new JScrollPane(chatContent));
 			chatContent.setEditable(false);
 			add(vp, BorderLayout.CENTER);
-
+			
+//			JViewport jp = new JViewport();
+//			JPanel panel = new JPanel();
+//			CardLayout card = new CardLayout();
+//			panel.setLayout(card);
+//			panel.add(vp, "hoit");
+//			panel.add(jp, "hosss");
+//			
+//			add(panel, BorderLayout.CENTER);
+//			card.show(panel, "hoit");
+			
 			msgPanel.setLayout(new BorderLayout());
 			msgPanel.add(BorderLayout.CENTER, chatInput);
 
@@ -144,9 +143,23 @@ public class CusManager extends JFrame {
 			add(msgPanel, BorderLayout.SOUTH);
 		}
 	}// ChatPanel
+	
+	public class ChatSeatContent {
+		private String seat;
+		public String getSeat() {
+			return seat;
+		}
+		public void setSeat(String seat){
+			this.seat = seat;
+		}
+//		public String toString() {
+//			return this.id+"\t"+this.name+"\t\t\t"+this.price+"\t"+this.manufacture;
+//		}
+	}
 	public void addButtonActionListener(ActionListener listener) {
 		chatInput.addActionListener(listener);
 		previousBtn.addActionListener(listener);
 		logoutBtn.addActionListener(listener);
+		chatComboBox.addActionListener(listener);
 	}
 }

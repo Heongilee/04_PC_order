@@ -20,8 +20,8 @@ public class DAO_Sample {
 	private DAO_Sample() { //Constructor
 		
 	}
-	public Product_DTO getProduct(Integer id) {
-		Product_DTO p = null;
+	public ProductDTO getProduct(Integer id) {
+		ProductDTO p = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

@@ -34,7 +34,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class GUIView extends JFrame {
-	public static GUIView GV = getInstance();
+	private static GUIView GV = new GUIView();
 	boolean toggle = true;
 	JPanel np1 = new JPanel();// 위쪽 전체 패널
 	JPanel ninp = new JPanel();// 위쪽 오른쪽 라벨 패털
@@ -78,7 +78,7 @@ public class GUIView extends JFrame {
 	public JLabel la[] = new JLabel[3];
 	public String id;// 아이디 출력 문자열
 	public String pointLabel; // 포인트 출력 라벨
-	public String seat;
+	public String seat = "";
 	public JTextField msgInput = new JTextField();
 
 	private static String getTagValue(String tag, Element eElement) {
@@ -270,9 +270,6 @@ public class GUIView extends JFrame {
 	}
 
 	public static GUIView getInstance() {
-		if(GV == null) {
-			GV = new GUIView();
-		}
 		return GV;
 	}
 

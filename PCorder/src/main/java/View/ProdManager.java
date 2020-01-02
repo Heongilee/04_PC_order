@@ -23,7 +23,7 @@ import javax.swing.JToolBar;
 
 //annotation test
 public class ProdManager extends JFrame {
-	public static ProdManager PM = ProdManager.getInstance();
+	private static ProdManager PM = new ProdManager();
 	LoginView LV = LoginView.getInstance();
 	JLabel title = new JLabel("상품관리");
 	JLabel stateText = new JLabel("##");
@@ -38,7 +38,7 @@ public class ProdManager extends JFrame {
 	String ta_col = "관리번호\t상품명\t단가\t제조사";
 	JTextArea ta = new JTextArea(ta_col, 27, 30);
 	String[] btn_str = { "등록", "조회", "삭제" };
-	public JButton[] btn = new JButton[3];
+	JButton[] btn = new JButton[3];
 
 	private ProductPanel PP = new ProductPanel();
 	private ShowPanel SP = new ShowPanel();
@@ -138,15 +138,10 @@ public class ProdManager extends JFrame {
 		}
 	}
 	public static ProdManager getInstance() {
-		if(PM == null) {
-			PM = new ProdManager();
-		}
 		return PM;
 	}
 	public void addButtonActionListener(ActionListener listener) {
 		previousBtn.addActionListener(listener);
 		logoutBtn.addActionListener(listener);
-		for(int i=0;i<3;i++)
-			btn[i].addActionListener(listener);
 	}
 }

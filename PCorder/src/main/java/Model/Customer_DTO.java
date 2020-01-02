@@ -1,19 +1,30 @@
 package Model;
 
 public class Customer_DTO {
+	private int cid;
 	private String cname;
 	private String cpw;
 	private String cnickname;
 	private String cemail;
+	private int cmode;
+	private int cbalance;
 	
-	public Customer_DTO(String cname, String cpw, String cnickname, String cemail) {
+	public Customer_DTO(int cid, String cname, String cpw, String cnickname, String cemail, int cmode, int cbalance) {
 		super();
-		this.cname = cname;						// 아이디
-		this.cpw = cpw;							// 패스워드
-		this.cnickname = cnickname;				// 닉네임
-		this.cemail = cemail;					// 이메일
+		this.cid = cid;
+		this.cname = cname;
+		this.cpw = cpw;
+		this.cnickname = cnickname;
+		this.cemail = cemail;
+		this.cmode = cmode;
+		this.cbalance = cbalance;
 	}
-	
+	public int getCid() {
+		return cid;
+	}
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
 	public String getCname() {
 		return cname;
 	}
@@ -38,11 +49,24 @@ public class Customer_DTO {
 	public void setCemail(String cemail) {
 		this.cemail = cemail;
 	}
+	public int getCmode() {
+		return cmode;
+	}
+	public void setCmode(int cmode) {
+		this.cmode = cmode;
+	}
+	public int getCbalance() {
+		return cbalance;
+	}
+	public void setCbalance(int cbalance) {
+		this.cbalance = cbalance;
+	}
 	
 	@Override
 	public String toString() {
-		return "Customer_DTO [cname=" + cname + ", cpw=" + cpw + ", cnickname=" + cnickname + ", cemail=" + cemail
-				+ "]";
+		return "Customer_DTO [cid=" + cid + ", cname=" + cname + ", cpw=" + cpw + ", cnickname=" + cnickname
+				+ ", cemail=" + cemail + ", cmode=" + cmode + ", cbalance=" + cbalance + "]";
 	}
+	
 	
 }
