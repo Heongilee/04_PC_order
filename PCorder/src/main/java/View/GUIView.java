@@ -58,7 +58,9 @@ public class GUIView extends JFrame {
 	JLabel cl1 = new JLabel(">> 주문내역");
 	JLabel cl2 = new JLabel("상품명                  가격                   개수");
 	JTextArea ta1 = new JTextArea();// 가운데 센터 텍스트
-	JTextField tf1 = new JTextField("합계   ㅣ");// 합계 텍스트 필드
+	JLabel tf1 = new JLabel("합계  ");// 합계 텍스트 필드
+	public JLabel Cashl = new JLabel("0");
+	
 
 	public JButton sumb = new JButton("결제");
 	JPanel ep4 = new JPanel();// 오른쪽 채팅 패널
@@ -207,7 +209,7 @@ public class GUIView extends JFrame {
 		crp1.setLayout(new BorderLayout());
 		crp1.setPreferredSize(new Dimension(200, 10));
 		crp2.setLayout(new BorderLayout());
-		crp3.setLayout(new GridLayout(1, 2));
+		crp3.setLayout(new GridLayout(1, 3));
 		topp.setLayout(new BorderLayout());
 		ctopp.setLayout(new BorderLayout());
 
@@ -226,6 +228,7 @@ public class GUIView extends JFrame {
 		crp2.add(ta1, BorderLayout.CENTER);
 		crp2.add(crp3, BorderLayout.SOUTH);
 		crp3.add(tf1);
+		crp3.add(Cashl);
 
 		sumb.setBackground(Color.black);
 		sumb.setFont(new Font("고딕체", Font.PLAIN, 10));

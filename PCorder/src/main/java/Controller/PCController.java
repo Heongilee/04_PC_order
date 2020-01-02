@@ -238,7 +238,13 @@ public class PCController implements Runnable {
 					GUI.msgInput.setText("");
 				}
 				else if(obj == GUI.sumb) {
-					
+					int value = Integer.parseInt(GUI.Cashl.getText());
+					if(dao.getInstance().Cash_Check(LV.loginTextField.getText(), value)){
+						JOptionPane.showMessageDialog(null, "결제가 되었습니다.");
+						GUI.la[2].setText("포인트 : " + Integer.toString(Integer.parseInt(dao.getInstance().getCash(LV.loginTextField.getText()))-value));
+					}
+					else
+						JOptionPane.showMessageDialog(null, "포인트가 부족합니다.", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
