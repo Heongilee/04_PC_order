@@ -36,10 +36,12 @@ public class ProdManager extends JFrame {
 	JLabel[] prodLabel = new JLabel[4];
 	public Vector<Model.Product_DTO> v = new Vector<Model.Product_DTO>();
 	public JComboBox<String> prodCombo = new JComboBox<String>();
-	JTextField[] prodtf = new JTextField[3];
+	public JTextField[] prodtf = new JTextField[3];
+	String[] List_prodType = {"라면류", "음료류", "간식류", "과자류"};
+	public JComboBox<String> prodType = new JComboBox<String>(List_prodType);
 	String ta_col = "관리번호\t상품명\t단가\t제조사";
 	public JTextArea ta = new JTextArea(ta_col, 27, 30);
-	String[] btn_str = { "등록", "조회", "삭제" };
+	String[] btn_str = {"등록", "조회", "삭제"};
 	public JButton[] btn = new JButton[3];
 
 	private ProductPanel PP = new ProductPanel();
@@ -63,11 +65,13 @@ public class ProdManager extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		
-		wrapPanel.setLayout(new GridLayout(1, 2));
+		
+		wrapPanel.setLayout(new GridLayout(1,2));
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
 		// title 폰트 크기
 		title.setFont(new Font("굴림", Font.BOLD, 45));
+		
 		// 오른쪽 정렬
 		leftPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
@@ -93,15 +97,15 @@ public class ProdManager extends JFrame {
 		setSize(900, 700);
 		setLocationRelativeTo(null);
 		// 크기 고정
-        setResizable(false);
+        //setResizable(false);
         
 		setVisible(false);
 	}
 
 	public class ProductPanel extends JPanel {
 		public ProductPanel() {
-			setLayout(new GridLayout(4, 2, 10, 30));
-			setPreferredSize(new Dimension((int) (400), (int) (300)));
+			setLayout(new GridLayout(5, 2, 10, 40));
+			setPreferredSize(new Dimension((int) (400), (int) (400)));
 
 			for (int i = 0; i < 4; i++) {
 				prodLabel[i] = new JLabel(prodLabel_str[i]);
@@ -109,6 +113,7 @@ public class ProdManager extends JFrame {
 				add(prodLabel[i]);
 
 				if (i == 0) {
+					prodCombo.addItem("전체");
 					add(prodCombo);
 				}
 				else {
@@ -116,29 +121,32 @@ public class ProdManager extends JFrame {
 					add(prodtf[i - 1]);
 				}
 			}
+			add(new JLabel("카테고리"));
+			add(prodType);
 		}
 	}// ProductPanel
 
 	public class ShowPanel extends JPanel {
 
-		public ShowPanel() {
+	      public ShowPanel() {
 
-			setLayout(new GridLayout(2, 1));
-			ta.setEditable(false);
-			add(new JScrollPane(ta));
-			JPanel pa = new JPanel();
-			for (int i = 0; i < 3; i++) {
+	         setLayout(new GridLayout(2, 1));
+	         ta.setEditable(false);
+	         add(new JScrollPane(ta));
+	         JPanel pa = new JPanel();
+	         for (int i = 0; i < 3; i++) {
 
-				btn[i] = new JButton(btn_str[i]);
-				btn[i].setBackground(Color.black);
-				btn[i].setFont(new Font("고딕체", Font.PLAIN, 20));
-				btn[i].setForeground(Color.WHITE);
+	            btn[i] = new JButton(btn_str[i]);
+	            btn[i].setBackground(Color.black);
+	            btn[i].setFont(new Font("고딕체", Font.PLAIN, 20));
+	            btn[i].setForeground(Color.WHITE);
 
-				pa.add(btn[i]);
-			}
-			add(pa);
-		}
-	}
+	            pa.add(btn[i]);
+	         }
+	         add(pa);
+	      }
+
+	   }
 	public static ProdManager getInstance() {
 		if(PM == null) {
 			PM = new ProdManager();
@@ -150,5 +158,6 @@ public class ProdManager extends JFrame {
 		logoutBtn.addActionListener(listener);
 		for(int i=0;i<3;i++)
 			btn[i].addActionListener(listener);
+		prodCombo.addActionListener(listener);
 	}
 }

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import View.ProdManager;
 
 public class Product_DAO implements DAO_Interface{
@@ -66,39 +68,52 @@ public class Product_DAO implements DAO_Interface{
 		return dao;
 	}
 	
-	public void SQL_SHOW() {
+	public void SQL_SHOW(boolean f, int id) {
 		String sql = "SELECT * FROM PRODUCTS";
+		String sql2 = "SELECT pNAME, pPRICE, pMANUF FROM PRODUCTS WHERE pID = ?";
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			Product_DTO dto = new Product_DTO();
 			
-			String str = "";
-			PM.ta.setText("관리번호\t상품명\t단가\t제조사\n");
-			PM.prodCombo.removeAllItems();
-			PM.prodCombo.addItem("전체");	//"전체"
-			while(rs.next()) {
-				dto.setpID(rs.getInt(1));
-				System.out.println("[1] : "+dto.getpID());
-				str += String.valueOf(dto.getpID());
-				str += "\t";
-				dto.setpNAME(rs.getString(2));
-				str += dto.getpNAME();
-				str += "\t";
-				dto.setpPrice(rs.getInt(3));
-				str += String.valueOf(dto.getpPrice());
-				str += "\t";
-				//pTYPE은 생략
-				dto.setpMANUF(rs.getString(5));
-				str += dto.getpMANUF();
-				str += "\n";
+			if(f == true) {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				Product_DTO dto = new Product_DTO();
 				
-				PM.v.add(dto); //벡터에 추가.
-				PM.prodCombo.addItem(String.valueOf(dto.getpID()));
+				String str = "";
+				PM.ta.setText("관리번호\t상품명\t단가\t제조사\n");
+				PM.prodCombo.removeAllItems();
+				PM.prodCombo.addItem("전체");	//"전체"
+				while(rs.next()) {
+					dto.setpID(rs.getInt(1));
+					System.out.println("[1] : "+dto.getpID());
+					str += String.valueOf(dto.getpID());
+					str += "\t";
+					dto.setpNAME(rs.getString(2));
+					str += dto.getpNAME();
+					str += "\t";
+					dto.setpPrice(rs.getInt(3));
+					str += String.valueOf(dto.getpPrice());
+					str += "\t";
+					//pTYPE은 생략
+					dto.setpMANUF(rs.getString(5));
+					str += dto.getpMANUF();
+					str += "\n";
+					
+					PM.v.add(dto); //벡터에 추가.
+					PM.prodCombo.addItem(String.valueOf(dto.getpID()));
+				}
+				PM.ta.append(str);
 			}
-			PM.ta.append(str);
-			
+			else {
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setInt(1, id);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					PM.prodtf[0].setText(rs.getString(1));
+					PM.prodtf[1].setText(String.valueOf(rs.getInt(2)));
+					PM.prodtf[2].setText(rs.getString(3));
+				}
+			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch(Exception e2) {
@@ -109,7 +124,36 @@ public class Product_DAO implements DAO_Interface{
 		
 		return;
 	}
-	public void SQL_INSERT() {
+	public void SQL_INSERT(boolean f, int id) {
+		String sql = "INSERT INTO PRODUCTS(PRODUCTS.pNAME, PRODUCTS.pPRICE, PRODUCTS.pTYPE, PRODUCTS.pMANUF) VALUES(?, ?, ?, ?)";
+		String sql2 = "UPDATE PRODUCTS SET pNAME = ?, pPRICE = ?, pTYPE = ?, pMANUF = ? WHERE pID = ?";
+		try {
+			conn = getConnection();
+			if(f == true) { // 삽입
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, PM.prodtf[0].getText());							// 제품 이름
+				pstmt.setInt(2, Integer.valueOf(PM.prodtf[1].getText()));			// 제품 가격
+				pstmt.setString(3, String.valueOf(PM.prodType.getSelectedItem()));	// 제품 타입
+				pstmt.setString(4, PM.prodtf[2].getText());							// 제품 제조사
+				int r = pstmt.executeUpdate();
+				
+				if(r > 0) {
+					PM.stateText.setText("## 메시지 : 해당 제품의 삽입이 정상적으로 처리되었습니다.");
+				}
+				else {
+					PM.stateText.setText("## 메시지 : 제품을 추가하는데 실패했습니다.");
+				}
+			}
+			else {			// 수정
+				
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			
+		}
 		
 	}
 	public void SQL_UPDATE() {
