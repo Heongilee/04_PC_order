@@ -2,26 +2,26 @@ package Controller;
 
 public interface I_UserView {
 	void Load_FoodCategory(int type);	
-	//JButton{BEST3, ¶ó¸é·ù, À½·á·ù, °£½Ä·ù, °úÀÚ·ù}¿¡ ÇØ´çÇÏ´Â ¹öÆ°À» 
-	//Å¬¸¯ÇÏ¸é PRODUCTS Å×ÀÌºíÀÇ pTYPE(»óÇ°_Ä«Å×°í¸® ¼Ó¼º)¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå¸¦
-	//°¡Á®¿Â´Ù.
+	//JButton{BEST3, ë¼ë©´ë¥˜, ìŒë£Œë¥˜, ê°„ì‹ë¥˜, ê³¼ìžë¥˜}ì— í•´ë‹¹í•˜ëŠ” ë²„íŠ¼ì„ 
+	//í´ë¦­í•˜ë©´ PRODUCTS í…Œì´ë¸”ì˜ pTYPE(ìƒí’ˆ_ì¹´í…Œê³ ë¦¬ ì†ì„±)ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œë¥¼
+	//ê°€ì ¸ì˜¨ë‹¤.
 	
-	// ¾Æ·¡ ·ÎÁ÷À» µû¸£¸é µÈ´Ù.
+	// ì•„ëž˜ ë¡œì§ì„ ë”°ë¥´ë©´ ëœë‹¤.
 	//sql = "SELECT * FROM WHERE pTYPE = ?";
 	//PrepareStatement pstmt = new PrepareStatement(
 	//pstmt.setInt(id)
 	//executeQuery ...
 	
 	void Add_Orderlog();	
-	// ÇØ´ç »óÇ°À» Å¬¸¯ÇÏ¸é ÁÖ¹® ³»¿ª¿¡ Ãß°¡µÈ´Ù.	
-	// Ç×¸ñÀÌ Ãß°¡µÉ ¶§ ¸¶´Ù ÇÕ°è JTextField¿¡ Ãß°¡µÈ Ç×¸ñ¿¡ ÇØ´çÇÏ´Â °¡°ÝÀÌ Ã¥Á¤
-	// µÇµµ·Ï ÇÑ´Ù.
+	// í•´ë‹¹ ìƒí’ˆì„ í´ë¦­í•˜ë©´ ì£¼ë¬¸ ë‚´ì—­ì— ì¶”ê°€ëœë‹¤.	
+	// í•­ëª©ì´ ì¶”ê°€ë  ë•Œ ë§ˆë‹¤ í•©ê³„ JTextFieldì— ì¶”ê°€ëœ í•­ëª©ì— í•´ë‹¹í•˜ëŠ” ê°€ê²©ì´ ì±…ì •
+	// ë˜ë„ë¡ í•œë‹¤.
 	
 	void Submit_Order();
-	// ÁÖ¹® ³»¿ªÀÇ »óÇ°µéÀ» ORDERSÅ×ÀÌºí ·¹ÄÚµå¿¡ Ãß°¡½ÃÅ°°í
-	// °áÁ¦ ¿Ï·á ¸Þ½ÃÁö¸¦ Ãâ·ÂÇÑ´Ù.
-	// Exception1. 	CUSTOMERSÅ×ÀÌºí¿¡¼­ ÇØ´ç °í°´ÀÇ cBALANCE(ÀÜ¾×)À» °Ë»çÇØ
-	// 				°áÁ¦ ±Ý¾×º¸´Ù ÀÜ¾×ÀÌ ºÎÁ·ÇÏ¸é °áÁ¦ ½ÇÆÐ ¸Þ½ÃÁö¸¦ Ãâ·ÂÇÑ´Ù.
-	// Exception2.	ÇÕ°è°¡ 0(ÁÖ¹® ¸ñ·Ï¿¡ Ãß°¡ ½ÃÅ³ ¶§ ¸¶´Ù ÇÕ°è°¡ º¯ÇÏ±â ¶§¹®)ÀÌ¸é 
-	// °áÁ¦ ½ÇÆÐ
+	// ì£¼ë¬¸ ë‚´ì—­ì˜ ìƒí’ˆë“¤ì„ ORDERSí…Œì´ë¸” ë ˆì½”ë“œì— ì¶”ê°€ì‹œí‚¤ê³ 
+	// ê²°ì œ ì™„ë£Œ ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•œë‹¤.
+	// Exception1. 	CUSTOMERSí…Œì´ë¸”ì—ì„œ í•´ë‹¹ ê³ ê°ì˜ cBALANCE(ìž”ì•¡)ì„ ê²€ì‚¬í•´
+	// 				ê²°ì œ ê¸ˆì•¡ë³´ë‹¤ ìž”ì•¡ì´ ë¶€ì¡±í•˜ë©´ ê²°ì œ ì‹¤íŒ¨ ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•œë‹¤.
+	// Exception2.	í•©ê³„ê°€ 0(ì£¼ë¬¸ ëª©ë¡ì— ì¶”ê°€ ì‹œí‚¬ ë•Œ ë§ˆë‹¤ í•©ê³„ê°€ ë³€í•˜ê¸° ë•Œë¬¸)ì´ë©´ 
+	// ê²°ì œ ì‹¤íŒ¨
 }

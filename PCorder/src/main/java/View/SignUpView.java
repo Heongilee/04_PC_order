@@ -21,6 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+<<<<<<< HEAD
 public class SignUpView extends JPanel {// È¸¿ø°¡ÀÔÈ­¸é
 	LoginView LV = LoginView.getInstance();
 	JPanel p = new JPanel();
@@ -34,6 +35,27 @@ public class SignUpView extends JPanel {// È¸¿ø°¡ÀÔÈ­¸é
 	public JButton IdOverlapbtn, NameOverlapbtn, EmailOverlapbtn;
 	
 	public JButton btn = new JButton("¿Ï·á");
+=======
+public class SignUpView extends JPanel {// íšŒì›ê°€ìž…í™”ë©´
+	public LoginView LV = LoginView.getInstance();
+	public JPanel p = new JPanel();
+	public 	JLabel SignUpLabel = new JLabel("íšŒì›ê°€ìž…");
+	public JLabel IdLabel = new JLabel("ì•„ì´ë””");
+	public JLabel PassLabel = new JLabel("ë¹„ë°€ë²ˆí˜¸");
+	public JLabel NameLabel = new JLabel("ë‹‰ë„¤ìž„");
+	public JLabel EmailLabel = new JLabel("ì´ë©”ì¼");
+	
+	public JTextField IdField = new JTextField();
+	public JTextField PassField = new JTextField();
+	public JTextField NameField = new JTextField();
+	public JTextField EmailField = new JTextField();
+	
+	public JButton IdOverlapbtn = new JButton("ì¤‘ë³µí™•ì¸");
+	public JButton NameOverlapbtn = new JButton("ì¤‘ë³µí™•ì¸");
+	public JButton EmailOverlapbtn = new JButton("ì¤‘ë³µí™•ì¸");
+	
+	public JButton btn = new JButton("ì™„ë£Œ");
+>>>>>>> origin/project1
 	
 	public SignUpView() {
 		setLayout(new BorderLayout());
@@ -43,23 +65,21 @@ public class SignUpView extends JPanel {// È¸¿ø°¡ÀÔÈ­¸é
 		add(NameLabel);
 		add(EmailLabel);
 
-		SignUpLabel.setFont(new Font("°íµñÃ¼", Font.BOLD, 30));
-		IdLabel.setFont(new Font("°íµñÃ¼", Font.BOLD, 18));
-		PassLabel.setFont(new Font("°íµñÃ¼", Font.BOLD, 18));
-		NameLabel.setFont(new Font("°íµñÃ¼", Font.BOLD, 18));
-		EmailLabel.setFont(new Font("°íµñÃ¼", Font.BOLD, 18));
-
-		JTextField IdField = new JTextField();
-		JTextField PassField = new JTextField();
-		JTextField NameField = new JTextField();
-		JTextField EmailField = new JTextField();
+		SignUpLabel.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 30));
+		IdLabel.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 18));
+		PassLabel.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 18));
+		NameLabel.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 18));
+		EmailLabel.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 18));
 
 		add(IdField);
 		add(PassField);
 		add(NameField);
 		add(EmailField);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/project1
 		add(btn);
 
 		SignUpLabel.setBounds(300, 0, 130, 100);
@@ -75,36 +95,37 @@ public class SignUpView extends JPanel {// È¸¿ø°¡ÀÔÈ­¸é
 		EmailField.setBounds(170, 330, 250, 30);
 
 		btn.setBackground(Color.black);
-		btn.setFont(new Font("°íµñÃ¼", Font.BOLD, 19));
+		btn.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 19));
 		btn.setForeground(Color.WHITE);
-
+		btn.setName("btn");
 		btn.setBounds(200, 400, 300, 45);
 
-		IdOverlapbtn = new JButton("Áßº¹È®ÀÎ");
 		IdOverlapbtn.setBackground(Color.black);
-		IdOverlapbtn.setFont(new Font("°íµñÃ¼", Font.PLAIN, 14));
+		IdOverlapbtn.setFont(new Font("ê³ ë”•ì²´", Font.PLAIN, 14));
 		IdOverlapbtn.setForeground(Color.WHITE);
 		IdOverlapbtn.setBounds(450, 90, 100, 30);
+		IdOverlapbtn.setName("IdOverlapbtn");
 		add(IdOverlapbtn);
 
-		NameOverlapbtn = new JButton("Áßº¹È®ÀÎ");
 		NameOverlapbtn.setBackground(Color.black);
-		NameOverlapbtn.setFont(new Font("°íµñÃ¼", Font.PLAIN, 14));
+		NameOverlapbtn.setFont(new Font("ê³ ë”•ì²´", Font.PLAIN, 14));
 		NameOverlapbtn.setForeground(Color.WHITE);
 		NameOverlapbtn.setBounds(450, 250, 100, 30);
+		NameOverlapbtn.setName("NameOverlapbtn");
 		add(NameOverlapbtn);
 
-		EmailOverlapbtn = new JButton("Áßº¹È®ÀÎ");
 		EmailOverlapbtn.setBackground(Color.black);
-		EmailOverlapbtn.setFont(new Font("°íµñÃ¼", Font.PLAIN, 14));
+		EmailOverlapbtn.setFont(new Font("ê³ ë”•ì²´", Font.PLAIN, 14));
 		EmailOverlapbtn.setForeground(Color.WHITE);
 		EmailOverlapbtn.setBounds(450, 330, 100, 30);
+		EmailOverlapbtn.setName("EmailOverlapbtn");
 		add(EmailOverlapbtn);
 
 		add(p);
 
 		setSize(700, 600);
 		setVisible(true);
+<<<<<<< HEAD
 
 //		IdOverlapbtn.addActionListener(new ActionListener() {
 //
@@ -135,5 +156,15 @@ public class SignUpView extends JPanel {// È¸¿ø°¡ÀÔÈ­¸é
 	public void addButtonActionListener(ActionListener listener) {
 		IdOverlapbtn.addActionListener(listener);
 		btn.addActionListener(listener);
+=======
+	}
+	
+	public void addButtonActionListener(ActionListener listener) {
+		IdOverlapbtn.addActionListener(listener);
+		NameOverlapbtn.addActionListener(listener);
+		EmailOverlapbtn.addActionListener(listener);
+		
+		btn.addActionListener(listener);		//íšŒì›ê°€ìž… ì œì¶œ ë²„íŠ¼.
+>>>>>>> origin/project1
 	}
 }

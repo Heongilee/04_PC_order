@@ -1,10 +1,14 @@
 package Model;
 
+<<<<<<< HEAD
 import javax.swing.JComboBox;
+=======
+>>>>>>> origin/project1
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
 
 public class PCChatData {
+<<<<<<< HEAD
 	public JComboBox<String> comboItem;
 	public JTextArea msgOut; 
 	public void addObjCus(JComponent c) {
@@ -56,4 +60,22 @@ public class PCChatData {
 //			e1.printStackTrace();
 //		}
 //	}
+=======
+	public JTextArea msgOut;
+	
+	public void addObjCus(JComponent c) {
+		//JTextArea의 데이터를 관리.
+		//데이터 변경이 일어나 업데이트할 UI컴포넌트를 등록하는 메소드이다.
+		this.msgOut = (JTextArea) c;
+	}
+	public void addObjGUI(JComponent c) {
+		//JTextArea의 데이터를 관리.
+		//데이터 변경이 일어나 업데이트할 UI컴포넌트를 등록하는 메소드이다.
+		this.msgOut = (JTextArea) c;
+	}
+	public void refreshData(String msg) {
+		//JTextArea창에 텍스트를 추가하는 작업만 한다.
+		msgOut.append(msg);
+	}
+>>>>>>> origin/project1
 }

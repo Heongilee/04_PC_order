@@ -4,11 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
@@ -34,9 +30,10 @@ public class LoginView extends JFrame{
 	public SignUpView signUpView;
 	public AdminView adminView;
 	BufferedImage img = null;
-	public JTextField loginTextField;
-	JPasswordField passwordField;
-	public JButton loginbt, SignUpbtn;
+	public JTextField loginTextField;			//ÏïÑÏù¥Îîî ÌïÑÎìú
+	public JPasswordField passwordField;		//Ìå®Ïä§ÏõåÎìú ÌïÑÎìú
+	public JButton loginbt = new JButton("Î°úÍ∑∏Ïù∏");
+	public JButton SignUpbtn = new JButton("ÌöåÏõêÍ∞ÄÏûÖ");
 	JLabel idlb;
 	JLabel passlb;
 	JLabel la;
@@ -44,21 +41,33 @@ public class LoginView extends JFrame{
 	public JRadioButton user = new JRadioButton("user MODE");
 	public JRadioButton server = new JRadioButton("server MODE");
 	ButtonGroup goup = new ButtonGroup();
-	
+
 	JToolBar bar = new JToolBar();
-	public JButton previousBtn = new JButton("< ¿Ã¿¸");
-	
+<<<<<<< HEAD
+	public JButton previousBtn = new JButton("< ÔøΩÔøΩÔøΩÔøΩ");
+=======
+	public JButton previousBtn = new JButton("< Ïù¥Ï†Ñ");
+>>>>>>> origin/project1
+
 	public String id;
-	
+
 	private LoginView() {
-		setTitle("∑Œ±◊¿Œ");
+<<<<<<< HEAD
+		setTitle("ÔøΩŒ±ÔøΩÔøΩÔøΩ");
 		setSize(700, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		// ≈¯πŸ interface
+
+		// ÔøΩÔøΩÔøΩÔøΩ interface
+=======
+		setTitle("Î°úÍ∑∏Ïù∏");
+		setSize(700, 600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Ìà¥Î∞î interface
+>>>>>>> origin/project1
 		bar.add(previousBtn);
 		add(bar, BorderLayout.NORTH);
-		
+
 		goup.add(server);
 		goup.add(user);
 		Container c = getContentPane();
@@ -75,20 +84,33 @@ public class LoginView extends JFrame{
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 700, 600);
 
-		user.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
+<<<<<<< HEAD
+		user.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ√º", Font.BOLD, 18));
+=======
+		user.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+>>>>>>> origin/project1
 		user.setForeground(Color.BLACK);
 		user.setBounds(200, 50, 200, 30);
 
 		layeredpane.add(user);
 
-		server.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
+<<<<<<< HEAD
+		server.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ√º", Font.BOLD, 18));
+=======
+		server.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+>>>>>>> origin/project1
 		server.setForeground(Color.BLACK);
 		server.setBounds(400, 50, 200, 30);
 
 		layeredpane.add(server);
 
-		idlb = new JLabel("æ∆¿Ãµ");
-		idlb.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
+<<<<<<< HEAD
+		idlb = new JLabel("ÔøΩÔøΩÔøΩÃµÔøΩ");
+		idlb.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ√º", Font.BOLD, 18));
+=======
+		idlb = new JLabel("ÏïÑÏù¥Îîî");
+		idlb.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+>>>>>>> origin/project1
 		idlb.setForeground(Color.BLACK);
 		idlb.setBounds(100, 109, 100, 30);
 		loginTextField = new JTextField(15);
@@ -97,8 +119,13 @@ public class LoginView extends JFrame{
 		layeredpane.add(idlb);
 		layeredpane.add(loginTextField);
 
-		passlb = new JLabel("∫Òπ–π¯»£");
-		passlb.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
+<<<<<<< HEAD
+		passlb = new JLabel("ÔøΩÔøΩÔøΩ–πÔøΩ»£");
+		passlb.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ√º", Font.BOLD, 18));
+=======
+		passlb = new JLabel("ÎπÑÎ∞ÄÎ≤àÌò∏");
+		passlb.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+>>>>>>> origin/project1
 		passlb.setForeground(Color.BLACK);
 		passlb.setBounds(100, 209, 100, 30);
 		passwordField = new JPasswordField(15);
@@ -107,9 +134,14 @@ public class LoginView extends JFrame{
 		layeredpane.add(passlb);
 		layeredpane.add(passwordField);
 
-		loginbt = new JButton("∑Œ±◊¿Œ");
+<<<<<<< HEAD
+		loginbt = new JButton("ÔøΩŒ±ÔøΩÔøΩÔøΩ");
 		loginbt.setBackground(Color.black);
-		loginbt.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
+		loginbt.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ√º", Font.BOLD, 18));
+=======
+		loginbt.setBackground(Color.black);
+		loginbt.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+>>>>>>> origin/project1
 		loginbt.setForeground(Color.WHITE);
 		loginbt.setBounds(240, 300, 200, 48);
 
@@ -117,15 +149,24 @@ public class LoginView extends JFrame{
 
 		la = new JLabel("or");
 		la.setBackground(Color.BLACK);
-		la.setFont(new Font("∞ÌµÒ√º", Font.PLAIN, 23));
+<<<<<<< HEAD
+		la.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ√º", Font.PLAIN, 23));
+=======
+		la.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.PLAIN, 23));
+>>>>>>> origin/project1
 		la.setForeground(Color.BLACK);
 		la.setBounds(330, 350, 200, 48);
 
 		layeredpane.add(la);
 
-		SignUpbtn = new JButton("»∏ø¯∞°¿‘");
+<<<<<<< HEAD
+		SignUpbtn = new JButton("»∏ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ");
 		SignUpbtn.setBackground(Color.black);
-		SignUpbtn.setFont(new Font("∞ÌµÒ√º", Font.BOLD, 18));
+		SignUpbtn.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ√º", Font.BOLD, 18));
+=======
+		SignUpbtn.setBackground(Color.black);
+		SignUpbtn.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 18));
+>>>>>>> origin/project1
 		SignUpbtn.setForeground(Color.WHITE);
 		SignUpbtn.setBounds(240, 400, 200, 48);
 
@@ -141,18 +182,24 @@ public class LoginView extends JFrame{
 		window.add(layeredpane, "layer");
 		window.add(adminView, "admin");
 		window.add(signUpView, "signUp");
-		
+
 		add(window);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
+
 	public static LoginView getInstance() {
 		return LV;
 	}
 	public void addButtonActionListener(ActionListener listener) {
+<<<<<<< HEAD
 		loginbt.addActionListener(listener);
 		SignUpbtn.addActionListener(listener);
 		previousBtn.addActionListener(listener);
+=======
+		loginbt.addActionListener(listener);			//Î°úÍ∑∏Ïù∏ Î≤ÑÌäº
+		SignUpbtn.addActionListener(listener);			//ÌöåÏõêÍ∞ÄÏûÖ Î≤ÑÌäº
+		previousBtn.addActionListener(listener);		//Ïù¥Ï†Ñ Î≤ÑÌäº
+>>>>>>> origin/project1
 	}
 }

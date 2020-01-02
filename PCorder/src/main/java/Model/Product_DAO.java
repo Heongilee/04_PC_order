@@ -7,8 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+<<<<<<< HEAD
 import javax.swing.JOptionPane;
 
+=======
+>>>>>>> origin/project1
 import View.ProdManager;
 
 public class Product_DAO implements DAO_Interface{
@@ -80,9 +83,15 @@ public class Product_DAO implements DAO_Interface{
 				Product_DTO dto = new Product_DTO();
 				
 				String str = "";
+<<<<<<< HEAD
 				PM.ta.setText("°ü¸®¹øÈ£\t»óÇ°¸í\t´Ü°¡\tÁ¦Á¶»ç\n");
 				PM.prodCombo.removeAllItems();
 				PM.prodCombo.addItem("ÀüÃ¼");	//"ÀüÃ¼"
+=======
+				PM.ta.setText("ê´€ë¦¬ë²ˆí˜¸\tìƒí’ˆëª…\të‹¨ê°€\tì œì¡°ì‚¬\n");
+				PM.prodCombo.removeAllItems();
+				PM.prodCombo.addItem("ì „ì²´");	//"ì „ì²´"
+>>>>>>> origin/project1
 				while(rs.next()) {
 					dto.setpID(rs.getInt(1));
 					System.out.println("[1] : "+dto.getpID());
@@ -94,12 +103,20 @@ public class Product_DAO implements DAO_Interface{
 					dto.setpPrice(rs.getInt(3));
 					str += String.valueOf(dto.getpPrice());
 					str += "\t";
+<<<<<<< HEAD
 					//pTYPEÀº »ý·«
+=======
+					//pTYPEì€ ìƒëžµ
+>>>>>>> origin/project1
 					dto.setpMANUF(rs.getString(5));
 					str += dto.getpMANUF();
 					str += "\n";
 					
+<<<<<<< HEAD
 					PM.v.add(dto); //º¤ÅÍ¿¡ Ãß°¡.
+=======
+					PM.v.add(dto); //ë²¡í„°ì— ì¶”ê°€.
+>>>>>>> origin/project1
 					PM.prodCombo.addItem(String.valueOf(dto.getpID()));
 				}
 				PM.ta.append(str);
@@ -125,6 +142,7 @@ public class Product_DAO implements DAO_Interface{
 		return;
 	}
 	public void SQL_INSERT(boolean f, int id) {
+<<<<<<< HEAD
 		String sql = "INSERT INTO PRODUCTS(PRODUCTS.pNAME, PRODUCTS.pPRICE, PRODUCTS.pTYPE, PRODUCTS.pMANUF) VALUES(?, ?, ?, ?)";
 		String sql2 = "UPDATE PRODUCTS SET pNAME = ?, pPRICE = ?, pTYPE = ?, pMANUF = ? WHERE pID = ?";
 		try {
@@ -154,6 +172,9 @@ public class Product_DAO implements DAO_Interface{
 		} finally {
 			
 		}
+=======
+		String sql = "INSERT";
+>>>>>>> origin/project1
 		
 	}
 	public void SQL_UPDATE() {

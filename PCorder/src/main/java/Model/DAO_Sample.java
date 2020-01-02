@@ -14,33 +14,33 @@ public class DAO_Sample {
 	private static DAO_Sample DAO = new DAO_Sample();
 	
 	public static DAO_Sample getInstance() {
-		//»èÁ¦
+		//ì‚­ì œ
 		return null;
 	}
 	private DAO_Sample() { //Constructor
 		
 	}
-	public ProductDTO getProduct(Integer id) {
-		ProductDTO p = null;
+	public Product_DTO getProduct(Integer id) {
+		Product_DTO p = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			//1. DBMS¿¡ ¸Â°Ô µå¶óÀÌ¹ö¸¦ ·Îµå. (cj.jdbcÀÓÀÇ ÁÖÀÇ)
+			//1. DBMSì— ë§ê²Œ ë“œë¼ì´ë²„ë¥¼ ë¡œë“œ. (cj.jdbcì„ì˜ ì£¼ì˜)
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			//2.DriverManager¸¦ Connection¿¡ ¿¬°á
+			//2.DriverManagerë¥¼ Connectionì— ì—°ê²°
 			conn = DriverManager.getConnection(url, user, pw);
 			
-			//3. Äõ¸®¹® »ı¼º
+			//3. ì¿¼ë¦¬ë¬¸ ìƒì„±
 			String sql = "SELECT * FROM users where id = ?";
 			
-			//4. DB¿¡ sql Äõ¸® Àü´ŞÇÏ±â À§ÇÑ °´Ã¼ »ı¼º
+			//4. DBì— sql ì¿¼ë¦¬ ì „ë‹¬í•˜ê¸° ìœ„í•œ ê°ì²´ ìƒì„±
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			
-			//5. Äõ¸® ½ÇÇà ¹× °á°ú ¾ò±â
+			//5. ì¿¼ë¦¬ ì‹¤í–‰ ë° ê²°ê³¼ ì–»ê¸°
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -53,13 +53,13 @@ public class DAO_Sample {
 				//p = new ProductDTO(ID, USERNAME, DEPT, BIRTH, EMAIL);
 			}
 			
-			System.out.println("ÇØ´ç °´Ã¼¸¦ °¡Á®¿Ô½À´Ï´Ù.");
+			System.out.println("í•´ë‹¹ ê°ì²´ë¥¼ ê°€ì ¸ì™”ìŠµë‹ˆë‹¤.");
 			System.out.println(p.toString());
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö ·Îµå ¿¡·¯");
+			System.out.println("ë“œë¼ì´ë²„ ë¡œë“œ ì—ëŸ¬");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("DB ¿¬°á ¿¡·¯");
+			System.out.println("DB ì—°ê²° ì—ëŸ¬");
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
