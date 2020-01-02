@@ -3,26 +3,22 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.sql.SQLException;
-import java.util.logging.Logger;
-
-import javax.swing.JButton;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JOptionPane;
+import javax.swing.JButton;
 
 import com.google.gson.Gson;
 
 import Model.Customers_DAO;
 import Model.Message;
 import Model.PCChatData;
+import Model.Product_DAO;
 import View.AdminView;
 import View.CusManager;
 import View.GUIView;
@@ -238,13 +234,27 @@ public class PCController implements Runnable {
 					GUI.msgInput.setText("");
 				}
 				else if(obj == GUI.sumb) {
-					int value = Integer.parseInt(GUI.Cashl.getText());
+					int value = Integer.parseInt(GUI.Cashl.getText());//합계를 가져오는 것
+					int point = Integer.parseInt(dao.getInstance().getCash(LV.loginTextField.getText()));//해당 아이디 포인트를 가져온다
 					if(dao.getInstance().Cash_Check(LV.loginTextField.getText(), value)){
-						JOptionPane.showMessageDialog(null, "결제가 되었습니다.");
-						GUI.la[2].setText("포인트 : " + Integer.toString(Integer.parseInt(dao.getInstance().getCash(LV.loginTextField.getText()))-value));
+						GUI.mess.setText(LV.loginTextField.getText() + "님, " + "결제가 되었습니다.");
+						System.out.println(point - value);
+						GUI.la[2].setText("포인트 : " + Integer.toString(point-value));
 					}
 					else
-						JOptionPane.showMessageDialog(null, "포인트가 부족합니다.", "ERROR", JOptionPane.ERROR_MESSAGE);
+						GUI.mess.setText("회원님, 포인트가 부족합니다.");
+				}
+				else if(obj == GUI.btn[1]) {
+					GUI.jl.setListData(dao.getInstance().getMenu(GUI.btn[1].getText()));
+				}
+				else if(obj == GUI.btn[2]) {
+					GUI.jl.setListData(dao.getInstance().getMenu(GUI.btn[2].getText()));
+				}
+				else if(obj == GUI.btn[3]) {
+					GUI.jl.setListData(dao.getInstance().getMenu(GUI.btn[3].getText()));
+				}
+				else if(obj == GUI.btn[4]) {
+					GUI.jl.setListData(dao.getInstance().getMenu(GUI.btn[4].getText()));
 				}
 			}
 		});

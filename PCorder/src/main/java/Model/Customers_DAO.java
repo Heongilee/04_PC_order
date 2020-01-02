@@ -1,7 +1,15 @@
 package Model;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
 import javax.swing.JOptionPane;
+
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class Customers_DAO implements DAO_Interface {
@@ -62,7 +70,7 @@ public class Customers_DAO implements DAO_Interface {
 
 	// 3. 외부의 인스턴스화를 막는다.
 	public Customers_DAO() {
-		
+
 	}
 
 	// 4. Customers_DAO의 인스턴스를 얻는 방법은 getInstance() 하나 뿐이다.
@@ -103,7 +111,6 @@ public class Customers_DAO implements DAO_Interface {
 
 			// 초기화면으로 돌아가는 명령어.
 		}
-
 		return;
 	}
 
@@ -252,8 +259,8 @@ public class Customers_DAO implements DAO_Interface {
 		}
 		return ok;
 	}
-	
-	public String getCash(String id) {//포인트 가져오는 메소드
+
+	public String getCash(String id) {// 포인트 가져오는 메소드
 		String result = "";
 		String sql = "SELECT cBALANCE FROM CUSTOMERS WHERE cNAME = ?";
 		try {
@@ -261,13 +268,38 @@ public class Customers_DAO implements DAO_Interface {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				result = Integer.toString(rs.getInt(1));
 			}
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			Customers_DAO.closeJDBC(conn, pstmt, pstmt, rs);
 		}
 		return result;
 	}
+
+	public Vector<Product_DTO> getMenu(String type) {// 타입별로 메뉴 리스트를 가져오는 메소드
+
+		Vector<Product_DTO> menu = new Vector<Product_DTO>();
+		String sql = "SELECT * FROM PRODUCTS WHERE pTYPE = ?";// 타입에 맞는 것을 다 가져와서
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Product_DTO dto = new Product_DTO(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4),rs.getString(5));
+				menu.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			Customers_DAO.closeJDBC(conn, pstmt, pstmt, rs);
+		}
+		return menu;
+	}
+
 }

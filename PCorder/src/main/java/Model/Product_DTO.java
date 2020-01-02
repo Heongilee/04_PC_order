@@ -63,12 +63,7 @@ public class Product_DTO {
 
 	@Override
 	public String toString() {
-		if(this.getpID() == -1) {
-			return "전체";
-		}
-		else {
-			return String.valueOf(this.getpID());
-		}
+		return this.pNAME+"("+this.pPrice+")";
 	}
 	
 }

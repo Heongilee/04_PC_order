@@ -36,7 +36,7 @@ public class LoginView extends JFrame{
 	public JButton SignUpbtn = new JButton("회원가입");
 	JLabel idlb;
 	JLabel passlb;
-	JLabel la;
+	public JLabel la;
 	boolean flag;
 	public JRadioButton user = new JRadioButton("user MODE");
 	public JRadioButton server = new JRadioButton("server MODE");

@@ -6,9 +6,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.ScrollPane;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -32,6 +33,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import Model.Product_DTO;
 
 public class GUIView extends JFrame {
 	public static GUIView GV = getInstance();
@@ -59,25 +62,23 @@ public class GUIView extends JFrame {
 	JLabel cl2 = new JLabel("상품명                  가격                   개수");
 	JTextArea ta1 = new JTextArea();// 가운데 센터 텍스트
 	JLabel tf1 = new JLabel("합계  ");// 합계 텍스트 필드
-	public JLabel Cashl = new JLabel("0");
-	
+	public JLabel Cashl = new JLabel("5000");
 
 	public JButton sumb = new JButton("결제");
 	JPanel ep4 = new JPanel();// 오른쪽 채팅 패널
 	public JTextArea ta2 = new JTextArea("", 10, 30);// 오른쪽 텍스트
 	JLabel cha = new JLabel("Chatting");
 	String ca[] = { "BEST3", "라면류", "음료류", "간식류", "과자류" };
-	JList<String> jl = new JList<String>();// 왼쪽 패널 리스트
+	public JList<Product_DTO> jl = new JList<Product_DTO>();// 왼쪽 패널 리스트
 	JLabel wea = new JLabel("");
-	JLabel mess = new JLabel("## 메시지");
+	public JLabel mess = new JLabel("## 메시지");
 	JLabel pro = new JLabel("상품 분류");
 	JPanel topp = new JPanel();// 가운데 왼쪽 패널에 위 레이블 들
-	JLabel Listl1 = new JLabel("상품이름");
-	JLabel Listl2 = new JLabel("가격");
+	JLabel Listl1 = new JLabel("상품이름(가격)");
 	public String upin[] = { "아이디: ", "로그인 시간", "포인트: " };
 	ArrayList<String> menuList = new ArrayList<String>();// 디비에서 가져온 메뉴 리스트\
-	JButton btn[] = new JButton[5];
-	public JLabel la[] = new JLabel[3];//upin을 레이블로 세팅
+	public JButton btn[] = new JButton[5];
+	public JLabel la[] = new JLabel[3];// upin을 레이블로 세팅
 	public String id;// 아이디 출력 문자열
 	public String pointLabel; // 포인트 출력 라벨
 	public String seat;
@@ -198,8 +199,24 @@ public class GUIView extends JFrame {
 			btn[i].setFont(new Font("굴림", Font.PLAIN, 12));
 			btn[i].setForeground(Color.WHITE);
 			wp2.add(btn[i]);
-
 		}
+
+		jl.addMouseListener(new MouseAdapter() {// 상품 더블클릭시 추가되는 리스너
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				// TODO Auto-generated method stub
+				if (e.getClickCount() == 2) {
+					String res = JOptionPane.showInputDialog(null, "개수를 입력하세요!");
+					if (isNumeric(res) == true) {
+						JOptionPane.showMessageDialog(null, "상품을 추가하였습니다. ");
+
+//						ta1.append(str);
+					}
+				}
+			}
+
+		});
 
 		if (toggle == true)
 			wp2.setBorder(new TitledBorder(new LineBorder(Color.BLACK)));
@@ -214,17 +231,21 @@ public class GUIView extends JFrame {
 		ctopp.setLayout(new BorderLayout());
 
 		Listl1.setHorizontalAlignment(JLabel.LEFT);
-		Listl2.setHorizontalAlignment(JLabel.RIGHT);
+//		Listl2.setHorizontalAlignment(JLabel.RIGHT);
 		topp.add(Listl1, BorderLayout.WEST);
-		topp.add(Listl2, BorderLayout.EAST);
-		jl.add(new ScrollPane());
+//		topp.add(Listl2, BorderLayout.EAST);
+		jl.setVisibleRowCount(5);
+		jl.setFixedCellWidth(200);
+		jl.setForeground(Color.RED);
+
 		crp1.add(topp, BorderLayout.NORTH);
-		crp1.add(jl, BorderLayout.CENTER);
+		crp1.add(jl, BorderLayout.CENTER);// JList를 가운데에 붙인다
 
 		ctopp.add(cl1, BorderLayout.NORTH);
 		ctopp.add(cl2, BorderLayout.SOUTH);
 
 		crp2.add(ctopp, BorderLayout.NORTH);
+		ta1.setEditable(false);
 		crp2.add(ta1, BorderLayout.CENTER);
 		crp2.add(crp3, BorderLayout.SOUTH);
 		crp3.add(tf1);
@@ -273,15 +294,28 @@ public class GUIView extends JFrame {
 	}
 
 	public static GUIView getInstance() {
-		if(GV == null) {
+		if (GV == null) {
 			GV = new GUIView();
 		}
 		return GV;
+	}
+
+	public static boolean isNumeric(String s) { // 숫자인지 구분 //
+		try {
+			Integer.parseInt(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
 	public void addButtonActionListener(ActionListener listener) {
 		LogOutbtn.addActionListener(listener);
 		msgInput.addActionListener(listener);
 		sumb.addActionListener(listener);
+		for (int i = 0; i < 5; i++) {
+			btn[i].addActionListener(listener);
+		}
 	}
+
 }
