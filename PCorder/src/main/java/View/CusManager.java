@@ -7,92 +7,161 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.JViewport;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-public class CusManager {
-	public class CusManagerAppMain extends JFrame {
-		private Container c;
-		JLabel title = new JLabel("∞Ì∞¥∞¸∏Æ");
-		JPanel leftPanel = new JPanel();
-		JPanel rightPanel = new JPanel();
-		JComboBox<String> chatSeat = new JComboBox<String>();
-		JTextArea chatContent = new JTextArea("",12,47);
-		JTextField chatInput = new JTextField(10);
-		JButton chatSubmit = new JButton("send");
-		TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK), "¡¬ºÆ");
-		JViewport vp = new JViewport();
-		JPanel msgPanel = new JPanel();
-		JPanel seatPanel = new JPanel();
-		private SeatPanel SP = new SeatPanel();
-		private ChatPanel CP = new ChatPanel();
-		public CusManagerAppMain() {
-			super("∞Ì∞¥∞¸∏Æ");
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			c = getContentPane();
-			c.setLayout(new GridLayout(1,2));
-			
-			leftPanel.setLayout(new FlowLayout(FlowLayout.RIGHT,0,40));
-			title.setFont(new Font("±º∏≤", Font.BOLD, 50));
-			leftPanel.add(title);
-			leftPanel.add(SP);
-			c.add(leftPanel);
-			
-			rightPanel.add(CP);
-			c.add(rightPanel);
-			setSize(700,452);
-			setLocationRelativeTo(null);
-			// ≈©±‚ ∞Ì¡§
-	        super.setResizable(false);
-			setVisible(true);
+//Î°úÍ∑∏Ïù∏ Î∑∞ -> Í¥ÄÎ¶¨Ïûê Î∑∞ -> Í≥†Í∞ùÍ¥ÄÎ¶¨ Î∑∞ (Ïã±Í∏ÄÌÜ§ Ìå®ÌÑ¥)
+public class CusManager extends JFrame {
+	private static CusManager CM = new CusManager();
+	private static Container c;
+	JLabel title = new JLabel("Í≥†Í∞ùÍ¥ÄÎ¶¨");
+	JPanel leftPanel = new JPanel();
+	JPanel rightPanel = new JPanel();
+	public JComboBox<String> chatComboBox = new JComboBox<String>();
+	public JTextArea chatContent = new JTextArea("", 12, 50);
+	public JTextField chatInput = new JTextField();
+	JButton chatSubmit = new JButton("send");
+	JLabel order[];
+	TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK), "Ï¢åÏÑù");
+	JViewport vp = new JViewport();
+	JPanel msgPanel = new JPanel();
+	JPanel seatPanel = new JPanel();
+	LoginView LV = LoginView.getInstance();
+	public SeatPanel SP = new SeatPanel();
+	public ChatPanel CP = new ChatPanel();
+
+	JToolBar bar = new JToolBar();
+	public JButton previousBtn = new JButton("< Ïù¥Ï†Ñ");
+	public JButton logoutBtn = new JButton("Î°úÍ∑∏ÏïÑÏõÉ");
+
+	public boolean loginFlag = false;
+	public String id = "Í¥ÄÎ¶¨Ïûê";
+
+	private CusManager() {
+		super("Í≥†Í∞ùÍ¥ÄÎ¶¨");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Ìà¥Î∞î interface
+		bar.add(previousBtn);
+		bar.addSeparator(new Dimension(750, 30));
+		bar.add(logoutBtn);
+		add(bar, BorderLayout.NORTH);
+
+		JLayeredPane layeredpane = new JLayeredPane();
+		layeredpane.setBounds(0, 0, 700, 600);
+		layeredpane.setLayout(null);
+
+		layeredpane.setLayout(new GridLayout(1, 2));
+
+		leftPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 40));
+		title.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 38));
+		leftPanel.add(title);
+		leftPanel.add(SP);
+		layeredpane.add(leftPanel);
+
+		rightPanel.add(CP);
+		layeredpane.add(rightPanel);
+		add(layeredpane);
+		setSize(900, 700);
+		setLocationRelativeTo(null);
+		// ÌÅ¨Í∏∞ Í≥†Ï†ï
+		super.setResizable(false);
+
+		setVisible(false);
+//		chatInput.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				chatInput.getText();
+//				chatContent.setText(chatContent.getText() + chatInput.getText() + "\n");
+//				chatInput.setText("");
+//			}
+//		});
+	}
+
+	public static CusManager getInstance() {
+		return CM;
+	}
+
+	public class SeatPanel extends JPanel {
+		JButton[] seatBtn = new JButton[12];
+		public JTextArea[] seatTextArea = new JTextArea[12];
+
+		public SeatPanel() {
+			setLayout(new GridLayout(3, 4, 10, 10));
+			for (int i = 0; i < seatBtn.length; i++) {
+
+//				seatLabel[i].setPreferredSize(new Dimension((int) (100), (int) (120))); //
+				add(seatBtn[i] = new JButton(""));
+				seatBtn[i].add(seatTextArea[i] = new JTextArea("Îπà Ïûê Î¶¨\n",12,20));
+				seatBtn[i].setPreferredSize(new Dimension((int) (100), (int) (120))); //
+				seatBtn[i].setBackground(new Color(255, 255, 255));
+				seatBtn[i].setFont(new Font("Í≥†ÎîïÏ≤¥", Font.BOLD, 16));
+				seatBtn[i].setForeground(Color.BLACK);
+
+			}
 		}
-		public class SeatPanel extends JPanel {
-//			final String[] seatName = {""}
-			JButton[] seatBtn = new JButton[12];
-			public SeatPanel() {
-				setLayout(new GridLayout(3,4,10,10));
-				for(int i=0;i<seatBtn.length;i++) {
-					
-					add(seatBtn[i] = new JButton(Integer.toString(i+1)));
-					
-					seatBtn[i].setPreferredSize(new Dimension((int)(70), (int)(70)));
-					seatBtn[i].setBackground(new Color(255, 255, 255));
-					seatBtn[i].setFont(new Font("±º∏≤", Font.BOLD, 16));
-					seatBtn[i].setForeground(Color.BLACK);
-				}
-			}
-		}// SeatPanel
-		public class ChatPanel extends JPanel {
-			
-			public ChatPanel() {
-				
-				setLayout(new BorderLayout());
-				setBorder(border);
-				setPreferredSize(new Dimension((int)(300), (int)(400)));
-				seatPanel.setLayout(new BorderLayout());
-				seatPanel.add(BorderLayout.NORTH,chatSeat);
-				add(seatPanel,BorderLayout.NORTH);
-				
-				vp.add(new JScrollPane(chatContent));
-				chatContent.setEditable(false);
-				add(vp, BorderLayout.CENTER);
-				
-				msgPanel.setLayout(new BorderLayout());
-				msgPanel.add(BorderLayout.CENTER,chatInput);
-				msgPanel.add(BorderLayout.EAST,chatSubmit);
-				add(msgPanel,BorderLayout.SOUTH);
-				}
-			}
-		}// ChatPanel
+	}// SeatPanel
+
+	public class ChatPanel extends JPanel {
+
+		public ChatPanel() {
+
+			setLayout(new BorderLayout());
+			setBorder(border);
+			setPreferredSize(new Dimension((int) (350), (int) (600))); // Ï±ÑÌåÖÏ∞Ω
+			seatPanel.setLayout(new BorderLayout());
+			chatComboBox.addItem("Ï†ÑÏ≤¥");
+
+			seatPanel.add(BorderLayout.NORTH, chatComboBox);
+			add(seatPanel, BorderLayout.NORTH);
+
+			vp.add(new JScrollPane(chatContent));
+			chatContent.setEditable(false);
+			add(vp, BorderLayout.CENTER);
+
+			msgPanel.setLayout(new BorderLayout());
+			msgPanel.add(BorderLayout.CENTER, chatInput);
+
+			chatSubmit.setBackground(Color.black);
+			chatSubmit.setFont(new Font("Í≥†ÎîïÏ≤¥", Font.PLAIN, 15));
+			chatSubmit.setForeground(Color.WHITE);
+			msgPanel.add(BorderLayout.EAST, chatSubmit);
+			add(msgPanel, BorderLayout.SOUTH);
+		}
+	}// ChatPanel
+
+	public class ChatSeatContent {
+		private String seat;
+
+		public String getSeat() {
+			return seat;
+		}
+
+		public void setSeat(String seat) {
+			this.seat = seat;
+		}
+//	      public String toString() {
+//	         return this.id+"\t"+this.name+"\t\t\t"+this.price+"\t"+this.manufacture;
+//	      }
+	}
+
+	public void addButtonActionListener(ActionListener listener) {
+		chatInput.addActionListener(listener);
+		previousBtn.addActionListener(listener);
+		logoutBtn.addActionListener(listener);
+	}
 }

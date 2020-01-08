@@ -1,91 +1,80 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
-public class AdminView {
-	public static class AdminMain extends JFrame {
-		//Login_Panel_Component
-		JButton cm_btn = new JButton("°í°´°ü¸®");
-		JButton pm_btn = new JButton("»óÇ°°ü¸®");
-		private LoginPanel LP = new LoginPanel();
+//ë¡œê·¸ì¸ ë·° -> ê´€ë¦¬ì ë·°
+public class AdminView extends JPanel {
+	protected CardLayout cardLayout;
+	protected Container tab;
+	public JButton cm_btn = new JButton("ê³ ê°ê´€ë¦¬");
+	public JButton pm_btn = new JButton("ìƒí’ˆê´€ë¦¬");
+	private LoginPanel LP = new LoginPanel();
+	JLabel title = new JLabel("Server Mode");
+	private static Container c;
+	public JButton Previousbtn = new JButton("< ì´ì „");
+	JButton LogOutbtn = new JButton("ë¡œê·¸ì•„ì›ƒ");
+	JPanel window;
+	
+	//ê°ê°ì˜ ì‹±ê¸€í†¤ ê°ì²´ í˜¸ì¶œ.
+	LoginView LV = LoginView.getInstance();
+	CusManager CM = CusManager.getInstance();
+	ProdManager PM = ProdManager.getInstance();
+	
+	public AdminView() {
+		JLayeredPane layeredpane = new JLayeredPane();
+		layeredpane.setBounds(0, 0, 700, 600);
+		layeredpane.setLayout(null);
+
+		setLayout(new BorderLayout());
+
+		cm_btn.setBackground(Color.black);
+		cm_btn.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 19));
+		cm_btn.setForeground(Color.WHITE);
+
+		pm_btn.setBackground(Color.black);
+		pm_btn.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 19));
+		pm_btn.setForeground(Color.WHITE);
+
+		title.setFont(new Font("ê³ ë”•ì²´", Font.BOLD, 29));
+		title.setForeground(Color.BLACK);
+
+		cm_btn.setBounds(200, 200, 300, 60);
+		pm_btn.setBounds(200, 300, 300, 60);
+		title.setBounds(270, 100, 300, 60);
+
+		layeredpane.add(cm_btn);
+		layeredpane.add(pm_btn);
+		layeredpane.add(title);
 		
-		private static Container c;
-		JPanel panel = new JPanel();
-		public AdminMain() {
-			super("°ü¸®ÀÚ Login");
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			c = getContentPane();
-			c.setLayout(new BorderLayout());
-			
-			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 80));
-			cm_btn.addActionListener(new MyActionListener());
-			pm_btn.addActionListener(new MyActionListener());
-			LP.add(cm_btn);
-			LP.add(pm_btn);
-			panel.add(LP);
-			c.add(panel, BorderLayout.CENTER);
-			setSize(300,300);
-			//setLocationRelativeTo(null); //?? 
-			setVisible(true);
-		}
-
-		public class LoginPanel extends JPanel {
-			public LoginPanel() {
-				setLayout(new GridLayout(2,1,100,22));
-			}
-		}	
-		private class MyActionListener implements ActionListener {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JButton btn = (JButton)e.getSource();
-				
-				if(btn.getText().equals("°í°´°ü¸®")) {
-					new CusManager();
-				} else { // »óÇ°°ü¸®
-					new ProdManager();
-				}
-			}
-		}
-	}
-//	public class MyWinExit extends WindowAdapter {
-//        public void windowClosing(WindowEvent we) {
-//            System.exit(0); // À©µµ Á¾·á
-//        }
-//    }
-//	public static class CustomerWindow extends JFrame {
-//		private static Container c;
-//		JPanel panel = new JPanel();
-//		public CustomerWindow() {
-//			super("°í°´°ü¸®Ã¢");
-//			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			
-//			c = getContentPane();
-//			c.setLayout(new BorderLayout());
-//			
-//			
-//			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 80));
-//			panel.add(LP);
-//			c.add(panel, BorderLayout.CENTER);
-//			setSize(300,300);
-//			setLocationRelativeTo(null);
-//			setVisible(true);
-//		}
-	
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new AdminMain();
+		add(layeredpane);
+		setSize(700, 600);
+		setVisible(true);
+		
 	}
 
+	public class LoginPanel extends JPanel {
+		public LoginPanel() {
+			setLayout(new GridLayout(2, 1, 100, 22));
+		}
+	}
+	
+	//ë¦¬ìŠ¤ë„ˆ í•¸ë“¤ëŸ¬ ì—°ê²° ë©”ì†Œë“œ
+	public void addButtonActionListener(ActionListener listener) {
+		cm_btn.addActionListener(listener);
+		pm_btn.addActionListener(listener);
+		Previousbtn.addActionListener(listener);
+	}
 }
