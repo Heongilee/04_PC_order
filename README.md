@@ -35,8 +35,14 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
 이미 로그인중인 계정을 다른 클라이언트가 로그인을 시도할 경우 로그인이 막히도록 구현했습니다.   
    
 ### 상품 구매
-#### 
-<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/07.gif?raw=true" width=800>
+
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/07.gif?raw=true" width=800>   
+   
+   
+* 상품 결제시 관리자 컴퓨터에 반영   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/09.gif?raw=true" width=800>   
+상품을 결제하면 관리자 컴퓨터에는 사용자가 로그인한 좌석에 주문한 상품이 표시됩니다.   
+   
 ---
   ※	프로그램 실행 순서	※ 
   
