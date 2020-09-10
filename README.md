@@ -11,6 +11,8 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
 :boy: 팀	원 : 정민영	15012971  
 :girl: 팀	원 : 권동희	15012982  
 :boy: 팀	원 : 김영현	17013139  
+## 시스템 구성도
+![sysconfigdiagram](https://github.com/Heongilee/04_PC_order/blob/master/04%EC%A1%B0_%EC%B5%9C%EC%A2%85%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EC%84%A4%EA%B3%84%EC%84%9C/sys.jpg?raw=true)
 ## 클래스 설계 :pencil2:
    
 * Model
