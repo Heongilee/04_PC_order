@@ -35,13 +35,25 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
 이미 로그인중인 계정을 다른 클라이언트가 로그인을 시도할 경우 로그인이 막히도록 구현했습니다.   
    
 ### 상품 구매
-
+* 포인트 부족
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/07.gif?raw=true" width=800>   
-   
+포인트가 부족하면 상품을 구매할 수 없습니다.
    
 * 상품 결제시 관리자 컴퓨터에 반영   
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/09.gif?raw=true" width=800>   
 상품을 결제하면 관리자 컴퓨터에는 사용자가 로그인한 좌석에 주문한 상품이 표시됩니다.   
+   
+### 사용자가 관리자에게 메시지를 보냄(Talk 기능)
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/10.gif?raw=true" width=800>   
+사용자가 보낸 메시지는 관리자에게만 보여집니다.
+   
+### 관리자가 사용자에게 메시지를 보냄(Broadcast 기능)
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/11.gif?raw=true" width=800>   
+관리자가 보낸 메시지는 모든 사용자들에게 보여집니다.
+   
+### 관리자가 특정 사용자에게 메시지를 보냄(Talk 기능)
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/12.gif?raw=true" width=800>   
+관리자는 특정 사용자만 볼 수 있는 메시지를 전송할 수 있습니다.
    
 ---
   ※	프로그램 실행 순서	※ 
