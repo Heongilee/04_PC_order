@@ -37,8 +37,9 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
 ### 상품 구매
 * 포인트 부족
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/07.gif?raw=true" width=800>   
-포인트가 부족하면 상품을 구매할 수 없습니다.
-   
+포인트가 부족하면 상품을 구매할 수 없습니다.   
+  
+  #
 * 상품 결제시 관리자 컴퓨터에 반영   
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/09.gif?raw=true" width=800>   
 상품을 결제하면 관리자 컴퓨터에는 사용자가 로그인한 좌석에 주문한 상품이 표시됩니다.   
@@ -55,6 +56,31 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/12.gif?raw=true" width=800>   
 관리자는 특정 사용자만 볼 수 있는 메시지를 전송할 수 있습니다.
    
+### 사용자가 로그아웃하면 관리자 컴퓨터에 반영
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/18.gif?raw=true" width=800>   
+사용자가 로그아웃하면 좌석은 빈자리로 초기화되며, 관리자 측에 해당 사용자가 접속을 종료했다는 알림메시지가 출력됩니다.
+   
+### 재고 관리
+* (Create) 상품 생성하기   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/14.gif?raw=true" width=400>   
+상품명, 단가, 제조사, 카테고리를 선택하면 원하는 품목을 추가시킬 수 있습니다.
+  
+  #
+* (Read) 상품 불러오기   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/13.gif?raw=true" width=400> <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/15.gif?raw=true" width=400>   
+전체 상품을 조회하거나 특정 상품만 콤보박스에서 선택해 조회할 수 있습니다.
+  
+  #
+* (Update) 상품 수정하기   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/16.gif?raw=true" width=800>   
+상품 조회 후 수정하고자 하는 필드를 수정하면 상품 정보가 수정됩니다.
+  
+  #
+* (Delete) 상품 삭제하기   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/17.gif?raw=true" width=800>   
+원하는 상품을 선택 후 삭제를 할 수 있습니다.
+  
+  #
 ---
   ※	프로그램 실행 순서	※ 
   
