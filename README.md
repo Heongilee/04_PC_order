@@ -64,7 +64,7 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
    
 ### 재고 관리
 * (Create) 상품 생성하기   
-<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/14.gif?raw=true" width=400>   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/14.gif?raw=true" width=800>   
 상품명, 단가, 제조사, 카테고리를 선택하면 원하는 품목을 추가시킬 수 있습니다.
   
   #
