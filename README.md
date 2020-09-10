@@ -33,10 +33,10 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
 ### 중복 로그인 예외 처리
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/06.gif?raw=true" width=800>   
 이미 로그인중인 계정을 다른 클라이언트가 로그인을 시도할 경우 로그인이 막히도록 구현했습니다.   
-### 상품 구매
-<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/07.gif?raw=true" width=266>   
-사용자의 포인트가 부족할 경우 상품을 구매할 수 없습니다.
    
+### 상품 구매
+#### 
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/07.gif?raw=true" width=800>
 ---
   ※	프로그램 실행 순서	※ 
   
