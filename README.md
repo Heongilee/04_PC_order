@@ -14,13 +14,13 @@ JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 �
 ## 클래스 설계 :pencil2:
    
 * Model
-![model](https://github.com/Heongilee/04_PC_order/blob/master/04%EC%A1%B0_%EC%B5%9C%EC%A2%85%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EC%84%A4%EA%B3%84%EC%84%9C/Final_Model.gif?raw=true)
+![model](https://github.com/Heongilee/04_PC_order/blob/master/04%EC%A1%B0_%EC%B5%9C%EC%A2%85%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EC%84%A4%EA%B3%84%EC%84%9C/Model.jpg?raw=true)
    
 * View
-![view](https://github.com/Heongilee/04_PC_order/blob/master/04%EC%A1%B0_%EC%B5%9C%EC%A2%85%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EC%84%A4%EA%B3%84%EC%84%9C/Final_View.gif?raw=true)
+![view](https://github.com/Heongilee/04_PC_order/blob/master/04%EC%A1%B0_%EC%B5%9C%EC%A2%85%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EC%84%A4%EA%B3%84%EC%84%9C/View.jpg?raw=true)
    
 * Controller
-![controller](https://github.com/Heongilee/04_PC_order/blob/master/04%EC%A1%B0_%EC%B5%9C%EC%A2%85%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EC%84%A4%EA%B3%84%EC%84%9C/Final_Controller.gif?raw=true)
+![controller](https://github.com/Heongilee/04_PC_order/blob/master/04%EC%A1%B0_%EC%B5%9C%EC%A2%85%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EC%84%A4%EA%B3%84%EC%84%9C/Controller.jpg?raw=true)
 
 ## 시연 :computer:
 ### 회원가입   
