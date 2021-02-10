@@ -49,7 +49,23 @@ Java의 Swing 라이브러리를 활용해 클라이언트 개발, MySQL DB를 �
 예외 처리를 진행했습니다.
 ```
 [:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC "로그인")
-
+   
+### 사용자 메인화면
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EC%82%AC%EC%9A%A9%EC%9E%90_%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4.png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%ED%8F%AC%EC%9D%B8%ED%8A%B8%EA%B2%B0%EC%A0%9C.png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/User2Admin.png?raw=true" width=800>
+   
+``` 
+사용자로 로그인했을때 맨 처음 보이는 화면입니다. 여기선 포인트로 음식 주문과 관리자와의 채팅을 이용할 수 있습니다.
+```
+[:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%EC%83%81%ED%92%88-%EA%B5%AC%EB%A7%A4 "사용자화면")
+   
+### 관리자 메인화면
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EA%B4%80%EB%A6%AC%EC%9E%90%ED%99%94%EB%A9%B4.png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/Admin2User(Talk).png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/Admin2User(Broadcast).png?raw=true" width=800>
+   
+``` 
+관리자로 로그인하면 고객관리와 상품관리 두 가지 기능을 수행할 수 있습니다. 여기선 현재 고객이 주문한 음식목록과 사용자와의 채팅이 이루어집니다.
+```
+[:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B0%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EC%97%90%EA%B2%8C-%EB%A9%94%EC%8B%9C%EC%A7%80%EB%A5%BC-%EB%B3%B4%EB%83%84talk-%EA%B8%B0%EB%8A%A5 "관리자화면")
+   
 ## 시연 :computer:
 ### 회원가입   
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/01.gif?raw=true" width=400> <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/02.gif?raw=true" width=400>   
