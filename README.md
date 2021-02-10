@@ -4,14 +4,14 @@
 ---
 ## 프로젝트 개요 :scroll:
    
-모의 PC방 음식 주문 및 채팅 서비스 입니다. Java의 Swing 라이브러리를 활용해 클라이언트 개발, 사용자를 스레드로 관리, 그리고 Server socket을 사용해 스레드간의 채팅 서비스를 구현했습니다.
+모의 PC방 음식 주문 및 채팅 서비스 입니다. Java의 Swing 라이브러리를 활용해 클라이언트 개발, MySQL DB를 사용해 음식, 고객, 주문 데이터 CRUD 데이터 가공과 비즈니스 로직 처리, 스레드로 사용자를 관리함에 따른 다수 사용자 지원, 그리고 Server socket을 사용해 스레드간의 채팅 서비스를 구현했습니다.
 ## 팀 구성 :sparkles:
    
 :boy: 팀	장 : 이헌기	15012970  
 :boy: 팀	원 : 정민영	15012971  
 :girl: 팀	원 : 권동희	15012982  
 :boy: 팀	원 : 김영현	17013139  
-## 시스템 구조도
+## 시스템 구조도 :triangular_ruler:
 ![sysconfigdiagram](https://github.com/Heongilee/04_PC_order/blob/master/UMLDiagram_v2.0/SysWithoutContributor.png?raw=true)
 ## 클래스 설계 :pencil2:
    
@@ -23,6 +23,11 @@
    
 * Controller
 ![controller](https://github.com/Heongilee/04_PC_order/blob/master/UMLDiagram_v2.0/Controller.gif?raw=true)
+
+## 기능스펙 :memo:
+![goto_회원가입](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85)
+<a href="https://github.com/Heongilee/04_PC_order/blob/master/README.md#회원가입" target="_blank">go to Registration</a>
+
 
 ## 시연 :computer:
 ### 회원가입   
