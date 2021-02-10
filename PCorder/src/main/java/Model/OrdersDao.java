@@ -1,30 +1,38 @@
 package Model;
 
+import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
-
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
-import Controller.PCController;
-import Controller.PCServer;
 import View.GUIView;
-import View.LoginView;
 
 //DB의 ORDERS 테이블에 접근하기 위한 DAO 클래스
-public class Orders_DAO implements DAO_Interface{
-	private static Orders_DAO dao;
-	private static GUIView GU = GUIView.getInstance();
+public class OrdersDao implements DAO_Interface{
+	private static OrdersDao dao;
 	public static Connection conn;
 	public static PreparedStatement pstmt;
 	public static Statement stmt;
 	public static ResultSet rs;
 	public static ResultSet rs2;
+
+	// 고객이 결제한 상품 정보가 저장된 Queue
+	// private static Queue<OrdersDto> orderQueue = new LinkedList<>();
+
+	// 고객이 주문한 상품 정보를 저장하기 위한 배열
+	private Vector<OrdersDto> orderList = new Vector<OrdersDto>();
+
+	// getter
+	public Vector<OrdersDto> getOrderList() {
+		return orderList;
+	}
+	// public Queue<OrdersDto> getOrderQueue() {
+	// 	return orderQueue;
+	// }
+
 	
 	//JDBC 연결을 하기 위한 메소드
 	public static Connection getConnection() throws Exception{
@@ -74,12 +82,12 @@ public class Orders_DAO implements DAO_Interface{
 		}
 	}
 	//3. 외부의 인스턴스화를 막는다.
-	private Orders_DAO() {}
+	private OrdersDao() {}
 	
 	//4. Customers_DAO의 인스턴스를 얻는 방법은 getInstance() 하나 뿐이다.
-	public static Orders_DAO getInstance() {
+	public static OrdersDao getInstance() {
 		if(dao == null) {
-			dao = new Orders_DAO();
+			dao = new OrdersDao();
 		}
 		return dao;
 	}
@@ -87,7 +95,7 @@ public class Orders_DAO implements DAO_Interface{
 	// 주문목록에 상품을 추가시키는 메소드
 	public int ORDERS_FUNC1(Product_DTO dto) {
 		int cnt = 0;
-		String cNAME = LoginView.getInstance().loginTextField.getText();
+		// String cNAME = LoginView.getInstance().loginTextField.getText();
 		try {
 			String res = JOptionPane.showInputDialog(null, "개수를 입력하세요");
 			if(res != null) {
@@ -98,9 +106,9 @@ public class Orders_DAO implements DAO_Interface{
 //					this.ORDERS_FUNC_1_1(cNAME, dto.getpNAME(), cnt);
 					
 					// ----------------------	주문목록에 디스플레이	---------------------------
-					GUIView.getInstance().ta1.append(str);
-					GUIView.getInstance().order_sum += cnt * dto.getpPrice();
-					GUIView.getInstance().order_sum_label.setText(String.valueOf(GUIView.getInstance().order_sum));
+					GUIView.getInstance().textAreaCenter.append(str);
+					GUIView.getInstance().orderSum += cnt * dto.getpPrice();
+					GUIView.getInstance().orderSumLabel.setText(String.valueOf(GUIView.getInstance().orderSum));
 			}
 			else { // Cancel을 눌렀을 경우.
 				JOptionPane.showMessageDialog(null, "상품 갯수는 반드시 입력되어야 합니다.", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -134,7 +142,7 @@ public class Orders_DAO implements DAO_Interface{
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-			Orders_DAO.closeJDBC(conn, pstmt, pstmt, rs);
+			OrdersDao.closeJDBC(conn, pstmt, pstmt, rs);
 		}
 		
 		return;
@@ -151,7 +159,7 @@ public class Orders_DAO implements DAO_Interface{
 			rs = stmt.executeQuery(sql1);
 			int i;
 			Product_DTO dto;
-			DefaultListModel<Product_DTO> listModel;
+			// DefaultListModel<Product_DTO> listModel;
 			
 			for(i=0;(i<3) && (rs.next());i++) {
 				String prodName = rs.getString(1);
@@ -171,7 +179,7 @@ public class Orders_DAO implements DAO_Interface{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			Customers_DAO.closeJDBC(conn, pstmt, pstmt, rs);
+			CustomersDao.closeJDBC(conn, pstmt, pstmt, rs);
 		}
 		
 		return menu;
@@ -194,7 +202,7 @@ public class Orders_DAO implements DAO_Interface{
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		} finally {
-			Orders_DAO.closeJDBC(conn, pstmt, pstmt, rs);
+			OrdersDao.closeJDBC(conn, pstmt, pstmt, rs);
 		}
 		
 		return dto;
@@ -203,23 +211,27 @@ public class Orders_DAO implements DAO_Interface{
 	//주문 테이블에 있는 모든 레코드를 가져오는 메소드
 	public void ORDERS_FUNC_2() {
 		String sql = "SELECT * FROM ORDERS";
-		PCServer.PCorder_list.removeAllElements();
+		orderList.removeAllElements();
+		//! This code has been depricated...
+		// PCServer.PCorder_list.removeAllElements();
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			Orders_DTO dto;
+			OrdersDto dto;
 			while(rs.next()) {
-				dto = new Orders_DTO(rs.getString(2), rs.getString(3), rs.getInt(4));
+				dto = new OrdersDto(rs.getString(2), rs.getString(3), rs.getInt(4));
 				
-				PCServer.PCorder_list.add(dto);
+				orderList.add(dto);
+				//! This code has been depricated...
+				// PCServer.PCorder_list.add(dto);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		} finally {
-			Orders_DAO.closeJDBC(conn, pstmt, pstmt, rs);
+			OrdersDao.closeJDBC(conn, pstmt, pstmt, rs);
 		}
 		
 		return;
