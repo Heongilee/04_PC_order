@@ -66,6 +66,30 @@ Java의 Swing 라이브러리를 활용해 클라이언트 개발, MySQL DB를 �
 ```
 [:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B0%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EC%97%90%EA%B2%8C-%EB%A9%94%EC%8B%9C%EC%A7%80%EB%A5%BC-%EB%B3%B4%EB%83%84talk-%EA%B8%B0%EB%8A%A5 "관리자화면")
    
+### 관리자 화면 > 고객 관리
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EA%B4%80%EB%A6%AC%EC%9E%90%ED%99%94%EB%A9%B4.png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/Admin2User(Talk).png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/Admin2User(Broadcast).png?raw=true" width=800>
+   
+``` 
+관리자로 로그인하면 고객관리와 상품관리 두 가지 기능을 수행할 수 있습니다.   
+여기선 현재 고객이 주문한 음식목록과 사용자와의 채팅이 이루어집니다.
+```
+[:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B0%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EC%97%90%EA%B2%8C-%EB%A9%94%EC%8B%9C%EC%A7%80%EB%A5%BC-%EB%B3%B4%EB%83%84talk-%EA%B8%B0%EB%8A%A5 "관리자_고객관리")
+   
+### 관리자 화면 > 상품 관리
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EC%83%81%ED%92%88%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80.png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EC%83%81%ED%92%88%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80(Create).png?raw=true" width=800>
+   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EC%83%81%ED%92%88%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80(Read_all).png?raw=true" width=400 height=400> <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EC%83%81%ED%92%88%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80(Specific_Read).png?raw=true" width=400 height=400>
+   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EC%83%81%ED%92%88%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80(Update).png?raw=true" width=800>
+   
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EC%83%81%ED%92%88%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80(Delete).png?raw=true" width=800>
+   
+``` 
+관리자로 로그인하면 고객관리와 상품관리 두 가지 기능을 수행할 수 있습니다.   
+여기선 우리 서비스에서 판매하는 상품들의 재고를 관리할 수 있습니다.
+```
+[:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%EC%9E%AC%EA%B3%A0-%EA%B4%80%EB%A6%AC "관리자_상품관리")
+   
 ## 시연 :computer:
 ### 회원가입   
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/01.gif?raw=true" width=400> <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/02.gif?raw=true" width=400>   
