@@ -35,7 +35,8 @@ Java의 Swing 라이브러리를 활용해 클라이언트 개발, MySQL DB를 �
 ## 기능스펙 :memo:
 ### 회원가입
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85_%EC%A4%91%EB%B3%B5%EA%B2%80%EC%82%AC.png?raw=true" width=800>
-바로가기 : [Google](http://www.google.com "구글")
+   
+바로가기 : [시연영상_보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-1 "회원가입"){:target="_blank"}
 
 
 ## 시연 :computer:
