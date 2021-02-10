@@ -1,10 +1,10 @@
-# PC방 푸드 오더 시스템 및 서버 클라이언트 채팅
+# PC방 음식 주문 및 채팅 서비스
 > 04조_객체지향설계기술 팀 프로젝트   
 ![imgs](https://img.shields.io/badge/Language-Java-orange) ![imgs](https://img.shields.io/badge/Database-MySQL-blue) ![imgs](https://img.shields.io/badge/Build%20Tool-Apache%20Maven-red)
 ---
 ## 프로젝트 개요 :scroll:
    
-JAVA 기반 모의 PC방 음식 주문 및 소켓 프로그래밍을 활용한 클라이언트/서버 채팅 시스템. 
+모의 PC방 음식 주문 및 채팅 서비스 입니다. Java의 Swing 라이브러리를 활용해 클라이언트 개발, 사용자를 스레드로 관리, 그리고 Server socket을 사용해 스레드간의 채팅 서비스를 구현했습니다.
 ## 팀 구성 :sparkles:
    
 :boy: 팀	장 : 이헌기	15012970  
