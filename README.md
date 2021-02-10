@@ -4,13 +4,21 @@
 ---
 ## 프로젝트 개요 :scroll:
    
-모의 PC방 음식 주문 및 채팅 서비스 입니다. Java의 Swing 라이브러리를 활용해 클라이언트 개발, MySQL DB를 사용해 음식, 고객, 주문 데이터 CRUD 데이터 가공과 비즈니스 로직 처리, 스레드로 사용자를 관리함에 따른 다수 사용자 지원, 그리고 Server socket을 사용해 스레드간의 채팅 서비스를 구현했습니다.
+```
+모의 PC방 음식 주문 및 채팅 서비스 입니다. 
+
+Java의 Swing 라이브러리를 활용해 클라이언트 개발, MySQL DB를 사용해 음식, 고객, 
+주문 데이터 CRUD 데이터 가공과 비즈니스 로직 처리, 스레드로 사용자를 관리함에 따른 다수 사용자 지원, 
+그리고 Server socket을 사용해 스레드간의 채팅 서비스를 구현했습니다.
+```
+
 ## 팀 구성 :sparkles:
    
 :boy: 팀	장 : 이헌기	15012970  
 :boy: 팀	원 : 정민영	15012971  
 :girl: 팀	원 : 권동희	15012982  
 :boy: 팀	원 : 김영현	17013139  
+
 ## 시스템 구조도 :triangular_ruler:
 ![sysconfigdiagram](https://github.com/Heongilee/04_PC_order/blob/master/UMLDiagram_v2.0/SysWithoutContributor.png?raw=true)
 ## 클래스 설계 :pencil2:
@@ -25,15 +33,17 @@
 ![controller](https://github.com/Heongilee/04_PC_order/blob/master/UMLDiagram_v2.0/Controller.gif?raw=true)
 
 ## 기능스펙 :memo:
-![goto_회원가입](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85)
-<a href="https://github.com/Heongilee/04_PC_order/blob/master/README.md#회원가입" target="_blank">go to Registration</a>
+### 회원가입
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85_%EC%A4%91%EB%B3%B5%EA%B2%80%EC%82%AC.png?raw=true" width=800>
+:arrow_forward: <a href="https://github.com/Heongilee/04_PC_order/blob/master/README.md#회원가입" target="_blank">바로가기</a>
+![goto_회원가입](https://github.com/Heongilee/04_PC_order/blob/master/README.md#회원가입){:target="_blank"}
+
 
 
 ## 시연 :computer:
 ### 회원가입   
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/01.gif?raw=true" width=400> <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/02.gif?raw=true" width=400>   
-회원가입 시 요구되는 아이디, 닉네임, 이메일은 중복이 없어야 하며 3가지 중 하나라도 중복될 경우 회원가입에 실패합니다.   
-3가지 중복에 대해 모두 유효할 경우 회원가입이 완료 됩니다.   
+
 ### 예외처리
 <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/03.gif?raw=true" width=266> <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/04.gif?raw=true" width=266> <img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/05.gif?raw=true" width=266>   
 사용자가 관리자 모드(Server mode)에 접근하려는 경우, 사용자가 존재하지 않는 아이디로 로그인 시도할 경우, 사용자가 비밀번호를 잘못 입력한 경우, 모두 에러메시지를 출력합니다.   
