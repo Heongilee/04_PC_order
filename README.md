@@ -34,10 +34,21 @@ Java의 Swing 라이브러리를 활용해 클라이언트 개발, MySQL DB를 �
 
 ## 기능스펙 :memo:
 ### 회원가입
-<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85_%EC%A4%91%EB%B3%B5%EA%B2%80%EC%82%AC.png?raw=true" width=800>
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85_%EC%A4%91%EB%B3%B5%EA%B2%80%EC%82%AC.png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85_%EC%A4%91%EB%B3%B5%EA%B2%80%EC%82%AC_%EB%8B%A4%EC%9D%B4%EC%96%BC%EB%A1%9C%EA%B7%B8%EB%A9%94%EC%8B%9C%EC%A7%80.png?raw=true" width=800>
    
+``` 
+우리 서비스의 사용자로 등록하기 위한 절차인 회원가입 화면입니다.
+```
 [:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-1 "회원가입")
-
+   
+### 로그인 관련 예외처리
+<img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EB%A1%9C%EA%B7%B8%EC%9D%B8RadioButton.png?raw=true" width=800><img src="https://github.com/Heongilee/04_PC_order/blob/master/README%20assets/%EB%A1%9C%EA%B7%B8%EC%9D%B8_%EB%8B%A4%EC%9D%B4%EC%96%BC%EB%A1%9C%EA%B7%B8.png?raw=true" width=800>
+   
+``` 
+로그인 화면에서 사용자 모드와 관리자 모드로 나누어 로그인할 수 있으며 정상적인 로그인 시도가 아닐경우
+예외 처리를 진행했습니다.
+```
+[:arrow_forward:시연영상 보기](https://github.com/Heongilee/04_PC_order/blob/master/README.md#%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC "로그인")
 
 ## 시연 :computer:
 ### 회원가입   
