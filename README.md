@@ -1,4 +1,4 @@
-# :computer:PC방 음식 주문 및 채팅 서비스
+# PC방 음식 주문 및 채팅 서비스 :computer:
 > 04조_객체지향설계기술 팀 프로젝트   
 ![imgs](https://img.shields.io/badge/Language-Java-orange) ![imgs](https://img.shields.io/badge/Database-MySQL-blue) ![imgs](https://img.shields.io/badge/Build%20Tool-Apache%20Maven-red)
 ---
