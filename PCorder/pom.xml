@@ -42,7 +42,7 @@
   <!-- 신규 입력된 부분 시작-->
   <properties>
   	<!-- JSON 플러그인 시작(2)-->
-  	<jackson.version>2.9.10.1</jackson.version>
+  	<jackson.version>2.9.10.8</jackson.version>
   	<!-- 메이븐 컴파일러 -->
   	<maven.compiler.source>1.8</maven.compiler.source>
   	<maven.compiler.target>1.8</maven.compiler.target>
